@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -14,14 +15,49 @@
             background: radial-gradient(circle at 85% 30%, #1a3c4a 0%, #102633 40%, #0a1118 100%);
             overflow-x: hidden;
             overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .bg-orb {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(144, 224, 239, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(60px);
+            pointer-events: none;
+            animation: float-bg 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes float-bg {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 50px); }
         }
 
         .cat-card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .cat-card:hover::before {
+            left: 100%;
         }
 
         .cat-card:hover {
@@ -76,6 +112,10 @@
 </head>
 <body class="text-white min-h-screen w-full flex flex-col relative pb-10">
 
+    <!-- Background Animated Orbs -->
+    <div class="bg-orb top-[10%] left-[-10%]" style="animation-duration: 25s"></div>
+    <div class="bg-orb bottom-[10%] right-[-10%] bg-[#fce17a]/[0.03]" style="animation-duration: 30s; animation-delay: -5s"></div>
+
     <!-- Header (Fully Responsive Glassmorphism Pill) -->
     <div class="w-full flex justify-center z-50 fixed top-6 px-4 pointer-events-none">
         <header class="w-full max-w-[1500px] flex items-center justify-between px-6 py-3 bg-white/[0.03] backdrop-blur-[40px] border border-white/20 rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto">
@@ -114,7 +154,7 @@
                     SAFETY
                     <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
                 </a>
-                <a href="#" class="relative transition hover:text-white py-2 group">
+                <a href="care.html" class="relative transition hover:text-white py-2 group">
                     CARE
                     <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
                 </a>
@@ -181,7 +221,7 @@
                 <a href="safety.html" class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
                     <i class="fa-solid fa-shield-halved text-[14px] w-5 text-center"></i> SAFETY
                 </a>
-                <a href="#" class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                <a href="care.html" class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
                     <i class="fa-solid fa-heart text-[14px] w-5 text-center"></i> CARE
                 </a>
                 <div class="h-[1px] bg-white/10 my-3"></div>
@@ -210,11 +250,11 @@
     <main class="w-full max-w-[1400px] mx-auto pt-32 px-6">
         
         <!-- Hero Section -->
-        <section class="w-full mb-12 animate-in slide-in-from-bottom-4 duration-700">
+        <section class="w-full mb-12" data-aos="fade-up" data-aos-duration="1000">
             <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/10 pb-6">
                 <div>
-                    <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Gian Hàng Số Địa Phương</h1>
-                    <p class="text-[#a0c2d1] text-sm font-medium tracking-widest uppercase">KHÁM PHÁ ẨM THỰC & TIỆN ÍCH TẠI PHÚ QUỐC</p>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Gian Hàng Số Phú Quốc</h1>
+                    <p class="text-[#a0c2d1] text-sm font-medium tracking-widest uppercase">KHÁM PHÁ ẨM THỰC & TIỆN ÍCH ĐỊA PHƯƠNG</p>
                 </div>
                 
                 <!-- Category Tabs -->
@@ -228,7 +268,7 @@
 
         <!-- F&B Digital Storefront Section -->
         <section class="mb-16">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center justify-between mb-6" data-aos="fade-right">
                 <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3">
                     <i class="fa-solid fa-utensils text-[#fce17a]"></i> Tóp Thịnh Hành
                 </h2>
@@ -241,7 +281,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <!-- Card 1 -->
-                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer fade-in-up">
+                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-[200px] relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0b131a] via-[#0b131a]/30 to-transparent"></div>
@@ -289,7 +329,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer fade-in-up" style="animation-delay: 100ms;">
+                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-[200px] relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0b131a] via-[#0b131a]/30 to-transparent"></div>
@@ -329,7 +369,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer fade-in-up" style="animation-delay: 200ms;">
+                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-[200px] relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0b131a] via-[#0b131a]/30 to-transparent"></div>
@@ -378,15 +418,15 @@
         </section>
 
         <!-- Telecom Services & SIM -->
-        <section class="mb-16 animate-in slide-in-from-bottom-8 duration-700 delay-200">
-            <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3 mb-6">
+        <section class="mb-16">
+            <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3 mb-6" data-aos="fade-right">
                 <i class="fa-solid fa-wifi text-[#90e0ef]"></i> SIM 4G & Tiện Ích
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
                 <!-- SIM Card 1 -->
-                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]">
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]" data-aos="zoom-in" data-aos-delay="100">
                     <div class="absolute -right-10 -top-10 w-32 h-32 bg-green-500/10 rounded-full blur-2xl group-hover:bg-green-500/20 transition duration-500"></div>
                     <div class="flex items-center gap-4 mb-5 relative z-10">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/10 border border-green-500/30 flex items-center justify-center text-green-400 shadow-[inset_0_0_15px_rgba(74,222,128,0.2)]">
@@ -410,7 +450,7 @@
                 </div>
 
                 <!-- SIM Card 2 -->
-                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]">
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]" data-aos="zoom-in" data-aos-delay="200">
                     <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition duration-500"></div>
                     
                     <div class="absolute top-4 right-4 bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-black text-[8px] font-black px-2 py-1 rounded uppercase tracking-wider shadow-md z-20">BÁN CHẠY NHẤT</div>
@@ -437,7 +477,7 @@
                 </div>
 
                 <!-- Top up card -->
-                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]">
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]" data-aos="zoom-in" data-aos-delay="300">
                     <div class="absolute -right-10 -top-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition duration-500"></div>
                     <div class="flex items-center gap-4 mb-5 relative z-10">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shadow-[inset_0_0_15px_rgba(168,85,247,0.2)]">
@@ -642,6 +682,14 @@
                 popup.classList.remove('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
             }
         }
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-back',
+            once: true
+        });
     </script>
 </body>
 </html>

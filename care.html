@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARE - PQGO.VN | Chăm Sóc Khách Hàng & Hỗ Trợ 24/7</title>
+    <meta name="description" content="Trung tâm chăm sóc khách hàng PQGO - Hỗ trợ AI 24/7, hotline trực tiếp, live chat và nhiều kênh liên hệ cho du khách tại Phú Quốc.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f1c29;
+            background: radial-gradient(circle at 85% 30%, #1a3c4a 0%, #102633 40%, #0a1118 100%);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .cat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .cat-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* Escalation flow connector */
+        .flow-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: linear-gradient(to right, rgba(144, 224, 239, 0.5), transparent);
+        }
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 767px) {
+            .flow-step::after {
+                top: auto;
+                bottom: -1.5rem;
+                left: 50%;
+                right: auto;
+                width: 2px;
+                height: 1.5rem;
+                background: linear-gradient(to bottom, rgba(144, 224, 239, 0.5), transparent);
+            }
+        }
+
+        /* FAQ accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.3s ease;
+        }
+        .faq-answer.open {
+            max-height: 300px;
+        }
+
+        /* Glow ring animation for online status */
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+        }
+        .animate-status-dot {
+            animation: pulse-ring 2s infinite;
+        }
+
+        /* Floating orb animation */
+        @keyframes float-orb {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+        .float-anim {
+            animation: float-orb 4s ease-in-out infinite;
+        }
+
+        /* Ambient Background Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: orbFloat 20s infinite alternate-reverse ease-in-out;
+        }
+        .orb-1 { width: 400px; height: 400px; background: #fce17a; top: -100px; right: -100px; }
+        .orb-2 { width: 500px; height: 500px; background: #4a8d96; bottom: -150px; left: -150px; animation-delay: -5s; }
+        .orb-3 { width: 300px; height: 300px; background: #ef4444; top: 40%; left: 20%; animation-delay: -10s; opacity: 0.05; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 60px) scale(1.1); }
+            100% { transform: translate(-20px, -40px) scale(0.9); }
+        }
+
+        /* Hover Reveal Effect */
+        .reveal-btn {
+            overflow: hidden;
+            position: relative;
+        }
+        .reveal-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .reveal-btn:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen w-full flex flex-col relative pb-10">
+
+    <!-- Ambient Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- HEADER (Glassmorphism Pill — Consistent with all pages)       -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="w-full flex justify-center z-50 fixed top-6 px-4 pointer-events-none">
+        <header class="w-full max-w-[1500px] flex items-center justify-between px-6 py-3 bg-white/[0.03] backdrop-blur-[40px] border border-white/20 rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto">
+            
+            <div class="flex items-center gap-3 ml-2 cursor-pointer group" onclick="window.location.href='explore.html'">
+                <svg class="w-8 h-8 drop-shadow-[0_0_12px_rgba(250,204,21,0.4)] group-hover:scale-105 transition-transform" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fffce8" />
+                            <stop offset="30%" stop-color="#fce17a" />
+                            <stop offset="100%" stop-color="#c19b2e" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M20 2C13.37 2 8 7.37 8 14c0 7.75 10.66 22.37 11.23 23.14a1 1 0 001.54 0C21.34 36.37 32 21.75 32 14 32 7.37 26.63 2 20 2zm0 18a6 6 0 110-12 6 6 0 010 12z" fill="url(#goldGradient)"/>
+                    <circle cx="20" cy="14" r="3" fill="#0f1c29"/>
+                </svg>
+                <span class="text-lg lg:text-[22px] font-extrabold tracking-[0.1em] text-[#f4ffff] drop-shadow-md">PQGO.VN</span>
+            </div>
+            
+            <nav class="hidden lg:flex items-center gap-7 lg:gap-8 text-[11px] font-bold tracking-[0.18em] text-[#a5c2ce]">
+                <a href="explore.html" class="relative transition hover:text-white py-2 group">
+                    EXPLORE
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="book.html" class="relative transition hover:text-white py-2 group">
+                    BOOK
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="shop.html" class="relative transition hover:text-white py-2 group">
+                    SHOP
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="safety.html" class="relative transition hover:text-white py-2 group">
+                    SAFETY
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="care.html" class="relative text-white transition py-2 group">
+                    CARE
+                    <!-- Active Glow Underline -->
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-[60%] h-[2px] bg-[#fce17a] shadow-[0_0_8px_rgba(250,204,21,0.9)] rounded"></span>
+                </a>
+                
+                <button onclick="toggleAiChat()" class="glass-btn flex items-center gap-2 px-4 py-[7px] rounded-full text-white ml-2 text-[10px] shadow-[inset_0_1px_3px_rgba(255,255,255,0.1)] border-white/20 hover:border-white/50 transition-all">
+                    <i class="fa-solid fa-robot text-[#90e0ef]"></i> ASK AI
+                </button>
+            </nav>
+            
+            <div class="hidden lg:flex items-center gap-3 mr-2 relative">
+                <button id="langBtn" class="glass-btn flex items-center gap-2 px-4 py-[9px] text-[10px] font-extrabold rounded-full text-[#ddeef2] tracking-[0.15em] border-white/20 hover:bg-white/10 transition shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)]">
+                    <i class="fa-solid fa-globe text-[#a0c2d1]"></i> <span id="langText">ENGLISH</span>
+                </button>
+                
+                <div id="langDropdown" class="absolute top-12 left-0 mt-2 w-32 bg-[#12222e]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] overflow-hidden scale-y-0 opacity-0 transform origin-top transition-all duration-300 z-50">
+                    <button class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition" onclick="switchLang('en')">ENGLISH</button>
+                    <button class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest transition" onclick="switchLang('vi')">TIẾNG VIỆT</button>
+                </div>
+                
+                <button class="bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-[#3a2c04] text-[10px] font-extrabold tracking-[0.1em] px-5 py-[9px] rounded-full shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.6)] hover:scale-105 transition-all flex items-center gap-2 border-[1.5px] border-[#fffce8]/50">
+                    <span data-translate="true">APP DOWNLOAD</span>
+                    <div class="flex gap-1 ml-1 text-[13px] opacity-90">
+                        <i class="fa-brands fa-apple"></i>
+                        <i class="fa-brands fa-android"></i>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Menu -->
+            <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden text-white text-2xl mr-4 px-2 hover:text-[#fce17a] transition">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </header>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- MOBILE MENU OVERLAY                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 z-[200] opacity-0 pointer-events-none transition-all duration-400">
+        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div id="mobileMenuPanel" class="absolute top-0 right-0 w-[300px] max-w-[85vw] h-full bg-[#0c1824]/95 backdrop-blur-2xl border-l border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.8)] translate-x-full transition-transform duration-400 ease-[cubic-bezier(0.25,0.8,0.25,1)] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6 drop-shadow-[0_0_12px_rgba(250,204,21,0.4)]" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs><linearGradient id="goldGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fffce8" /><stop offset="30%" stop-color="#fce17a" /><stop offset="100%" stop-color="#c19b2e" /></linearGradient></defs>
+                        <path d="M20 2C13.37 2 8 7.37 8 14c0 7.75 10.66 22.37 11.23 23.14a1 1 0 001.54 0C21.34 36.37 32 21.75 32 14 32 7.37 26.63 2 20 2zm0 18a6 6 0 110-12 6 6 0 010 12z" fill="url(#goldGradientMobile)"/>
+                        <circle cx="20" cy="14" r="3" fill="#0f1c29"/>
+                    </svg>
+                    <span class="text-[16px] font-extrabold tracking-[0.1em] text-[#f4ffff]">PQGO.VN</span>
+                </div>
+                <button onclick="toggleMobileMenu()" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:bg-white/20 hover:text-white hover:scale-110 transition-all">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <nav class="flex-1 flex flex-col px-6 py-6 gap-1 overflow-y-auto">
+                <a href="explore.html" class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-compass text-[14px] w-5 text-center"></i> EXPLORE
+                </a>
+                <a href="book.html" class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-calendar-check text-[14px] w-5 text-center"></i> BOOK
+                </a>
+                <a href="shop.html" class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-bag-shopping text-[14px] w-5 text-center"></i> SHOP
+                </a>
+                <a href="safety.html" class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-shield-halved text-[14px] w-5 text-center"></i> SAFETY
+                </a>
+                <a href="care.html" class="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-white/[0.08] border border-white/10 text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-heart text-[#fce17a] text-[14px] w-5 text-center"></i> CARE
+                    <span class="ml-auto w-1.5 h-1.5 rounded-full bg-[#fce17a] shadow-[0_0_8px_#fce17a]"></span>
+                </a>
+                <div class="h-[1px] bg-white/10 my-3"></div>
+                <button onclick="toggleMobileMenu(); setTimeout(toggleAiChat, 300);" class="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-gradient-to-r from-[#4a8d96]/20 to-transparent border border-[#4a8d96]/30 text-[#90e0ef] hover:bg-[#4a8d96]/30 hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-robot text-[14px] w-5 text-center"></i> ASK AI
+                </button>
+                <div class="flex gap-2 mt-3">
+                    <button onclick="switchLang('en')" class="flex-1 glass-btn flex items-center justify-center gap-2 px-3 py-3 rounded-xl text-[10px] font-extrabold tracking-[0.12em] text-[#ddeef2] border-white/15 hover:bg-white/10 transition">
+                        <i class="fa-solid fa-globe text-[#a0c2d1]"></i> ENGLISH
+                    </button>
+                    <button onclick="switchLang('vi')" class="flex-1 glass-btn flex items-center justify-center gap-2 px-3 py-3 rounded-xl text-[10px] font-extrabold tracking-[0.12em] text-[#ddeef2] border-white/15 hover:bg-white/10 transition">
+                        <i class="fa-solid fa-globe text-[#a0c2d1]"></i> TIẾNG VIỆT
+                    </button>
+                </div>
+            </nav>
+            <div class="px-6 pb-6 pt-2 border-t border-white/10">
+                <button class="w-full bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-[#3a2c04] text-[11px] font-extrabold tracking-[0.1em] px-5 py-3.5 rounded-2xl shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.6)] hover:scale-[1.02] transition-all flex items-center justify-center gap-3 border-[1.5px] border-[#fffce8]/50">
+                    APP DOWNLOAD
+                    <div class="flex gap-1.5 text-[14px] opacity-90"><i class="fa-brands fa-apple"></i><i class="fa-brands fa-android"></i></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- MAIN CONTENT                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <main class="w-full max-w-[1400px] mx-auto pt-32 px-6">
+        
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- SECTION 1: HERO BANNER                                 -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <section id="care-hero" class="w-full mb-16 relative" data-aos="fade-down" data-aos-delay="100">
+            <!-- Decorative floating orbs -->
+            <div class="absolute -top-10 right-10 w-40 h-40 bg-[#4a8d96]/10 rounded-full blur-3xl float-anim pointer-events-none"></div>
+            <div class="absolute top-20 -left-10 w-32 h-32 bg-[#fce17a]/5 rounded-full blur-3xl float-anim pointer-events-none" style="animation-delay: 2s;"></div>
+
+            <div class="flex flex-col items-center text-center gap-5 relative z-10">
+                <!-- Icon badge -->
+                <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#4a8d96]/30 to-[#12222e] border border-[#90e0ef]/30 flex items-center justify-center shadow-[0_0_40px_rgba(144,224,239,0.15),inset_0_0_20px_rgba(144,224,239,0.1)] mb-2">
+                    <i class="fa-solid fa-headset text-[#90e0ef] text-3xl drop-shadow-[0_0_10px_rgba(144,224,239,0.5)]"></i>
+                </div>
+
+                <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40 leading-tight">
+                    Chăm Sóc & Hỗ Trợ
+                </h1>
+                <p class="text-[#a0c2d1] text-sm lg:text-base font-medium tracking-wide max-w-2xl leading-relaxed">
+                    Kết hợp sức mạnh của <span class="text-[#90e0ef] font-bold">AI thông minh</span> và đội ngũ chuyên gia bản địa để mang lại cho bạn trải nghiệm Phú Quốc mượt mà nhất — <span class="text-white font-semibold">24/7, đa ngôn ngữ</span>.
+                </p>
+
+                <!-- Status badges -->
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-2">
+                    <div class="flex items-center gap-2 bg-[#1a2d33]/80 border border-[#4ade80]/30 rounded-full px-4 py-2 backdrop-blur-md">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-status-dot"></span>
+                        <span class="text-[10px] font-extrabold text-green-200 uppercase tracking-widest">AI ĐANG HOẠT ĐỘNG</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-[#1a2d33]/80 border border-[#90e0ef]/20 rounded-full px-4 py-2 backdrop-blur-md">
+                        <i class="fa-solid fa-language text-[#90e0ef] text-[11px]"></i>
+                        <span class="text-[10px] font-extrabold text-[#a0c2d1] uppercase tracking-widest">VN · EN · 中文 · 한국어</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-[#1a2d33]/80 border border-[#fce17a]/20 rounded-full px-4 py-2 backdrop-blur-md">
+                        <i class="fa-solid fa-clock text-[#fce17a] text-[11px]"></i>
+                        <span class="text-[10px] font-extrabold text-[#a0c2d1] uppercase tracking-widest">HỖ TRỢ 24/7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mt-12"></div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- SECTION 2: AI CAPABILITIES (Module E1)                 -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <section id="ai-capabilities" class="mb-16" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3">
+                    <i class="fa-solid fa-wand-magic-sparkles text-[#90e0ef]"></i> Trợ Lý AI Thông Minh
+                </h2>
+                <button onclick="toggleAiChat()" class="hidden md:flex items-center gap-2 bg-gradient-to-r from-[#4a8d96]/30 to-[#12222e] border border-[#90e0ef]/30 rounded-full px-5 py-2.5 text-[10px] font-extrabold text-[#90e0ef] tracking-widest uppercase hover:border-[#90e0ef]/60 hover:shadow-[0_0_20px_rgba(144,224,239,0.15)] transition-all">
+                    <i class="fa-solid fa-robot"></i> MỞ CHATBOT
+                </button>
+            </div>
+
+            <!-- AI Feature Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                
+                <!-- Card 1: Gợi ý lịch trình -->
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-8 -top-8 w-28 h-28 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4 shadow-[inset_0_0_15px_rgba(6,182,212,0.15)] relative z-10">
+                        <i class="fa-solid fa-route text-xl"></i>
+                    </div>
+                    <h3 class="text-[14px] font-black tracking-wider uppercase mb-2 relative z-10 group-hover:text-[#90e0ef] transition">Gợi Ý Lịch Trình</h3>
+                    <p class="text-[11px] text-[#a0c2d1] leading-relaxed mb-4 relative z-10 flex-1">AI lên kế hoạch du lịch tối ưu dựa trên ngân sách, sở thích và thời tiết thực tế.</p>
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/5 relative z-10">
+                        <p class="text-[10px] text-white/50 italic leading-relaxed"><i class="fa-solid fa-quote-left text-[8px] text-cyan-400/50 mr-1"></i>"3 ngày 2 đêm ở PQ với 5 triệu/người, ưu tiên biển đẹp"</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Tra cứu thông tin -->
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-8 -top-8 w-28 h-28 bg-violet-500/10 rounded-full blur-2xl group-hover:bg-violet-500/20 transition duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/5 border border-violet-500/30 flex items-center justify-center text-violet-400 mb-4 shadow-[inset_0_0_15px_rgba(139,92,246,0.15)] relative z-10">
+                        <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                    </div>
+                    <h3 class="text-[14px] font-black tracking-wider uppercase mb-2 relative z-10 group-hover:text-violet-300 transition">Tra Cứu Thông Tin</h3>
+                    <p class="text-[11px] text-[#a0c2d1] leading-relaxed mb-4 relative z-10 flex-1">Trả lời mọi câu hỏi về giờ mở cửa, vé, giá cả, điểm đến và dịch vụ tại Phú Quốc.</p>
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/5 relative z-10">
+                        <p class="text-[10px] text-white/50 italic leading-relaxed"><i class="fa-solid fa-quote-left text-[8px] text-violet-400/50 mr-1"></i>"Cáp treo Hòn Thơm mở cửa mấy giờ? Giá vé bao nhiêu?"</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Thời tiết & Mùa vụ -->
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-8 -top-8 w-28 h-28 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4 shadow-[inset_0_0_15px_rgba(245,158,11,0.15)] relative z-10">
+                        <i class="fa-solid fa-cloud-sun text-xl"></i>
+                    </div>
+                    <h3 class="text-[14px] font-black tracking-wider uppercase mb-2 relative z-10 group-hover:text-amber-300 transition">Thời Tiết & Mùa Vụ</h3>
+                    <p class="text-[11px] text-[#a0c2d1] leading-relaxed mb-4 relative z-10 flex-1">Dự báo thời tiết realtime, tư vấn mùa du lịch tốt nhất và hoạt động phù hợp theo mùa.</p>
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/5 relative z-10">
+                        <p class="text-[10px] text-white/50 italic leading-relaxed"><i class="fa-solid fa-quote-left text-[8px] text-amber-400/50 mr-1"></i>"Tháng 7 có mưa không? Khi nào là mùa câu mực?"</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Hỗ trợ Booking -->
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-8 -top-8 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition duration-500"></div>
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 shadow-[inset_0_0_15px_rgba(16,185,129,0.15)] relative z-10">
+                        <i class="fa-solid fa-calendar-check text-xl"></i>
+                    </div>
+                    <h3 class="text-[14px] font-black tracking-wider uppercase mb-2 relative z-10 group-hover:text-emerald-300 transition">Hỗ Trợ Booking</h3>
+                    <p class="text-[11px] text-[#a0c2d1] leading-relaxed mb-4 relative z-10 flex-1">Đặt tour, đặt bàn nhà hàng và so sánh khách sạn trực tiếp qua cuộc trò chuyện với AI.</p>
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/5 relative z-10">
+                        <p class="text-[10px] text-white/50 italic leading-relaxed"><i class="fa-solid fa-quote-left text-[8px] text-emerald-400/50 mr-1"></i>"Đặt tour snorkeling ngày mai cho 2 người"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA: Open Chatbot (mobile) -->
+            <div class="mt-6 flex md:hidden justify-center">
+                <button onclick="toggleAiChat()" class="bg-gradient-to-r from-[#4a8d96] to-[#2d6a75] hover:from-[#5a9da8] hover:to-[#3d7a85] text-white shadow-[0_5px_20px_rgba(74,141,150,0.4)] hover:shadow-[0_5px_25px_rgba(74,141,150,0.6)] transition-all px-8 py-3.5 rounded-2xl text-[11px] font-black tracking-widest uppercase flex items-center gap-3">
+                    <i class="fa-solid fa-robot text-[16px]"></i> HỎI AI NGAY
+                </button>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- SECTION 3: HUMAN SUPPORT CHANNELS (Module E2)          -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <section id="human-support" class="mb-16" data-aos="fade-up" data-aos-delay="300">
+            <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3 mb-8">
+                <i class="fa-solid fa-users text-[#fce17a]"></i> Kênh Hỗ Trợ Con Người
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <!-- Channel 1: Live Chat -->
+                <div class="cat-card p-6 flex items-start gap-5 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/8 rounded-full blur-2xl group-hover:bg-blue-500/15 transition duration-500"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-[inset_0_0_15px_rgba(59,130,246,0.2)] shrink-0 relative z-10">
+                        <i class="fa-solid fa-comments text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col gap-2 relative z-10 flex-1">
+                        <div class="flex items-center gap-3">
+                            <h3 class="text-[14px] font-black tracking-wider uppercase group-hover:text-blue-300 transition">Live Chat</h3>
+                            <span class="flex items-center gap-1.5 bg-green-500/15 border border-green-500/30 rounded-full px-2.5 py-0.5">
+                                <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-status-dot"></span>
+                                <span class="text-[8px] font-bold text-green-300 uppercase tracking-wider">Online</span>
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed">Trò chuyện trực tiếp với đội ngũ hỗ trợ qua Website / App. Giải đáp thắc mắc về booking, dịch vụ và khiếu nại.</p>
+                        <div class="flex items-center gap-4 mt-2">
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-regular fa-clock text-[9px]"></i> 8:00 – 22:00
+                            </div>
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-solid fa-language text-[9px]"></i> VN · EN
+                            </div>
+                        </div>
+                        <button class="mt-3 bg-blue-500/20 border border-blue-400/40 hover:bg-blue-500/30 transition text-blue-200 text-[10px] font-black tracking-widest uppercase px-5 py-2.5 rounded-xl w-max">
+                            <i class="fa-solid fa-message mr-2"></i>BẮT ĐẦU CHAT
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Channel 2: Hotline -->
+                <div class="cat-card p-6 flex items-start gap-5 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-red-500/8 rounded-full blur-2xl group-hover:bg-red-500/15 transition duration-500"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-500/5 border border-red-500/30 flex items-center justify-center text-red-400 shadow-[inset_0_0_15px_rgba(239,68,68,0.2)] shrink-0 relative z-10">
+                        <i class="fa-solid fa-phone text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col gap-2 relative z-10 flex-1">
+                        <h3 class="text-[14px] font-black tracking-wider uppercase group-hover:text-red-300 transition">Hotline Trực Tiếp</h3>
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed">Dành cho vấn đề khẩn cấp, phức tạp hoặc cần giải quyết ngay. Đội ngũ chuyên gia bản địa sẵn sàng hỗ trợ bạn.</p>
+                        <div class="flex items-center gap-4 mt-2">
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-regular fa-clock text-[9px]"></i> 8:00 – 22:00
+                            </div>
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-solid fa-language text-[9px]"></i> VN · EN
+                            </div>
+                        </div>
+                        <a href="tel:19001234" class="mt-3 bg-red-500/20 border border-red-400/40 hover:bg-red-500/30 transition text-red-200 text-[10px] font-black tracking-widest uppercase px-5 py-2.5 rounded-xl w-max inline-flex items-center">
+                            <i class="fa-solid fa-phone-volume mr-2"></i>1900 1234
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Channel 3: Zalo / Facebook -->
+                <div class="cat-card p-6 flex items-start gap-5 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-indigo-500/8 rounded-full blur-2xl group-hover:bg-indigo-500/15 transition duration-500"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-[inset_0_0_15px_rgba(99,102,241,0.2)] shrink-0 relative z-10">
+                        <i class="fa-solid fa-share-nodes text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col gap-2 relative z-10 flex-1">
+                        <h3 class="text-[14px] font-black tracking-wider uppercase group-hover:text-indigo-300 transition">Zalo & Facebook</h3>
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed">Kênh phổ biến cho du khách nội địa. Nhắn tin nhanh qua Zalo Official Account hoặc Facebook Messenger.</p>
+                        <div class="flex items-center gap-4 mt-2">
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-regular fa-clock text-[9px]"></i> 8:00 – 22:00
+                            </div>
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-solid fa-language text-[9px]"></i> Tiếng Việt
+                            </div>
+                        </div>
+                        <div class="flex gap-2 mt-3">
+                            <button class="bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/30 transition text-blue-200 text-[10px] font-black tracking-widest uppercase px-4 py-2.5 rounded-xl flex items-center gap-2">
+                                <i class="fa-brands fa-facebook-messenger"></i> MESSENGER
+                            </button>
+                            <button class="bg-blue-500/15 border border-sky-400/40 hover:bg-blue-500/25 transition text-sky-200 text-[10px] font-black tracking-widest uppercase px-4 py-2.5 rounded-xl flex items-center gap-2">
+                                <i class="fa-solid fa-comment-dots"></i> ZALO OA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Channel 4: Email -->
+                <div class="cat-card p-6 flex items-start gap-5 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-teal-500/8 rounded-full blur-2xl group-hover:bg-teal-500/15 transition duration-500"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500/20 to-teal-500/5 border border-teal-500/30 flex items-center justify-center text-teal-400 shadow-[inset_0_0_15px_rgba(20,184,166,0.2)] shrink-0 relative z-10">
+                        <i class="fa-solid fa-envelope text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col gap-2 relative z-10 flex-1">
+                        <h3 class="text-[14px] font-black tracking-wider uppercase group-hover:text-teal-300 transition">Email Support</h3>
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed">Hỗ trợ 24/7 qua email, phản hồi dưới 4 giờ. Phù hợp cho yêu cầu hoàn tiền, tranh chấp và các vấn đề cần xử lý chi tiết.</p>
+                        <div class="flex items-center gap-4 mt-2">
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-solid fa-bolt text-[9px]"></i> Phản hồi &lt; 4h
+                            </div>
+                            <div class="flex items-center gap-1.5 text-[10px] text-white/50">
+                                <i class="fa-solid fa-language text-[9px]"></i> Đa ngôn ngữ
+                            </div>
+                        </div>
+                        <a href="mailto:support@pqgo.vn" class="mt-3 bg-teal-500/20 border border-teal-400/40 hover:bg-teal-500/30 transition text-teal-200 text-[10px] font-black tracking-widest uppercase px-5 py-2.5 rounded-xl w-max inline-flex items-center">
+                            <i class="fa-solid fa-paper-plane mr-2"></i>SUPPORT@PQGO.VN
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- SECTION 4: ESCALATION FLOW                             -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <section id="escalation-flow" class="mb-16" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3 mb-3">
+                <i class="fa-solid fa-arrows-turn-right text-[#90e0ef]"></i> Quy Trình Hỗ Trợ
+            </h2>
+            <p class="text-[11px] text-[#a0c2d1] mb-8 max-w-xl leading-relaxed">Hệ thống hỗ trợ thông minh tự động phân loại và chuyển tiếp yêu cầu của bạn đến đúng người, đúng lúc.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
+                <!-- Step 1 -->
+                <div class="flow-step relative cat-card p-6 flex flex-col items-center text-center group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] border-2 border-[#90e0ef]/40 flex items-center justify-center text-[#90e0ef] font-black text-[14px] mb-4 shadow-[0_0_20px_rgba(144,224,239,0.2)]">1</div>
+                    <div class="w-12 h-12 rounded-2xl bg-[#4a8d96]/15 border border-[#90e0ef]/20 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-robot text-[#90e0ef] text-xl"></i>
+                    </div>
+                    <h4 class="text-[13px] font-black tracking-wider uppercase mb-2">AI Tự Động Giải Đáp</h4>
+                    <p class="text-[10px] text-[#a0c2d1] leading-relaxed">Chatbot AI tiếp nhận câu hỏi, cung cấp câu trả lời ngay trong vài giây. Hoạt động 24/7 không gián đoạn.</p>
+                    <div class="mt-3 bg-[#4a8d96]/10 border border-[#90e0ef]/10 rounded-lg px-3 py-2">
+                        <span class="text-[9px] text-[#90e0ef] font-bold uppercase tracking-wider">~90% câu hỏi được giải quyết</span>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-step relative cat-card p-6 flex flex-col items-center text-center group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#fce17a]/30 to-[#12222e] border-2 border-[#fce17a]/40 flex items-center justify-center text-[#fce17a] font-black text-[14px] mb-4 shadow-[0_0_20px_rgba(252,225,122,0.15)]">2</div>
+                    <div class="w-12 h-12 rounded-2xl bg-[#fce17a]/10 border border-[#fce17a]/20 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-user-headset text-[#fce17a] text-xl"></i>
+                    </div>
+                    <h4 class="text-[13px] font-black tracking-wider uppercase mb-2">Chuyên Viên Tiếp Nhận</h4>
+                    <p class="text-[10px] text-[#a0c2d1] leading-relaxed">Khi AI không chắc chắn (confidence &lt; 70%) hoặc bạn yêu cầu, hệ thống chuyển ngay đến nhân viên hỗ trợ.</p>
+                    <div class="mt-3 bg-[#fce17a]/10 border border-[#fce17a]/10 rounded-lg px-3 py-2">
+                        <span class="text-[9px] text-[#fce17a] font-bold uppercase tracking-wider">Phản hồi trong 5 phút</span>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-step relative cat-card p-6 flex flex-col items-center text-center group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500/30 to-[#12222e] border-2 border-red-400/40 flex items-center justify-center text-red-400 font-black text-[14px] mb-4 shadow-[0_0_20px_rgba(239,68,68,0.15)]">3</div>
+                    <div class="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-truck-medical text-red-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-[13px] font-black tracking-wider uppercase mb-2">Hotline Khẩn Cấp</h4>
+                    <p class="text-[10px] text-[#a0c2d1] leading-relaxed">Vấn đề y tế, an ninh sẽ bypass AI — kết nối trực tiếp với hotline khẩn cấp hoặc chuyển sang trang Safety.</p>
+                    <div class="mt-3 bg-red-500/10 border border-red-500/10 rounded-lg px-3 py-2">
+                        <span class="text-[9px] text-red-400 font-bold uppercase tracking-wider">1 chạm → Gọi 115</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- SECTION 5: FAQ — CÂU HỎI THƯỜNG GẶP                  -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <section id="faq" class="mb-16" data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3 mb-8">
+                <i class="fa-solid fa-circle-question text-[#fce17a]"></i> Câu Hỏi Thường Gặp
+            </h2>
+
+            <div class="flex flex-col gap-3 max-w-3xl">
+                <!-- FAQ Item 1 -->
+                <div class="cat-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-4 text-left group">
+                        <span class="text-[13px] font-bold tracking-wide group-hover:text-[#90e0ef] transition">Tôi có thể liên hệ hỗ trợ ngoài giờ hành chính không?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-[#a0c2d1] transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed pb-4">Có! AI Chatbot của chúng tôi hoạt động <strong class="text-white">24/7</strong> và có thể giải đáp hầu hết các câu hỏi. Ngoài giờ hành chính (22:00 – 8:00), nếu cần hỗ trợ từ nhân viên, AI sẽ ghi nhận ticket và chuyên viên sẽ xử lý vào sáng hôm sau. Các vấn đề khẩn cấp về y tế luôn được chuyển trực tiếp đến hotline 115.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="cat-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-4 text-left group">
+                        <span class="text-[13px] font-bold tracking-wide group-hover:text-[#90e0ef] transition">AI có thể đặt tour hoặc đặt bàn giúp tôi không?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-[#a0c2d1] transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed pb-4">Chắc chắn! AI của PQGO được tích hợp trực tiếp với hệ thống booking. Bạn chỉ cần nói: <em class="text-[#90e0ef]">"Đặt tour snorkeling ngày mai cho 2 người"</em> hoặc <em class="text-[#90e0ef]">"Đặt bàn tại Ocsen Beach Bar lúc 19h"</em> — AI sẽ kiểm tra availability và xác nhận cho bạn ngay.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="cat-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-4 text-left group">
+                        <span class="text-[13px] font-bold tracking-wide group-hover:text-[#90e0ef] transition">AI hỗ trợ những ngôn ngữ nào?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-[#a0c2d1] transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed pb-4">AI Chatbot hỗ trợ <strong class="text-white">5 ngôn ngữ</strong>: Tiếng Việt, English, 中文 (Trung Quốc), 한국어 (Hàn Quốc) và Русский (Nga). Hệ thống tự động phát hiện ngôn ngữ của bạn và phản hồi phù hợp.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="cat-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-4 text-left group">
+                        <span class="text-[13px] font-bold tracking-wide group-hover:text-[#90e0ef] transition">Chính sách hoàn tiền khi hủy dịch vụ như thế nào?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-[#a0c2d1] transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <div class="text-[11px] text-[#a0c2d1] leading-relaxed pb-4">
+                            <p class="mb-2">Chính sách hoàn tiền tùy thuộc vào thời điểm hủy:</p>
+                            <ul class="space-y-1.5 ml-4">
+                                <li class="flex items-center gap-2"><span class="text-green-400">●</span> Trước 48h: Hoàn 100% (trừ phí cổng thanh toán)</li>
+                                <li class="flex items-center gap-2"><span class="text-yellow-400">●</span> Trước 24h: Hoàn 70%</li>
+                                <li class="flex items-center gap-2"><span class="text-orange-400">●</span> Trước 12h: Hoàn 50% (cần merchant xác nhận)</li>
+                                <li class="flex items-center gap-2"><span class="text-red-400">●</span> Dưới 12h / No-show: Không hoàn</li>
+                            </ul>
+                            <p class="mt-2 text-white/60">Trường hợp thiên tai / force majeure → Hoàn 100% theo quyết định Admin.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="cat-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-4 text-left group">
+                        <span class="text-[13px] font-bold tracking-wide group-hover:text-[#90e0ef] transition">Tôi gặp sự cố y tế khẩn cấp trên đảo thì phải làm sao?</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-[#a0c2d1] transition-transform duration-300 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-[11px] text-[#a0c2d1] leading-relaxed pb-4">Bấm nút <strong class="text-red-400">SOS (màu đỏ)</strong> ở góc trái màn hình để gọi ngay 115. Hoặc truy cập trang <a href="safety.html" class="text-[#90e0ef] underline hover:text-white transition">SAFETY</a> để xem hệ thống hotline khẩn cấp phân theo khu vực và đặt dịch vụ y tế tại chỗ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- FOOTER: Trải nghiệm liền mạch                         -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <div class="flex flex-col items-center gap-4 mt-20 w-full mb-10 z-10 transition-all duration-500 pt-10 border-t border-white/5" data-aos="zoom-in">
+            <div class="flex items-center bg-gradient-to-r from-[#12222e]/80 to-[#1e3445]/40 border border-[#a0c2d1]/30 rounded-2xl p-2 pr-5 backdrop-blur-md cursor-pointer hover:border-[#a0c2d1]/60 transition group shadow-[0_5px_15px_rgba(0,0,0,0.3)] w-max mx-auto">
+                 <div class="w-10 h-14 bg-black rounded-lg border-2 border-slate-400 flex items-center justify-center relative overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.5)] group-hover:-translate-y-1 transition duration-300 transform rotate-[-5deg]">
+                     <div class="absolute top-[2px] w-3 h-[2px] bg-slate-600 rounded-full"></div>
+                     <i class="fa-solid fa-earth-asia text-[#90e0ef] text-xl"></i>
+                     <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent"></div>
+                 </div>
+                 <div class="ml-4 flex flex-col justify-center">
+                     <span class="text-[8px] font-bold text-[#bfe0e8] tracking-[0.1em] uppercase mb-0.5 opacity-90">Trải nghiệm liền mạch</span>
+                     <span class="text-white font-extrabold text-[11px] uppercase tracking-wider">TẢI ỨNG DỤNG PQGO</span>
+                     <div class="flex gap-2 mt-1 opacity-70">
+                          <i class="fa-brands fa-apple hover:text-white transition cursor-pointer text-[13px]"></i>
+                          <i class="fa-brands fa-google-play hover:text-white transition cursor-pointer text-[13px]"></i>
+                     </div>
+                 </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- FLOATING GLOBAL ELEMENTS                                      -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- Floating ASK AI Button -->
+    <div class="fixed bottom-6 right-6 lg:right-8 z-[100] pointer-events-auto">
+        <button class="bg-gradient-to-r from-[#ddefef] to-[#ffffff] text-[#123640] rounded-full pl-5 pr-6 py-[13px] flex items-center gap-2.5 shadow-[0_5px_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 font-extrabold text-[12px] tracking-[0.05em] border-2 border-white/50" onclick="toggleAiChat()">
+            <div class="w-6 h-6 bg-[#8cacbc]/30 rounded-full flex items-center justify-center mr-0.5 pointer-events-none">
+                <i class="fa-solid fa-robot text-[#1e505e] text-sm"></i>
+            </div>
+            ASK AI <i class="fa-solid fa-chevron-right text-[10px] pointer-events-none"></i>
+        </button>
+    </div>
+
+    <!-- Floating SOS Button -->
+    <div class="fixed bottom-6 left-6 lg:left-8 z-[100] pointer-events-auto">
+        <button onclick="window.location.href='tel:115'" class="relative flex items-center justify-center w-[52px] h-[52px] bg-gradient-to-br from-[#ef4444] to-[#b91c1c] rounded-full border-2 border-red-300/50 shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-110 transition-all duration-300 group">
+            <div class="absolute inset-0 rounded-full border-[1.5px] border-red-400 animate-ping opacity-60"></div>
+            <i class="fa-solid fa-suitcase-medical text-white text-[22px] drop-shadow-md"></i>
+            <div class="absolute left-[calc(100%+12px)] bg-red-600/95 backdrop-blur-md text-white text-[10px] font-extrabold px-3.5 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl pointer-events-none border border-red-400/50 uppercase tracking-widest origin-left scale-95 group-hover:scale-100">
+                GỌI CẤP CỨU & Y TẾ (115)
+            </div>
+        </button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- AI ASSISTANT POPUP                                            -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="aiChatPopup" class="fixed bottom-24 right-6 lg:right-8 z-[110] w-[380px] max-w-[calc(100vw-32px)] h-[600px] max-h-[75vh] bg-[#0c1824]/95 backdrop-blur-xl border border-white/20 rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] flex flex-col overflow-hidden opacity-0 scale-95 translate-y-10 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-gradient-to-r from-[#4a8d96]/20 to-transparent shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] border border-[#90e0ef]/50 flex items-center justify-center shadow-[0_0_15px_rgba(144,224,239,0.3)]">
+                        <i class="fa-solid fa-robot text-[#ecf6f9] text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-[14px] font-extrabold tracking-widest uppercase text-white drop-shadow-md">PQGO Assistant</h2>
+                    <p class="text-[9px] text-[#a0c2d1] font-semibold tracking-wider">Hỗ trợ chăm sóc khách hàng 24/7</p>
+                </div>
+            </div>
+            
+            <button onclick="toggleAiChat()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 hover:scale-110 transition border border-white/10 flex items-center justify-center cursor-pointer text-gray-300">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="flex-1 overflow-y-auto hide-scrollbar p-5 flex flex-col gap-5">
+            <div class="flex justify-center my-1">
+                <span class="text-[9px] font-bold text-[#8caab5] bg-white/5 px-3 py-1 rounded-full border border-white/10 uppercase tracking-widest">Hôm nay</span>
+            </div>
+
+            <!-- Bot Message -->
+            <div class="flex items-end gap-2.5 max-w-[85%]">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] flex items-center justify-center shrink-0 border border-white/20">
+                    <i class="fa-solid fa-robot text-[10px] text-white"></i>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl rounded-bl-sm p-3 border border-white/10 shadow-lg mt-1">
+                    <p class="text-[13px] leading-relaxed text-[#ecf6f9]">
+                        Xin chào! Tôi là trợ lý AI của PQGO. Bạn cần hỗ trợ gì về chuyến du lịch Phú Quốc?
+                    </p>
+                </div>
+            </div>
+
+            <!-- Suggestion Chips -->
+            <div class="flex gap-2 flex-wrap pl-9">
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">📅 Lên lịch trình 3N2Đ</button>
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">🆘 Tôi cần hỗ trợ khẩn</button>
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">💰 Chính sách hoàn tiền</button>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 border-t border-white/10 bg-[#0f1c29]/90 shrink-0">
+            <div class="relative bg-white/5 border border-white/20 rounded-full pr-1 flex items-center transition-all duration-300 focus-within:border-[#90e0ef]/50 focus-within:bg-white/10">
+                <button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition group shrink-0">
+                    <i class="fa-solid fa-paperclip text-[15px] group-hover:scale-110 transition"></i>
+                </button>
+                <input type="text" placeholder="Hỏi AI..." class="flex-1 w-full bg-transparent border-none outline-none text-white text-[13px] font-light placeholder-gray-400 py-3">
+                <button class="w-8 h-8 rounded-full bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-black hover:scale-105 transition shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center justify-center transform ml-1 shrink-0">
+                    <i class="fa-solid fa-paper-plane text-[11px] ml-[-1px]"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- SCRIPTS                                                       -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        // ─── Language Dropdown ───
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        const langText = document.getElementById('langText');
+
+        if(langBtn) {
+            langBtn.onclick = (e) => {
+                e.stopPropagation();
+                if(langDropdown.classList.contains('scale-y-0')) {
+                    langDropdown.classList.remove('scale-y-0', 'opacity-0');
+                    langDropdown.classList.add('scale-y-100', 'opacity-100');
+                } else {
+                    langDropdown.classList.add('scale-y-0', 'opacity-0');
+                    langDropdown.classList.remove('scale-y-100', 'opacity-100');
+                }
+            };
+        }
+
+        document.addEventListener('click', () => {
+            if(langDropdown && !langDropdown.classList.contains('scale-y-0')) {
+                langDropdown.classList.add('scale-y-0', 'opacity-0');
+                langDropdown.classList.remove('scale-y-100', 'opacity-100');
+            }
+        });
+
+        window.switchLang = function(langKey) {
+            if(langText) {
+                langText.innerText = (langKey === 'en') ? 'ENGLISH' : 'TIẾNG VIỆT';
+            }
+            if(langDropdown) {
+                langDropdown.classList.add('scale-y-0', 'opacity-0');
+                langDropdown.classList.remove('scale-y-100', 'opacity-100');
+            }
+        }
+
+        // ─── Mobile Menu Toggle ───
+        function toggleMobileMenu() {
+            const overlay = document.getElementById('mobileMenuOverlay');
+            const panel = document.getElementById('mobileMenuPanel');
+            const btn = document.getElementById('mobileMenuBtn');
+            const isOpen = !overlay.classList.contains('pointer-events-none');
+            if (isOpen) {
+                panel.classList.add('translate-x-full');
+                panel.classList.remove('translate-x-0');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                overlay.classList.remove('opacity-100', 'pointer-events-auto');
+                btn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                document.body.style.overflow = '';
+            } else {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                overlay.classList.add('opacity-100', 'pointer-events-auto');
+                panel.classList.remove('translate-x-full');
+                panel.classList.add('translate-x-0');
+                btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // ─── AI Chat Toggle ───
+        function toggleAiChat() {
+            const popup = document.getElementById('aiChatPopup');
+            if (popup.classList.contains('opacity-0')) {
+                popup.classList.remove('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
+                popup.classList.add('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                popup.classList.add('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
+                popup.classList.remove('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+            }
+        }
+
+        // ─── FAQ Accordion Toggle ───
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('open');
+
+            // Close all others
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = '');
+
+            if (!isOpen) {
+                answer.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // ─── Animations & Effects ───
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 50,
+                    easing: 'ease-out-cubic'
+                });
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</body>
+</html>
