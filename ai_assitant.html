@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PQGO AI Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f1c29;
+            background: radial-gradient(circle at 50% 50%, #173242 0%, #0f1c29 100%);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        .chat-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .glass-input:focus-within {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(144, 224, 239, 0.5);
+            box-shadow: 0 0 20px rgba(144, 224, 239, 0.2);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="text-white flex items-center justify-center p-4 lg:p-10 relative">
+    
+    <!-- Background Elements -->
+    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#4a8d96]/20 blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[40%] rounded-full bg-[#fce17a]/10 blur-[100px] pointer-events-none"></div>
+
+    <div class="w-full max-w-[1000px] h-full max-h-[850px] chat-container rounded-[30px] flex flex-col relative z-10 overflow-hidden">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-white/[0.02]">
+            <div class="flex items-center gap-4">
+                <a href="explore.html" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 hover:scale-105 transition">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] border-2 border-[#90e0ef] flex items-center justify-center shadow-[0_0_15px_rgba(144,224,239,0.4)]">
+                            <i class="fa-solid fa-robot text-[#ecf6f9] text-xl"></i>
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-[#12222e] animate-pulse"></div>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-extrabold tracking-widest uppercase text-white drop-shadow-md">PQGO AI Assistant</h2>
+                        <p class="text-[11px] text-[#a0c2d1] font-semibold tracking-wider">Luôn trực tuyến • Sẵn sàng hỗ trợ</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 transition border border-white/10 flex items-center justify-center">
+                    <i class="fa-solid fa-phone text-[#90e0ef]"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 transition border border-white/10 flex items-center justify-center">
+                    <i class="fa-solid fa-ellipsis-vertical text-gray-300"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col gap-6 relative">
+            
+            <!-- Date Divider -->
+            <div class="flex justify-center my-2">
+                <span class="text-[10px] font-bold text-[#8caab5] bg-white/5 px-3 py-1 rounded-full border border-white/10 uppercase tracking-widest">Hôm nay</span>
+            </div>
+
+            <!-- Bot Message -->
+            <div class="flex items-end gap-3 max-w-[80%]">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] flex items-center justify-center shrink-0 border border-white/20">
+                    <i class="fa-solid fa-robot text-[12px] text-white"></i>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl rounded-bl-sm p-4 border border-white/10 shadow-lg">
+                    <p class="text-[14px] leading-relaxed text-[#ecf6f9]">
+                        Chào mừng bạn đến với Phú Quốc! 🌴<br><br>
+                        Tôi là trợ lý AI chuyên biệt của PQGO. Tôi có thể giúp bạn tìm kiếm nhà hàng hải sản ngon, đặt vé VinWonders ưu đãi, hay lên một lịch trình 3 ngày 2 đêm hoàn hảo.<br><br>
+                        Bạn muốn khám phá điều gì hôm nay?
+                    </p>
+                </div>
+                <span class="text-[10px] text-gray-500 font-medium mb-1">09:41</span>
+            </div>
+
+            <!-- Pre-filled Suggestion Chips -->
+            <div class="flex gap-2 flex-wrap pl-11">
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[11px] font-semibold px-3 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition">🌟 Gợi ý lịch trình 3N2Đ</button>
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[11px] font-semibold px-3 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition">🦀 Ăn gì ở Dương Đông?</button>
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[11px] font-semibold px-3 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition">🎫 Đặt vé cáp treo Hòn Thơm</button>
+            </div>
+
+            <!-- User Message -->
+            <div class="flex items-end gap-3 max-w-[80%] self-end flex-row-reverse mt-2">
+                <img src="https://i.pravatar.cc/100?img=33" class="w-8 h-8 rounded-full shrink-0 border border-white/20 object-cover" />
+                <div class="bg-gradient-to-br from-[#4a8d96] to-[#2c656c] rounded-2xl rounded-br-sm p-4 border border-[#90e0ef]/30 shadow-[0_5px_15px_rgba(74,141,150,0.3)]">
+                    <p class="text-[14px] leading-relaxed text-white">
+                        Tối nay tôi muốn tìm một quán Bar ngắm hoàng hôn, nhạc sống nhẹ nhàng và có view biển. Bạn gợi ý nhé?
+                    </p>
+                </div>
+                <span class="text-[10px] text-gray-500 font-medium mb-1">09:42</span>
+            </div>
+
+            <!-- Bot Replying indicator -->
+            <div class="flex items-end gap-3 max-w-[80%] mt-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] flex items-center justify-center shrink-0 border border-white/20">
+                    <i class="fa-solid fa-robot text-[12px] text-white"></i>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl rounded-bl-sm px-4 py-3 border border-white/10 flex items-center gap-1.5 shadow-lg">
+                    <div class="w-1.5 h-1.5 bg-[#90e0ef] rounded-full typing-dot"></div>
+                    <div class="w-1.5 h-1.5 bg-[#90e0ef] rounded-full typing-dot"></div>
+                    <div class="w-1.5 h-1.5 bg-[#90e0ef] rounded-full typing-dot"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-4 lg:p-6 border-t border-white/10 bg-black/20">
+            <div class="relative glass-input rounded-full pr-1.5 flex items-center transition-all duration-300">
+                <button class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-white transition group">
+                    <i class="fa-solid fa-paperclip text-lg group-hover:scale-110 transition"></i>
+                </button>
+                <input type="text" placeholder="Hỏi AI Assistant..." class="flex-1 bg-transparent border-none outline-none text-white text-[15px] font-light placeholder-gray-400 py-4 h-full" value="Gợi ý thêm về Sunset Sanato được không?">
+                <button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition mx-1 group">
+                    <i class="fa-solid fa-microphone text-lg group-hover:scale-110 transition"></i>
+                </button>
+                <button class="w-11 h-11 rounded-full bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-black hover:scale-105 transition shadow-[0_0_15px_rgba(250,204,21,0.5)] flex items-center justify-center transform ml-1 shrink-0">
+                    <i class="fa-solid fa-paper-plane text-sm ml-[-2px]"></i>
+                </button>
+            </div>
+            <p class="text-center text-[10px] text-gray-500 mt-3 font-semibold uppercase tracking-widest">AI có thể cung cấp thông tin chưa chính xác. Vui lòng kiểm tra lại trước khi booking.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

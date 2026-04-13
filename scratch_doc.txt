@@ -1,0 +1,967 @@
+TÀI LIỆU PHÂN TÍCH NGHIỆP VỤ
+HỆ SINH THÁI DU LỊCH KỸ THUẬT SỐPHÚ QUỐC
+Website & Mobile Application
+Phiên bản: 1.0
+Ngày lập: 08/04/2026
+Trạng thái: Chờ phê duyệt
+Phân loại: Tài liệu nội bộ
+MỤC LỤC
+1. Tổng Quan Dự Án
+2. Bản Đồ Stakeholders
+3. Phân Rã Chức Năng Chi Tiết
+   3.1 Module A – Booking & Đặt Dịch Vụ
+   3.2 Module B – Hệ Sinh Thái Địa Phương
+   3.3 Module C – Smart Map (Bản Đồ Thông Minh)
+   3.4 Module D – An Toàn & Sức Khỏe
+   3.5 Module E – AI & Hỗ Trợ Khách Hàng
+4. Mô Hình Dữ Liệu Cốt Lõi
+5. Luồng Thanh Toán & Tài Chính
+6. Yêu Cầu Phi Chức Năng
+7. SEO & Marketing Kỹ Thuật Số
+8. Phân Kỳ Triển Khai
+9. Rủi Ro & Thách Thức
+10. Câu Hỏi Mở & Quyết Định Cần Làm Rõ
+1. TỔNG QUAN DỰ ÁN
+1.1 Tầm nhìn
+Xây dựng nền tảng du lịch đa thiết bị (Website, iOS, Android) chuyên biệt cho đảo Phú Quốc — không đơn thuần là một ứng dụng đặt dịch vụ mà là một 'trợ lý sinh tồn và trải nghiệm' toàn diện, hoạt động mọi lúc mọi nơi, kể cả khi không có kết nối internet.
+1.2 Mục tiêu chiến lược
+Số hóa toàn diện: Đưa toàn bộ dịch vụ du lịch Phú Quốc lên nền tảng số, từ booking khách sạn đến quán ăn vỉa hè.
+Trải nghiệm thực địa: Tập trung vào giá trị thực khi du khách ĐÃ CÓ MẶT tại Phú Quốc, không chỉ là đặt dịch vụ trước chuyến đi.
+An toàn du khách: Cung cấp lớp bảo vệ y tế và an ninh — điểm khác biệt chưa có trên bất kỳ nền tảng OTA nào.
+Offline-first: Đảm bảo tính khả dụng ngay cả tại các khu vực sóng yếu trên đảo.
+1.3 Đối tượng người dùng mục tiêu
+Nhóm
+Mô tả
+Nhu cầu chính
+Ưu tiên
+Du khách nội địa
+Gia đình, nhóm bạn, couple VN
+Đặt tour, ăn uống, giải trí
+Cao
+Du khách quốc tế
+Backpacker, resort tourist
+Map offline, thanh toán quốc tế, ngôn ngữ
+Cao
+Doanh nghiệp địa phương
+Nhà hàng, quán bar, tour operator
+Quảng bá, nhận booking, quản lý
+Rất cao
+Đơn vị y tế
+Bác sĩ, phòng khám
+Nhận yêu cầu, lịch hẹn
+Trung bình
+Admin / Vận hành
+Đội ngũ quản trị platform
+Dashboard, kiểm duyệt, báo cáo
+Nội bộ
+1.4 Phạm vi nền tảng
+Nền tảng
+Công nghệ đề xuất
+Ghi chú
+Website
+Next.js / Nuxt.js (SSR cho SEO)
+Responsive, PWA-ready
+iOS App
+React Native / Flutter
+Offline map, Push notification
+Android App
+React Native / Flutter
+Offline map, Push notification
+Admin Dashboard
+React + Ant Design / MUI
+Web-based
+Merchant Portal
+React / Vue.js
+Web-based, mobile-friendly
+2. BẢN ĐỒ STAKEHOLDERS
+2.1 Người dùng cuối (End Users)
+Du khách Việt Nam — phân khúc: gia đình, nhóm bạn trẻ, couple honeymoon
+Du khách quốc tế — phân khúc: backpacker châu Âu, du khách Hàn/Trung/Nga, resort tourist
+2.2 Đối tác cung cấp dịch vụ (Service Providers)
+Khách sạn / Resort: Từ homestay đến 5 sao — quản lý phòng, giá, availability
+Nhà hàng / Quán ăn / Bar / Pub: Tự quản lý menu, hình ảnh, giờ mở cửa, sự kiện
+Tour Operator: Tour đảo, snorkeling, lặn, câu mực — quản lý slot và lịch trình
+Vận tải: Tàu, cano, du thuyền sunset — quản lý chuyến và ghế
+Điểm tham quan: VinWonders, Safari, Cáp treo Hòn Thơm — vé và combo
+Dịch vụ viễn thông: SIM 4G du lịch, thẻ nạp điện thoại
+Đơn vị Y tế: Bác sĩ tự do, phòng khám, xe cứu thương
+2.3 Tích hợp bên thứ 3 (Third-party Integrations)
+Đối tác API
+Chức năng
+Loại tích hợp
+Amadeus / Travelport
+Đặt vé máy bay (GDS)
+API REST
+Booking.com / Agoda
+Đặt phòng khách sạn
+Affiliate / B2B API
+VNPay / MoMo / ZaloPay
+Cổng thanh toán nội địa
+Payment Gateway
+Stripe / PayPal
+Thanh toán quốc tế
+Payment Gateway
+Mapbox / MapTiler
+Bản đồ + Offline tiles
+SDK
+OpenAI / Google Gemini
+AI Chatbot Engine
+API REST
+Firebase / OneSignal
+Push Notification
+SDK
+Twilio / Zalo OA
+SMS OTP + Notification
+API
+2.4 Vận hành nội bộ
+Admin Platform — Quản trị toàn hệ thống, kiểm duyệt nội dung, xử lý tranh chấp
+Content Team — Biên tập nội dung du lịch, review chất lượng ảnh đối tác
+Sales Team — Onboard đối tác mới, hỗ trợ merchant tại thực địa
+Customer Support — Hỗ trợ du khách qua chat/hotline, escalation từ AI
+3. PHÂN RÃ CHỨC NĂNG CHI TIẾT
+3.1 Module A — Booking & Đặt Dịch Vụ
+A1. Đặt Vé Máy Bay (API bên thứ 3)
+Tích hợp Global Distribution System (GDS) hoặc API trực tiếp từ các hãng bay để cung cấp dịch vụ tìm kiếm và đặt vé máy bay đến Phú Quốc.
+Luồng nghiệp vụ chính:
+Bước 1: Du khách nhập thông tin: điểm đi, ngày bay, số hành khách
+Bước 2: Hệ thống gọi API tìm kiếm chuyến bay → hiển thị kết quả
+Bước 3: Du khách lọc theo: hãng bay, giờ bay, giá, số điểm dừng
+Bước 4: Chọn chuyến → Nhập thông tin hành khách (tên, CCCD/Passport, ngày sinh)
+Bước 5: Chọn dịch vụ bổ sung: hành lý, chỗ ngồi, bảo hiểm
+Bước 6: Thanh toán qua cổng tích hợp
+Bước 7: Nhận xác nhận booking + mã PNR + e-ticket PDF qua email/app
+Bước 8: Theo dõi trạng thái chuyến bay real-time (nếu API hỗ trợ)
+Hạng mục
+Chi tiết
+API đề xuất
+Amadeus Self-Service / Travelport / VietJet B2B / VNA NDC
+Dữ liệu trả về
+Mã PNR, E-ticket PDF, trạng thái chuyến bay, baggage info
+Tính năng mở rộng
+So sánh giá đa hãng, Price alert, Hoàn/đổi vé
+Rủi ro
+Chi phí API cao, IATA certification phức tạp, margin thấp
+Ưu tiên triển khai
+Phase 3 — Không phải MVP, cần đàm phán B2B trước
+A2. Đặt Phòng Khách Sạn (API bên thứ 3)
+Tích hợp các OTA lớn qua chương trình Affiliate hoặc B2B API để cung cấp inventory phòng khách sạn tại Phú Quốc.
+Luồng nghiệp vụ chính:
+Bước 1: Nhập ngày check-in/out, số khách, số phòng
+Bước 2: Hệ thống gọi API → hiển thị danh sách khách sạn có phòng trống
+Bước 3: Lọc theo: vị trí (bản đồ), sao, giá, tiện nghi, đánh giá
+Bước 4: Xem chi tiết: ảnh phòng, mô tả, chính sách hủy, tiện ích
+Bước 5: Chọn loại phòng → Nhập thông tin khách → Thanh toán
+Bước 6: Nhận voucher xác nhận (PDF + QR code)
+Bước 7: Tính năng: So sánh giá giữa các OTA
+Hạng mục
+Chi tiết
+API đề xuất
+Booking.com Affiliate API / Agoda B2B / Expedia Rapid API
+Hiển thị ưu tiên
+Khách sạn có hợp tác trực tiếp → hiển thị trước
+Hoa hồng
+8-15% tùy OTA và loại hình hợp tác
+Vấn đề
+Phụ thuộc 100% bên thứ 3, không kiểm soát giá
+Ưu tiên triển khai
+Phase 1 — Bắt đầu với 1 OTA (Agoda recommended)
+A3. Đặt Tour & Hoạt Động Trải Nghiệm (Kết nối trực tiếp)
+ĐÂY LÀ ĐIỂM MẠNH CỐT LÕI — Kết nối trực tiếp với các đơn vị cung cấp dịch vụ bản địa tại Phú Quốc, không qua trung gian OTA.
+Loại dịch vụ
+Mô tả chi tiết
+Đặc điểm booking
+Tour đảo / Snorkeling
+Tour tham quan 4 đảo, lặn san hô, câu cáGồm: đón tận nơi, ăn trưa, thiết bị lặn
+Đặt theo slot thời gianTối thiểu 2 ngườiHủy trước 24h
+Cáp treo Hòn Thơm
+Cáp treo vượt biển dài nhất thế giớiVé lượt đơn hoặc combo với Aquatopia
+QR code ticketingChọn khung giờGiá biến động theo mùa
+VinWonders / Safari
+Công viên giải trí + vườn thú mởVé ngày hoặc combo multi-park
+Tích hợp API VinGroup (nếu có)E-ticket QR code
+Vé tàu / Cano
+Tuyến Dương Đông ↔ An Thới, Rạch Giá ↔ PQCano tốc hành và tàu thường
+Real-time seat availabilityChọn chỗ ngồiIn vé tại bến
+Du thuyền Sunset
+Trải nghiệm ngắm hoàng hôn trên biểnGói charter riêng hoặc shared trip
+Cần hệ thống depositPhụ thuộc thời tiếtGiới hạn số khách
+Yêu cầu nghiệp vụ đặc thù của Module A3:
+Hệ thống Slot/Lịch biểu: Mỗi tour/chuyến có số lượng ghế/slot giới hạn. Cần quản lý real-time availability, auto-close khi hết slot.
+Quản lý thời tiết: Tích hợp API thời tiết → tự động cảnh báo khi dự báo sóng lớn/mưa bão → gợi ý dời/hủy tour → refund policy tự động.
+Chính sách đặt cọc: Cần quy định rõ: Đặt cọc 30-50% hay thanh toán 100%? Hủy trước X giờ được hoàn Y%? Đối tác tự set policy hay platform quy định chung?
+QR Code Check-in: Du khách nhận QR code sau booking → Đối tác/hướng dẫn viên scan QR tại điểm đón → Xác nhận check-in → Cập nhật trạng thái booking.
+Đánh giá sau trải nghiệm: Push notification sau 2h kết thúc tour → Đánh giá sao + review text + upload ảnh → Hiển thị public sau kiểm duyệt.
+⚠ LƯU Ý: Module A3 chính là 'hào kinh tế' (competitive moat) của platform — cần đầu tư mạnh vào sales team thực địa để onboard đối tác.
+3.2 Module B — Hệ Sinh Thái Địa Phương
+B1. Gian Hàng Số (Digital Storefront) cho F&B
+Đây là module có tiềm năng monetization cao nhất và tạo sự khác biệt lớn nhất so với các OTA truyền thống. Mỗi nhà hàng, quán ăn, bar, pub tại Phú Quốc sẽ có một 'cửa hàng số' để tự quản lý thông tin và tương tác với du khách.
+Luồng Đối Tác (Merchant Flow):
+Bước 1: Đăng ký tài khoản → Upload giấy phép kinh doanh / CCCD chủ quán
+Bước 2: Admin xác minh KYC (Know Your Customer) → Phê duyệt
+Bước 3: Tạo trang shop: Tên quán, địa chỉ, mô tả, loại hình (quán nhậu/cafe/fine dining...)
+Bước 4: Upload ảnh đại diện, ảnh bìa, album ảnh không gian
+Bước 5: Tạo menu số: Tên món, giá, ảnh món, mô tả, tag (hải sản/chay/đặc sản...)
+Bước 6: Thiết lập giờ mở cửa (hỗ trợ giờ đặc biệt: lễ, Tết, mùa cao điểm)
+Bước 7: Publish → Hiển thị trên app/web
+Bước 8: Quản lý hàng ngày: Báo hết món, cập nhật giá, tạo khuyến mãi
+Luồng Du Khách (Consumer Flow):
+Bước 1: Browse theo danh mục (Hải sản / BBQ / Cafe / Bar) hoặc theo bản đồ
+Bước 2: Xem trang shop: Menu, ảnh, giờ mở cửa, đánh giá từ du khách khác
+Bước 3: Tùy chọn: Đặt bàn trước (reservation) → Merchant nhận notification → Xác nhận
+Bước 4: Xem đường đi trên bản đồ (tích hợp Smart Map)
+Bước 5: Sau khi trải nghiệm: Đánh giá sao + viết review + upload ảnh thực tế
+Ma trận tính năng Gian Hàng Số:
+Tính năng
+Mô tả
+Độ ưu tiên
+Phase
+Upload ảnh món ăn
+Merchant tự chụp & upload, có hướng dẫn chụp đẹp
+Bắt buộc
+Phase 2
+Quản lý menu CRUD
+Thêm/sửa/xóa món, cập nhật giá real-time
+Bắt buộc
+Phase 2
+Giờ mở cửa linh hoạt
+Giờ thường + giờ đặc biệt (lễ, mùa), tự động Đóng/Mở
+Bắt buộc
+Phase 2
+Báo hết món / Today's Special
+Toggle nhanh trạng thái món từ app merchant
+Cao
+Phase 2
+Đặt bàn (Reservation)
+Chọn giờ + số khách → Notify merchant → Confirm/Reject
+Cao
+Phase 2
+Hệ thống đánh giá
+Rating 1-5 sao + text + ảnh, chống fake review
+Cao
+Phase 2
+Chương trình khuyến mãi
+Flash deal, happy hour, combo discount
+Trung bình
+Phase 3
+Order online / Delivery
+Đặt món giao tận nơi (cần mạng shipper)
+Tùy chọn
+Phase 3+
+Mô hình doanh thu đề xuất cho Gian Hàng Số:
+Mô hình
+Mô tả
+Ưu điểm
+Nhược điểm
+Freemium
+Miễn phí cơ bản, trả phí premium (ảnh HD, vị trí nổi bật)
+Dễ onboard
+Revenue thấp ban đầu
+Commission
+Thu % trên mỗi đặt bàn thành công (5-10%)
+Thu nhập theo giao dịch
+Khó kiểm soát no-show
+Subscription
+Gói tháng/năm (500K-2M VNĐ/tháng)
+Revenue ổn định
+Khó thuyết phục merchant nhỏ
+Quảng cáo
+Gói featured/promoted listing
+Margin cao
+Cần traffic lớn mới hiệu quả
+⚠ KHUYẾN NGHỊ: Đề xuất: Bắt đầu với mô hình Freemium để onboard nhanh, sau đó chuyển sang Freemium + Commission khi đã có traffic.
+B2. Dịch Vụ Viễn Thông (SIM 4G / Thẻ điện thoại)
+Cung cấp dịch vụ mua SIM 4G du lịch và thẻ nạp điện thoại — đặc biệt thiết yếu cho du khách quốc tế.
+Hạng mục
+Chi tiết
+Sản phẩm
+SIM 4G du lịch (7 ngày, 30 ngày), Thẻ nạp điện thoại, eSIM
+Đối tác
+Viettel / Mobifone / Vietnamobile tourist SIM program
+Phương thức giao
+Giao tận khách sạn HOẶC pickup tại điểm bán (sân bay, bến tàu)
+Xác thực
+Yêu cầu chụp CCCD/Passport theo Nghị định 49/2017/NĐ-CP
+Thẻ nạp
+Topup API trực tiếp hoặc gửi mã thẻ điện tử qua app
+Ưu tiên
+Phase 2 — Đơn giản, margin tốt, nhu cầu thực
+⚠ CẢNH BÁO PHÁP LÝ: Việc bán SIM yêu cầu tuân thủ Nghị định 49/2017/NĐ-CP về đăng ký thuê bao di động — CẦN tư vấn pháp lý trước khi triển khai.
+3.3 Module C — Smart Map (Bản Đồ Thông Minh)
+Bản đồ thông minh là xương sống trải nghiệm của toàn bộ ứng dụng — kết nối tất cả các module khác và cung cấp giá trị ngay cả khi offline.
+C1. Yêu Cầu Kỹ Thuật — Offline Map
+Yêu cầu
+Giải pháp đề xuất
+Ghi chú
+Nguồn dữ liệu bản đồ
+OpenStreetMap (OSM) — miễn phí, cộng đồng lớn
+Cần bổ sung POI riêng cho PQ
+Offline tile hosting
+MapTiler / Mapbox Offline SDK
+Tải tile theo khu vực
+Dung lượng ước tính
+Phú Quốc full map ≈ 200-500MB
+Tải progressive theo zoom level
+Cập nhật dữ liệu
+Auto-sync khi có WiFi, background download
+Kiểm tra version mỗi lần mở app
+Web platform
+Leaflet.js + OSM tiles + Service Worker cache
+PWA offline support
+Mobile platform
+Mapbox SDK (iOS/Android) native offline
+Download manager built-in
+Tìm đường (Routing)
+OSRM / Mapbox Directions API (cần cache offline)
+Hỗ trợ đi bộ, xe máy, ô tô
+C2. Hệ Thống Layer Hiển Thị
+Bản đồ hiển thị theo hệ thống layer chồng lớp, du khách có thể bật/tắt từng layer:
+Layer
+Icon
+Dữ liệu hiển thị
+Nguồn dữ liệu
+Layer 1: Nền địa lý
+—
+Đường, biển, rừng, bãi biển
+OSM offline tiles
+Layer 2: Điểm tham quan
+📍
+Tên, ảnh, mô tả, giờ mở cửa, giá vé
+Database nội bộ
+Layer 3: Lưu trú
+🏨
+Khách sạn, resort, homestay — giá, sao, availability
+API OTA + DB nội bộ
+Layer 4: Ẩm thực
+🍜
+Nhà hàng, quán ăn, bar — menu, giờ, đánh giá
+Gian hàng số (Module B)
+Layer 5: Sao Vàng LIVE
+⭐
+Sự kiện đang diễn ra real-time
+WebSocket real-time
+Layer 6: Y tế & Khẩn cấp
+🏥
+Bệnh viện, phòng khám, hotline theo khu vực
+DB nội bộ (tĩnh)
+Layer 7: Tiện ích
+🔧
+ATM, đổi tiền, SIM, bưu điện, chợ
+DB nội bộ (tĩnh)
+C3. Tính Năng 'Sao Vàng' — Real-time Live Events
+Đây là tính năng ĐỘC ĐÁO NHẤT và là điểm khác biệt cạnh tranh lớn nhất của platform. Khi một địa điểm đang có show diễn hoặc sự kiện trực tiếp, một ngôi sao vàng sẽ nhấp nháy trên bản đồ.
+Luồng nghiệp vụ chi tiết:
+Bước 1: Merchant/Đối tác tạo Event: Tên show, thời gian bắt đầu/kết thúc, mô tả, giá vé (nếu có)
+Bước 2: Admin duyệt event (hoặc auto-approve cho đối tác verified)
+Bước 3: Khi đến giờ bắt đầu → Hệ thống tự động 'bật' Sao Vàng trên bản đồ
+Bước 4: HOẶC Merchant toggle thủ công 'Đang diễn ra' từ app merchant
+Bước 5: Du khách nhìn thấy Sao Vàng nhấp nháy → Ấn vào
+Bước 6: Popup hiển thị: Tên show, loại hình, giờ BĐ/KT, giá vé, nút 'Chỉ đường' + 'Đặt vé'
+Bước 7: Khi hết giờ event → Sao tự động tắt
+Các loại sự kiện hỗ trợ:
+Loại sự kiện
+Icon phụ
+Ví dụ
+Tần suất
+Live Music / Band
+🎵
+Acoustic night tại bar XYZ
+Hàng đêm
+Fire Show / Performance
+🔥
+Fire dance tại bãi biển
+Cuối tuần
+Cultural Show
+🎭
+Ca Huế, múa dân gian
+Theo lịch resort
+Food & Drink Event
+🍺
+Happy Hour, Seafood BBQ night
+Hàng ngày
+Sunset Party
+🌅
+Sunset cocktail trên du thuyền
+Hàng ngày
+Festival / Lễ hội
+🎆
+Lễ hội Nghinh Ông, Dinh Cậu
+Theo mùa
+Yêu cầu kỹ thuật Sao Vàng:
+Real-time communication: WebSocket (Socket.io) cho web, FCM/APNs push cho mobile
+Geofencing: Notification cho du khách trong bán kính 2-5km khi có event mới
+Auto toggle: Cron job kiểm tra start_time/end_time → auto on/off
+Offline handling: Cache event data đã tải, hiển thị sự kiện scheduled dù offline
+3.4 Module D — An Toàn & Sức Khỏe
+Đây là điểm nhấn khác biệt lớn nhất so với mọi nền tảng du lịch hiện có. Module này biến platform từ một công cụ booking thành một 'người bạn đồng hành đáng tin cậy' cho du khách tại đảo.
+D1. Dịch Vụ Y Tế Tại Chỗ (On-demand Medical)
+Mô hình tương tự 'Grab for Doctors' — đặc biệt phù hợp với bối cảnh đảo du lịch xa đất liền, nơi du khách thường lo ngại về sự cố y tế.
+Luồng nghiệp vụ chi tiết:
+Bước 1: Du khách mở module Y tế → Chọn loại dịch vụ cần
+Bước 2: Khai báo triệu chứng (checklist + mô tả tự do + upload ảnh nếu cần)
+Bước 3: Chọn mức độ khẩn cấp: Thường / Khẩn / Cấp cứu
+Bước 4: Nhập địa chỉ: Tên khách sạn + số phòng HOẶC ghim vị trí trên map
+Bước 5: Hệ thống match với y/bác sĩ gần nhất (theo vị trí GPS + availability)
+Bước 6: Hiển thị: Tên bác sĩ, chuyên khoa, đánh giá, thời gian đến ước tính, phí dịch vụ
+Bước 7: Du khách xác nhận → Bác sĩ nhận request → Accept/Decline
+Bước 8: Tracking real-time vị trí bác sĩ trên map (như tracking Grab)
+Bước 9: Bác sĩ đến → Khám → Kê đơn (thuốc OTC) → Thanh toán qua app
+Bước 10: Sau dịch vụ: Đánh giá + Nhận hồ sơ khám (PDF) qua email
+Các loại dịch vụ y tế:
+Dịch vụ
+Mô tả
+Phí ước tính
+Thời gian đáp ứng
+Khám tổng quát tại chỗ
+Say nắng, đau bụng, cảm cúm, dị ứng
+300K-500K VNĐ
+30-60 phút
+Sơ cứu tai nạn nhẹ
+Trầy xước khi lặn, bỏng sứa, côn trùng cắn
+200K-400K VNĐ
+20-40 phút
+Tư vấn từ xa (Telemedicine)
+Video call với bác sĩ — sàng lọc ban đầu
+150K-250K VNĐ
+Ngay lập tức
+Đặt thuốc giao tận nơi
+Thuốc OTC: giảm đau, tiêu chảy, say tàu
+Giá thuốc + 50K ship
+45-90 phút
+Chuyển viện khẩn cấp
+Gọi xe cứu thương + hỗ trợ liên lạc BV
+Miễn phí (chỉ kết nối)
+Ngay lập tức
+⚠ CẢNH BÁO PHÁP LÝ QUAN TRỌNG: CẦN hợp đồng với phòng khám/bác sĩ được cấp phép hành nghề. Cần bảo hiểm nghề nghiệp. KHÔNG được phép bán thuốc kê đơn online. Cần tư vấn pháp lý trước khi triển khai.
+D2. Hotline Khẩn Cấp Phân Khu Vực
+Hệ thống hotline khẩn cấp thông minh — tự động hiển thị số điện thoại phù hợp dựa trên vị trí GPS hiện tại của du khách.
+Khu vực
+Đặc điểm
+Cấp cứu Y tế
+Công an / An ninh
+Cứu hộ biển
+Dương Đông
+Trung tâm, đông đúc
+115 + BV Phú Quốc
+CA TT Dương Đông
+Đồn biên phòng
+An Thới
+Cảng, nghề cá
+Trạm y tế An Thới
+CA TT An Thới
+Cứu hộ hàng hải
+Hàm Ninh
+Làng chài, xa TT
+Trạm y tế lưu động
+CA xã Hàm Ninh
+Biên phòng Hàm Ninh
+Gành Dầu
+Biên giới, hẻo lánh
+Trạm y tế Gành Dầu
+Đồn biên phòng
+Biên phòng Gành Dầu
+Bãi Trường
+Khu resort dài
+Hotline resort + 115
+CA TT Dương Đông
+Life guard bãi biển
+Bắc Đảo/VinPearl
+Khu resort cao cấp
+Y tế nội bộ VinPearl
+Security VinPearl
+Cứu hộ VinPearl
+Yêu cầu kỹ thuật:
+Location-aware: Dùng GPS xác định khu vực → tự động hiển thị danh sách hotline phù hợp
+One-tap call: Ấn là gọi ngay, không cần copy số
+Offline available: Dữ liệu hotline phải hoạt động 100% offline
+Đa ngôn ngữ: Hiển thị hướng dẫn bằng ngôn ngữ du khách đã chọn
+SOS Widget: Nút SOS luôn hiển thị trên app (floating button) — 1 chạm = gọi 115
+3.5 Module E — AI & Hỗ Trợ Khách Hàng
+E1. AI Chatbot Tư Vấn Hành Trình
+Chatbot thông minh hoạt động 24/7, kết hợp kiến thức chuyên sâu về Phú Quốc với khả năng truy vấn dữ liệu real-time từ platform.
+Năng lực
+Ví dụ câu hỏi
+Nguồn dữ liệu
+Gợi ý lịch trình
+'3 ngày 2 đêm ở PQ với 5 triệu/người'
+Knowledge base + Booking data
+Tra cứu thông tin
+'Cáp treo mở cửa mấy giờ?' / 'Chợ đêm ở đâu?'
+Database POI
+Hỗ trợ booking
+'Đặt tour snorkeling ngày mai cho 2 người'
+Booking API nội bộ
+So sánh & đề xuất
+'Nên ở VinPearl hay InterContinental?'
+Hotel data + Reviews
+Thời tiết & mùa vụ
+'Tháng 7 có mưa không?' / 'Khi nào mùa câu mực?'
+Weather API + KB
+Khẩn cấp
+'Tôi bị say nắng phải làm sao?'
+Medical KB → Redirect Module D
+Kiến trúc kỹ thuật AI Chatbot:
+LLM Engine: OpenAI GPT-4o / Google Gemini Pro — xử lý ngôn ngữ tự nhiên
+RAG System: Retrieval-Augmented Generation — Knowledge base riêng về Phú Quốc
+Vector Database: Pinecone / Qdrant — lưu trữ embeddings của nội dung PQ
+Multilingual: Hỗ trợ: Tiếng Việt, English, 中文, 한국어, Русский
+Function Calling: AI gọi trực tiếp API nội bộ để booking, tra cứu availability
+Context Memory: Nhớ ngữ cảnh trong cuộc trò chuyện (session-based)
+E2. Kênh Hỗ Trợ Con Người (Human Support)
+Kênh
+Giờ hoạt động
+Ngôn ngữ
+Use case
+Live Chat (Web/App)
+8:00-22:00 hàng ngày
+VN + EN
+Hỗ trợ booking, khiếu nại
+Hotline điện thoại
+8:00-22:00 hàng ngày
+VN + EN
+Vấn đề khẩn, phức tạp
+Email
+24/7 (phản hồi <4h)
+Đa ngôn ngữ
+Hoàn tiền, tranh chấp
+Zalo OA / Facebook
+8:00-22:00
+VN
+Khách nội địa
+Escalation Flow (Chuyển tiếp từ AI sang người):
+Bước 1: AI chatbot tiếp nhận câu hỏi → Cố gắng trả lời
+Bước 2: Nếu AI không chắc chắn (confidence < 70%) → Đề xuất chuyển sang agent người
+Bước 3: Nếu khách yêu cầu nói chuyện với người → Chuyển ngay
+Bước 4: Ngoài giờ hành chính → AI ghi nhận ticket → Agent xử lý sáng hôm sau
+Bước 5: Các vấn đề khẩn cấp (y tế, an ninh) → Bypass AI → Hotline trực tiếp
+4. MÔ HÌNH DỮ LIỆU CỐT LÕI
+Dưới đây là các entity chính và mối quan hệ giữa chúng trong hệ thống:
+4.1 Danh sách Entity chính
+Entity
+Mô tả
+Quan hệ chính
+User
+Du khách sử dụng platform
+→ Booking, Review, MedicalRequest
+Merchant
+Đối tác kinh doanh (nhà hàng, tour...)
+→ Service, Event, Storefront
+Service
+Dịch vụ cụ thể (tour, phòng, vé...)
+→ Booking, TimeSlot
+Booking
+Đơn đặt dịch vụ
+→ User, Service, Payment
+Payment
+Giao dịch thanh toán
+→ Booking, PaymentGateway
+Event
+Sự kiện live (Sao Vàng)
+→ Merchant, Location
+Storefront
+Gian hàng số F&B
+→ Merchant, MenuItem, Review
+MenuItem
+Món ăn trong menu
+→ Storefront
+Review
+Đánh giá từ du khách
+→ User, Service/Storefront
+MedicalRequest
+Yêu cầu y tế
+→ User, MedicalProvider
+MedicalProvider
+Bác sĩ / Phòng khám
+→ MedicalRequest
+POI
+Point of Interest (điểm tham quan)
+→ Location, Category
+EmergencyContact
+Hotline khẩn cấp theo khu vực
+→ Zone
+4.2 Chi tiết các Entity quan trọng
+Entity: User (Người dùng)
+Trường
+Kiểu
+Mô tả
+Bắt buộc
+id
+UUID
+Primary key
+Có
+email
+String
+Email đăng nhập
+Có
+phone
+String
+Số điện thoại (có thể dùng để login)
+Có
+full_name
+String
+Họ tên đầy đủ
+Có
+nationality
+String
+Quốc tịch (ISO code)
+Không
+preferred_lang
+Enum
+Ngôn ngữ ưa thích (vi/en/zh/ko/ru)
+Có
+avatar_url
+String
+Ảnh đại diện
+Không
+auth_provider
+Enum
+email/google/facebook/apple/zalo
+Có
+created_at
+DateTime
+Ngày tạo tài khoản
+Có
+Entity: Booking (Đơn đặt dịch vụ)
+Trường
+Kiểu
+Mô tả
+Bắt buộc
+id
+UUID
+Primary key
+Có
+user_id
+UUID FK
+Người đặt
+Có
+service_id
+UUID FK
+Dịch vụ được đặt
+Có
+type
+Enum
+flight/hotel/tour/transport/ticket
+Có
+status
+Enum
+pending/confirmed/completed/cancelled/refunded
+Có
+booking_date
+Date
+Ngày sử dụng dịch vụ
+Có
+num_guests
+Integer
+Số lượng khách
+Có
+total_amount
+Decimal
+Tổng tiền
+Có
+deposit_amount
+Decimal
+Tiền đặt cọc (nếu có)
+Không
+qr_code
+String
+Mã QR check-in
+Có
+metadata
+JSON
+Dữ liệu bổ sung tùy loại booking
+Không
+created_at
+DateTime
+Thời điểm đặt
+Có
+Entity: Merchant (Đối tác kinh doanh)
+Trường
+Kiểu
+Mô tả
+Bắt buộc
+id
+UUID
+Primary key
+Có
+business_name
+String
+Tên doanh nghiệp/cửa hàng
+Có
+type
+Enum
+restaurant/bar/tour/transport/attraction/medical
+Có
+owner_name
+String
+Tên chủ sở hữu
+Có
+phone
+String
+SĐT liên hệ
+Có
+email
+String
+Email
+Có
+license_no
+String
+Số giấy phép kinh doanh
+Có
+address
+String
+Địa chỉ
+Có
+lat / lng
+Float
+Tọa độ GPS
+Có
+is_verified
+Boolean
+Đã xác minh KYC
+Có
+subscription_plan
+Enum
+free/basic/premium
+Có
+rating_avg
+Float
+Điểm đánh giá trung bình
+Có
+5. LUỒNG THANH TOÁN & TÀI CHÍNH
+5.1 Các cổng thanh toán cần tích hợp
+Cổng
+Đối tượng
+Phí
+Ưu tiên
+VNPay
+Khách nội địa — ATM/QR/Ví
+1.1-1.8%
+Bắt buộc
+MoMo
+Khách nội địa — Ví MoMo
+1.5-2%
+Bắt buộc
+ZaloPay
+Khách nội địa — Ví Zalo
+1.5-2%
+Bắt buộc
+Stripe
+Khách quốc tế — Visa/Master/Amex
+2.9% + 30¢
+Bắt buộc
+Apple Pay
+Khách iOS quốc tế
+Qua Stripe
+Cao
+Google Pay
+Khách Android quốc tế
+Qua Stripe
+Cao
+PayPal
+Dự phòng quốc tế
+3.49% + 49¢
+Tùy chọn
+Chuyển khoản NH
+Đơn hàng lớn / B2B
+Miễn phí
+Tùy chọn
+5.2 Luồng tiền (Money Flow)
+Mô hình đề xuất: Platform KHÔNG tự giữ tiền — sử dụng cổng trung gian để tránh yêu cầu giấy phép NHNN.
+Bước 1: Du khách thanh toán → Tiền vào tài khoản escrow của cổng trung gian (VNPay/Stripe)
+Bước 2: Dịch vụ được hoàn thành (confirmed by check-in QR hoặc sau X giờ)
+Bước 3: Platform gửi lệnh giải ngân → Cổng trung gian chuyển tiền cho Merchant
+Bước 4: Trừ: Phí cổng thanh toán + Hoa hồng platform (10-20% tùy category)
+Bước 5: Settlement cycle: T+1 đến T+3 (tùy cổng và đối tác)
+5.3 Chính sách hoàn tiền (Refund Policy)
+Thời điểm hủy
+Hoàn tiền
+Ghi chú
+Trước 48h sử dụng
+100% (trừ phí cổng thanh toán)
+Tự động xử lý
+Trước 24h sử dụng
+70%
+Tự động xử lý
+Trước 12h sử dụng
+50%
+Cần merchant confirm
+Dưới 12h / No-show
+0%
+Không hoàn
+Thiên tai / Force majeure
+100%
+Admin quyết định
+⚠ CẢNH BÁO PHÁP LÝ: Platform KHÔNG NÊN tự giữ tiền quá 1 giao dịch. Nếu muốn giữ ví điện tử, cần giấy phép hoạt động cung ứng dịch vụ trung gian thanh toán từ NHNN theo Nghị định 101/2012/NĐ-CP.
+6. YÊU CẦU PHI CHỨC NĂNG
+6.1 Hiệu năng (Performance)
+Chỉ số
+Mục tiêu
+Đo lường bằng
+Thời gian tải trang (Web)
+< 3 giây trên 3G
+Lighthouse / WebPageTest
+API Response Time
+< 500ms (P95)
+APM tools (Datadog/NewRelic)
+Offline map loading
+< 1 giây sau khi đã tải
+Device testing
+App startup time
+< 2 giây (cold start)
+Native profiling
+Search results
+< 1 giây cho 10K+ POIs
+Database benchmarking
+Concurrent users
+5,000+ đồng thời (peak season)
+Load testing (k6/JMeter)
+6.2 Bảo mật (Security)
+PCI-DSS Compliance: Tokenization thông tin thẻ — KHÔNG lưu card data trên server, ủy quyền cho payment gateway
+Mã hóa dữ liệu: AES-256 cho data at rest, TLS 1.3 cho data in transit
+Xác thực: JWT + Refresh Token, hỗ trợ OAuth 2.0 (Google/Facebook/Apple/Zalo)
+2FA: Bắt buộc cho Merchant Dashboard và Admin Panel
+Rate Limiting: API rate limit để chống DDoS và spam booking
+GDPR / PDP VN: Tuân thủ Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân
+Input Validation: Chống SQL injection, XSS, CSRF trên mọi form
+Audit Log: Ghi log toàn bộ hành động quan trọng (booking, thanh toán, thay đổi dữ liệu)
+6.3 Khả năng mở rộng (Scalability)
+Kiến trúc: Microservices hoặc Modular Monolith — chia theo domain (Booking, Map, Merchant, Medical)
+Database: PostgreSQL (primary) + Redis (cache) + Elasticsearch (search) — sẵn sàng sharding
+CDN: CloudFlare / AWS CloudFront cho static assets, map tiles, ảnh
+Message Queue: RabbitMQ / Apache Kafka cho xử lý async (notification, email, settlement)
+Container: Docker + Kubernetes cho auto-scaling theo traffic
+Monitoring: Prometheus + Grafana + ELK Stack cho logging và alerting
+6.4 Đa ngôn ngữ (i18n)
+Ngôn ngữ
+Mã
+Đối tượng
+Ưu tiên
+Tiếng Việt
+vi
+Khách nội địa
+Bắt buộc
+English
+en
+Khách quốc tế chung
+Bắt buộc
+中文 (Chinese)
+zh
+Khách Trung Quốc
+Cao
+한국어 (Korean)
+ko
+Khách Hàn Quốc
+Cao
+Русский (Russian)
+ru
+Khách Nga
+Trung bình
+7. SEO & MARKETING KỸ THUẬT SỐ
+7.1 Technical SEO
+Server-Side Rendering: Sử dụng Next.js/Nuxt.js để đảm bảo Google crawl được nội dung
+Sitemap XML: Auto-generate cho tất cả trang dịch vụ, bài viết, POI
+Schema Markup: JSON-LD cho: LocalBusiness, TouristAttraction, Restaurant, Event, FAQPage
+Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1
+Mobile-First: Responsive design, AMP cho blog content
+URL Structure: SEO-friendly: /phu-quoc/tour/snorkeling-4-dao
+Meta Tags: Unique title + description cho mỗi trang, OG tags cho social sharing
+Hreflang: Tag đa ngôn ngữ cho Google hiểu phiên bản ngôn ngữ
+7.2 Content SEO
+Xây dựng blog/content hub với các chủ đề:
+Hướng dẫn du lịch Phú Quốc (theo mùa, theo ngân sách, theo đối tượng)
+Review địa điểm ăn uống, khách sạn, trải nghiệm
+Tin tức sự kiện, lễ hội tại Phú Quốc
+Mẹo du lịch: đi lại, an toàn, tiết kiệm
+Hỏi đáp thường gặp (FAQ) — hỗ trợ FAQ Schema
+8. PHÂN KỲ TRIỂN KHAI
+Phase 1 — MVP (Tháng 1-4)
+Mục tiêu: Ra mắt sản phẩm tối thiểu, kiểm chứng thị trường, bắt đầu thu hút du khách.
+Website responsive với SEO cơ bản (Next.js)
+Danh sách địa điểm: Khách sạn, Nhà hàng, Điểm tham quan (content tĩnh)
+Tích hợp 1 API đặt phòng khách sạn (Agoda Affiliate)
+Bản đồ online cơ bản (Leaflet.js + OSM)
+Trang thông tin hotline khẩn cấp (tĩnh, phân theo khu vực)
+AI Chatbot đơn giản (FAQ-based, tiếng Việt + English)
+Blog content hub (15-20 bài viết SEO)
+Google Analytics + SEO monitoring
+Phase 2 — Core Product (Tháng 5-8)
+Mục tiêu: Ra mắt mobile app, kích hoạt hệ sinh thái đối tác, bắt đầu monetization.
+Merchant Portal — Gian hàng số F&B (đăng ký, KYC, quản lý menu/ảnh)
+Booking Tour/Tàu/Cáp treo — kết nối trực tiếp với đối tác bản địa
+Tính năng Sao Vàng real-time events (WebSocket)
+Mobile App iOS + Android (React Native / Flutter) — phiên bản cơ bản
+Hệ thống thanh toán đầy đủ (VNPay + MoMo + Stripe)
+Hệ thống đánh giá và review từ du khách
+Đặt bàn (Reservation) cho nhà hàng
+SIM 4G / Thẻ điện thoại
+Push notification cho events và booking confirmation
+Phase 3 — Differentiation (Tháng 9-12)
+Mục tiêu: Tạo hào kinh tế bằng tính năng độc đáo, mở rộng thị trường quốc tế.
+On-demand Medical Service (sau khi hoàn tất pháp lý)
+AI Chatbot nâng cao (RAG + đa ngôn ngữ + function calling)
+Offline map đầy đủ với toàn bộ layers (Mapbox Offline SDK)
+Tích hợp đặt vé máy bay (sau khi đàm phán B2B)
+Loyalty / Reward system cho du khách quay lại
+Đa ngôn ngữ hoàn chỉnh (Trung, Hàn, Nga)
+Dashboard analytics cho merchant (doanh thu, lượt xem, conversion)
+Chương trình khuyến mãi / Flash deal
+9. RỦI RO & THÁCH THỨC
+#
+Rủi ro
+Mức độ
+Tác động
+Giải pháp giảm thiểu
+1
+Onboard đối tác chậm
+Cao
+Không có inventory → không có du khách
+Đội sales thực địa + onboarding cực kỳ đơn giản + offer miễn phí Phase 1
+2
+Cạnh tranh OTA lớn (Booking, Agoda)
+Cao
+Du khách đã có thói quen dùng OTA
+Tập trung hyperlocal content mà OTA không có (F&B, events, medical)
+3
+Rủi ro pháp lý dịch vụ Y tế
+Cao
+Trách nhiệm pháp lý khi xảy ra sự cố
+Hợp đồng với cơ sở y tế được cấp phép, bảo hiểm nghề nghiệp, tư vấn luật
+4
+Chất lượng dữ liệu lỗi thời
+Trung bình
+Thông tin sai → mất uy tín
+Gamification cho merchant cập nhật + moderator team + user report
+5
+Chi phí API bên thứ 3 cao
+Trung bình
+Margin thấp trên booking khách sạn/vé bay
+Bắt đầu affiliate → đàm phán B2B khi có volume
+6
+Offline map dung lượng lớn
+Trung bình
+UX xấu khi download chậm
+Tải theo khu vực nhỏ, progressive download, WiFi prompt
+7
+Giữ tiền thanh toán cần giấy phép
+Cao
+Vi phạm pháp luật tài chính
+Dùng cổng trung gian escrow, KHÔNG tự giữ tiền
+8
+Mùa cao điểm - hệ thống quá tải
+Trung bình
+Crash trong lúc nhu cầu cao nhất
+Auto-scaling K8s, load testing trước mùa, CDN
+10. CÂU HỎI MỞ & QUYẾT ĐỊNH CẦN LÀM RÕ
+Những quyết định dưới đây ảnh hưởng trực tiếp đến kiến trúc hệ thống, timeline, và ngân sách. Cần được trả lời trước khi bắt đầu development.
+1. Mô hình doanh thu: Platform thu tiền từ đâu? Hoa hồng % trên mỗi booking? Phí đăng ký merchant? Quảng cáo? Hay kết hợp nhiều nguồn?
+2. Thị trường ưu tiên: Khách nội địa hay quốc tế là target chính? → Ảnh hưởng đến ngôn ngữ mặc định, payment gateway ưu tiên, marketing channel.
+3. Phạm vi địa lý: Chỉ Phú Quốc hay thiết kế sẵn để mở rộng ra đảo khác (Côn Đảo, Lý Sơn, Cát Bà)? → Ảnh hưởng đến database schema và kiến trúc multi-tenant.
+4. Mô hình Y tế: Tự xây dựng đội ngũ y tế hay thuần túy là nền tảng kết nối? → Ảnh hưởng đến trách nhiệm pháp lý và chi phí vận hành.
+5. Ngân sách & Timeline: Dự án kỳ vọng ra mắt MVP khi nào? Tổng ngân sách development giai đoạn 1 là bao nhiêu? Có sẵn đội ngũ dev chưa?
+6. Đội ngũ hiện tại: Có sẵn developer in-house hay cần outsource? Bao nhiêu FTE cho backend, frontend, mobile, design?
+7. F&B — Delivery: Gian hàng số F&B có hỗ trợ order/delivery hay chỉ dừng ở marketing + đặt bàn? → Nếu có delivery cần xây mạng shipper.
+8. Tích hợp VinGroup: Đã có thỏa thuận/MOU với VinWonders/VinPearl/Vinbus chưa? → Xác định khả năng API integration.
+9. Pháp nhân kinh doanh: Công ty đã có giấy phép ĐKKD chưa? Ngành nghề đăng ký có bao gồm dịch vụ trung gian thanh toán không?
+10. Hosting & Infrastructure: Ưu tiên Cloud nào? AWS / GCP / Azure / VN Cloud (Viettel/VNPT)? → Ảnh hưởng đến latency và chi phí.
+────────────────────────────────────────────────────────────
+— HẾT TÀI LIỆU —
+Tài liệu này được lập để phục vụ thảo luận nội bộ.Cần được cập nhật sau khi có phản hồi từ các bên liên quan.
