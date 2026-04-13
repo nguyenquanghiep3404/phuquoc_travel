@@ -933,5 +933,17 @@
     </script>
     <!-- AOS Library Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Shared Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            });
+    </script>
 </body>
 </html>

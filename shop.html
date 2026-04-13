@@ -691,5 +691,23 @@
             once: true
         });
     </script>
+    <!-- Shared Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.location.protocol === 'file:') {
+                document.getElementById('footer-placeholder').innerHTML = '<div style="padding: 20px; text-align: center; background: #c19b2e; color: #0f1c29; font-weight: bold;">Lỗi CORS: Hãy chạy trang web qua Laragon (http://localhost) để thấy Footer.</div>';
+            } else {
+                fetch('footer.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('footer-placeholder').innerHTML = data;
+                        if (typeof AOS !== 'undefined') {
+                            setTimeout(() => AOS.init(), 600);
+                        }
+                    });
+            }
+        });
+    </script>
 </body>
 </html>
