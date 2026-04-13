@@ -4,256 +4,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PQGO.VN - Du lịch sinh thái Phú Quốc</title>
+    <title>EXPLORE - PQGO.VN | Khám phá Phú Quốc</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0f1c29;
-            background: radial-gradient(circle at 15% 30%, #4a8d96 0%, #173242 40%, #0f1c29 100%);
+            background: radial-gradient(circle at 15% 30%, #1a3c4a 0%, #102633 40%, #0a1118 100%);
             overflow-x: hidden;
             overflow-y: auto;
         }
 
-        .globe-container {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            border-radius: 20px;
-            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8),
-                0 0 30px rgba(140, 210, 220, 0.1);
-            background: radial-gradient(circle at 50% 50%, rgba(15, 30, 45, 0.2) 0%, rgba(15, 30, 45, 0.8) 100%);
-            border: 1px solid rgba(140, 210, 220, 0.2);
-            z-index: 0;
-            pointer-events: auto;
-            overflow: hidden;
-        }
-
-        /* Mobile specific globe sizing */
-        @media (max-width: 1024px) {
-            .globe-container {
-                position: relative;
-                width: 100%;
-                height: 500px;
-                margin-top: 2rem;
-            }
-        }
-
-        /* Mobile reorder: map above marketplace */
-        @media (max-width: 1023px) {
-            .mobile-order-1 {
-                order: 1;
-            }
-
-            .mobile-order-2 {
-                order: 2;
-            }
-
-            .mobile-order-3 {
-                order: 3;
-            }
-        }
-
         .cat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            backdrop-filter: blur(16px);
+            transition: all 0.5s ease;
         }
 
         .cat-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2), 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Interactive Grid Animations */
-        @keyframes float-plane {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(15deg);
-            }
-
-            50% {
-                transform: translateY(-5px) rotate(10deg);
-            }
-        }
-
-        .animate-float-plane {
-            animation: float-plane 3s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes swing-car {
-
-            0%,
-            100% {
-                transform: rotate(0deg);
-            }
-
-            25% {
-                transform: rotate(6deg);
-            }
-
-            75% {
-                transform: rotate(-6deg);
-            }
-        }
-
-        .animate-swing-car {
-            animation: swing-car 4s ease-in-out infinite;
-            transform-origin: top center;
-            display: inline-block;
-        }
-
-        @keyframes rock-ship {
-
-            0%,
-            100% {
-                transform: rotate(0deg) translateY(0);
-            }
-
-            25% {
-                transform: rotate(8deg) translateY(-2px);
-            }
-
-            75% {
-                transform: rotate(-8deg) translateY(-2px);
-            }
-        }
-
-        .animate-rock-ship {
-            animation: rock-ship 4s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes heart-beat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            10% {
-                transform: scale(1.2);
-            }
-
-            20% {
-                transform: scale(1);
-            }
-
-            30% {
-                transform: scale(1.2);
-            }
-
-            40% {
-                transform: scale(1);
-            }
-        }
-
-        .animate-heart-beat {
-            animation: heart-beat 3s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        /* Shine sweep hover effect */
-        .group:hover .shine-effect {
-            left: 100%;
-            transition: left 0.6s ease-in-out;
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .glass-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .gold-ring {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 215, 0, 0.7);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .gold-ring::before {
-            content: '';
-            position: absolute;
-            inset: -10px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(0.9);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1.3);
-                opacity: 0;
-            }
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
 
-        .typing-dot {
-            animation: typing 1.4s infinite ease-in-out both;
+        /* Ambient Background Orbs - Subtle */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+            animation: orbFloat 25s infinite alternate-reverse ease-in-out;
         }
 
-        .typing-dot:nth-child(1) {
-            animation-delay: -0.32s;
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: #c19b2e;
+            top: -100px;
+            right: -100px;
         }
 
-        .typing-dot:nth-child(2) {
-            animation-delay: -0.16s;
+        .orb-2 {
+            width: 600px;
+            height: 600px;
+            background: #4a8d96;
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -5s;
         }
 
-        @keyframes typing {
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
 
-            0%,
-            80%,
+            50% {
+                transform: translate(30px, 40px) scale(1.05);
+            }
+
             100% {
-                transform: scale(0);
+                transform: translate(-10px, -20px) scale(0.95);
+            }
+        }
+
+        /* Subtle Pan image for luxurious feel */
+        .pan-img-elegant {
+            transition: transform 12s ease-out;
+        }
+
+        .cat-card:hover .pan-img-elegant {
+            transform: scale(1.05);
+        }
+
+        /* Custom Scrollbar for map column */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Marquee Animation */
+        @keyframes scrollMarquee {
+            0% {
+                transform: translateX(0);
             }
 
-            40% {
-                transform: scale(1);
+            100% {
+                transform: translateX(-50%);
             }
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scrollMarquee 40s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Partner Logos */
+        .partner-logo {
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(0) invert(1) opacity(0.35);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+        }
+
+        .partner-logo:hover {
+            filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+            transform: scale(1.08) translateY(-2px);
+        }
+
+        .fallback-text {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .fallback-text:hover {
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            transform: scale(1.08) translateY(-2px);
+        }
+
+        /* Modal & Weather Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #0f1c29;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            animation: modalFadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Specific styles for AI Assistant to be compact and in the corner */
+        #aiModal.modal-overlay {
+            background: transparent;
+            backdrop-filter: none;
+            pointer-events: none;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 0;
+        }
+
+        #aiModal .modal-content {
+            pointer-events: auto;
+            width: 400px;
+            max-width: 90vw;
+            height: 600px;
+            max-height: 80vh;
+            margin-right: 24px;
+            margin-bottom: 100px;
+            border-radius: 24px;
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
+            animation: aiModalSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes aiModalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) translateX(20px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) translateX(0) scale(1);
+            }
+        }
+
+        .weather-widget {
+            background: rgba(15, 28, 41, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .weather-widget:hover {
+            background: rgba(15, 28, 41, 0.8);
+            transform: translateY(-2px);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .chat-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
         }
     </style>
 </head>
 
-<body class="text-white min-h-screen w-screen flex flex-col relative">
+<body class="text-white min-h-screen w-full flex flex-col relative pb-20">
+
+    <!-- Ambient Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
     <!-- Header (Fully Responsive Glassmorphism Pill) -->
     <div class="w-full flex justify-center z-50 fixed top-6 px-4 pointer-events-none">
         <header
-            class="w-full max-w-[1500px] flex items-center justify-between px-6 py-3 bg-white/[0.03] backdrop-blur-[40px] border border-white/20 rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto">
+            class="w-full max-w-[1500px] flex items-center justify-between px-6 py-3 bg-[#0f1c29]/70 backdrop-blur-[40px] border border-white/10 rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] pointer-events-auto">
 
-            <div class="flex items-center gap-3 ml-2 cursor-pointer group">
+            <div class="flex items-center gap-3 ml-2 cursor-pointer group"
+                onclick="window.location.href='explore.html'">
                 <!-- Custom Travel Gold Logo SVG -->
                 <svg class="w-8 h-8 drop-shadow-[0_0_12px_rgba(250,204,21,0.4)] group-hover:scale-105 transition-transform"
                     viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -276,11 +307,11 @@
 
             <nav
                 class="hidden lg:flex items-center gap-7 lg:gap-8 text-[11px] font-bold tracking-[0.18em] text-[#a5c2ce]">
-                <a href="#" class="relative text-white transition py-2 group">
+                <a href="explore.html" class="relative text-white transition py-2 group">
                     EXPLORE
-                    <!-- Active Glow Underline -->
+                    <!-- Active Glow Underline on EXPLORE -->
                     <span
-                        class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-[60%] h-[2px] bg-[#fce17a] shadow-[0_0_8px_rgba(250,204,21,0.9)] rounded"></span>
+                        class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-[60%] h-[2px] bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.7)] rounded"></span>
                 </a>
                 <a href="book.html" class="relative transition hover:text-white py-2 group">
                     BOOK
@@ -305,42 +336,56 @@
                 </a>
 
                 <!-- Ask AI Nav Button -->
-                <button
-                    class="glass-btn flex items-center gap-2 px-4 py-[7px] rounded-full text-white ml-2 text-[10px] shadow-[inset_0_1px_3px_rgba(255,255,255,0.1)] border-white/20 hover:border-white/50 transition-all">
+                <button onclick="toggleAiChat()"
+                    class="glass-btn flex items-center gap-2 px-4 py-[7px] rounded-full text-white ml-2 text-[10px] shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)] border-white/10 hover:border-white/30 transition-all">
                     <i class="fa-solid fa-robot text-[#90e0ef]"></i> ASK AI
                 </button>
             </nav>
 
             <div class="hidden lg:flex items-center gap-3 mr-2 relative">
                 <button id="langBtn"
-                    class="glass-btn flex items-center gap-2 px-4 py-[9px] text-[10px] font-extrabold rounded-full text-[#ddeef2] tracking-[0.15em] border-white/20 hover:bg-white/10 transition shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)]">
+                    class="glass-btn flex items-center gap-2 px-4 py-[9px] text-[10px] font-extrabold rounded-full text-[#ddeef2] tracking-[0.15em] border-white/10 hover:bg-white/5 transition shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)]">
                     <i class="fa-solid fa-globe text-[#a0c2d1]"></i> <span id="langText">ENGLISH</span>
                 </button>
 
                 <!-- Language Dropdown -->
                 <div id="langDropdown"
-                    class="absolute top-12 left-0 mt-2 w-32 bg-[#12222e]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] overflow-hidden scale-y-0 opacity-0 transform origin-top transition-all duration-300 z-50">
+                    class="absolute top-12 left-0 mt-2 w-48 bg-[#12222e]/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] overflow-hidden scale-y-0 opacity-0 transform origin-top transition-all duration-300 z-50 max-h-[300px] overflow-y-auto custom-scroll">
                     <button
-                        class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition"
+                        class="w-full text-left px-4 py-3 hover:bg-white/5 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition"
                         onclick="switchLang('en')">ENGLISH</button>
                     <button
-                        class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest transition"
+                        class="w-full text-left px-4 py-3 hover:bg-white/5 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition"
                         onclick="switchLang('vi')">TIẾNG VIỆT</button>
+                    <button
+                        class="w-full text-left px-4 py-3 hover:bg-white/5 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition"
+                        onclick="switchLang('ko')">HÀN QUỐC</button>
+                    <button
+                        class="w-full text-left px-4 py-3 hover:bg-white/5 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition"
+                        onclick="switchLang('zh')">TRUNG QUỐC</button>
+                    <button
+                        class="w-full text-left px-4 py-3 hover:bg-white/5 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition"
+                        onclick="switchLang('in')">ẤN ĐỘ</button>
+                    <button
+                        class="w-full text-left px-4 py-3 hover:bg-white/5 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition"
+                        onclick="switchLang('ee')">
+                        <span class="block text-[10px]">ĐÔNG ÂU</span>
+                        <span class="block text-[7px] text-white/40 mt-1">NGA, KAZAKHSTAN, ROMANIA...</span>
+                    </button>
+                    <button
+                        class="w-full text-left px-4 py-3 hover:bg-white/5 text-[10px] font-bold text-white tracking-widest transition"
+                        onclick="switchLang('tm')">THÁI & MALAY</button>
                 </div>
 
                 <button
-                    class="bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-[#3a2c04] text-[10px] font-extrabold tracking-[0.1em] px-5 py-[9px] rounded-full shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.6)] hover:scale-105 transition-all flex items-center gap-2 border-[1.5px] border-[#fffce8]/50">
+                    class="bg-gradient-to-r from-[#d4af37] to-[#aa8021] text-[#241a01] text-[10px] font-extrabold tracking-[0.1em] px-5 py-[9px] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all flex items-center gap-2 border-[1.5px] border-[#fffce8]/30">
                     <span data-translate="true">APP DOWNLOAD</span>
-                    <div class="flex gap-1 ml-1 text-[13px] opacity-90">
-                        <i class="fa-brands fa-apple"></i>
-                        <i class="fa-brands fa-android"></i>
-                    </div>
                 </button>
             </div>
 
             <!-- Mobile Hamburger Menu Button -->
             <button id="mobileMenuBtn" onclick="toggleMobileMenu()"
-                class="lg:hidden text-white text-2xl mr-4 px-2 hover:text-[#fce17a] transition">
+                class="lg:hidden text-white text-2xl mr-4 px-2 hover:text-[#d4af37] transition">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </header>
@@ -348,14 +393,9 @@
 
     <!-- Mobile Menu Overlay -->
     <div id="mobileMenuOverlay" class="fixed inset-0 z-[200] opacity-0 pointer-events-none transition-all duration-400">
-        <!-- Backdrop -->
-        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-
-        <!-- Menu Panel (slides from right) -->
+        <div onclick="toggleMobileMenu()" class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
         <div id="mobileMenuPanel"
             class="absolute top-0 right-0 w-[300px] max-w-[85vw] h-full bg-[#0c1824]/95 backdrop-blur-2xl border-l border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.8)] translate-x-full transition-transform duration-400 ease-[cubic-bezier(0.25,0.8,0.25,1)] flex flex-col">
-
-            <!-- Menu Header -->
             <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
                 <div class="flex items-center gap-2">
                     <svg class="w-6 h-6 drop-shadow-[0_0_12px_rgba(250,204,21,0.4)]" viewBox="0 0 40 40" fill="none"
@@ -379,1377 +419,753 @@
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
-
-            <!-- Nav Links -->
             <nav class="flex-1 flex flex-col px-6 py-6 gap-1 overflow-y-auto">
-                <a href="#"
-                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-white/[0.08] border border-white/10 text-white font-bold text-[12px] tracking-[0.18em] transition-all">
-                    <i class="fa-solid fa-compass text-[#fce17a] text-[14px] w-5 text-center"></i>
-                    EXPLORE
-                    <span class="ml-auto w-1.5 h-1.5 rounded-full bg-[#fce17a] shadow-[0_0_8px_#fce17a]"></span>
+                <a href="explore.html"
+                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-white/[0.05] border border-white/5 text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-compass text-[#d4af37] text-[14px] w-5 text-center"></i> EXPLORE
+                    <span class="ml-auto w-1.5 h-1.5 rounded-full bg-[#d4af37] shadow-[0_0_8px_#d4af37]"></span>
                 </a>
                 <a href="book.html"
-                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
-                    <i class="fa-solid fa-calendar-check text-[14px] w-5 text-center"></i>
-                    BOOK
+                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.03] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-calendar-check text-[14px] w-5 text-center"></i> BOOK
                 </a>
                 <a href="shop.html"
-                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
-                    <i class="fa-solid fa-bag-shopping text-[14px] w-5 text-center"></i>
-                    SHOP
+                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.03] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-bag-shopping text-[14px] w-5 text-center"></i> SHOP
                 </a>
                 <a href="safety.html"
-                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
-                    <i class="fa-solid fa-shield-halved text-[14px] w-5 text-center"></i>
-                    SAFETY
+                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.03] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-shield-halved text-[14px] w-5 text-center"></i> SAFETY
                 </a>
                 <a href="care.html"
-                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.06] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
-                    <i class="fa-solid fa-heart text-[14px] w-5 text-center"></i>
-                    CARE
+                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl text-[#a5c2ce] hover:bg-white/[0.03] hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
+                    <i class="fa-solid fa-heart text-[14px] w-5 text-center"></i> CARE
                 </a>
-
-                <!-- Divider -->
-                <div class="h-[1px] bg-white/10 my-3"></div>
-
-                <!-- Ask AI -->
-                <button onclick="toggleMobileMenu(); setTimeout(toggleAiChat, 300);"
-                    class="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-gradient-to-r from-[#4a8d96]/20 to-transparent border border-[#4a8d96]/30 text-[#90e0ef] hover:bg-[#4a8d96]/30 hover:text-white font-bold text-[12px] tracking-[0.18em] transition-all">
-                    <i class="fa-solid fa-robot text-[14px] w-5 text-center"></i>
-                    ASK AI
-                </button>
-
-                <!-- Language Toggle -->
-                <div class="flex gap-2 mt-3">
-                    <button
-                        onclick="switchLang('en'); document.getElementById('mobileMenuLangText').innerText='ENGLISH'"
-                        class="flex-1 glass-btn flex items-center justify-center gap-2 px-3 py-3 rounded-xl text-[10px] font-extrabold tracking-[0.12em] text-[#ddeef2] border-white/15 hover:bg-white/10 transition">
-                        <i class="fa-solid fa-globe text-[#a0c2d1]"></i> ENGLISH
-                    </button>
-                    <button
-                        onclick="switchLang('vi'); document.getElementById('mobileMenuLangText').innerText='TIẾNG VIỆT'"
-                        class="flex-1 glass-btn flex items-center justify-center gap-2 px-3 py-3 rounded-xl text-[10px] font-extrabold tracking-[0.12em] text-[#ddeef2] border-white/15 hover:bg-white/10 transition">
-                        <i class="fa-solid fa-globe text-[#a0c2d1]"></i> TIẾNG VIỆT
-                    </button>
-                </div>
-                <span id="mobileMenuLangText" class="hidden"></span>
             </nav>
-
-            <!-- Bottom: App Download -->
-            <div class="px-6 pb-6 pt-2 border-t border-white/10">
-                <button
-                    class="w-full bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-[#3a2c04] text-[11px] font-extrabold tracking-[0.1em] px-5 py-3.5 rounded-2xl shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.6)] hover:scale-[1.02] transition-all flex items-center justify-center gap-3 border-[1.5px] border-[#fffce8]/50">
-                    APP DOWNLOAD
-                    <div class="flex gap-1.5 text-[14px] opacity-90">
-                        <i class="fa-brands fa-apple"></i>
-                        <i class="fa-brands fa-android"></i>
-                    </div>
-                </button>
-            </div>
         </div>
     </div>
 
-    <!-- Main Content Layout (Added padding top to prevent overlap with fixed header) -->
+    <!-- Main Content: Luxurious Landing Page Structure -->
     <main
-        class="flex-1 px-6 lg:px-14 pb-6 pt-24 lg:pt-[100px] flex flex-col lg:flex-row flex-wrap lg:flex-nowrap gap-6 z-10 w-full mx-auto max-w-[1800px] h-auto lg:h-full lg:overflow-hidden">
+        class="w-full max-w-[1300px] mx-auto pt-40 px-6 lg:px-10 flex flex-col lg:flex-row gap-12 lg:gap-16 relative z-10 items-start">
 
-        <!-- Left Column (Top part: Search + Grid) -->
-        <div class="w-full lg:w-[662px] h-auto lg:h-full flex flex-col pt-1 justify-between shrink-0 mobile-order-1">
+        <!-- LEFT COLUMN: Scrollable Luxurious Content (Roomy & Premium) -->
+        <div class="w-full lg:w-[65%] xl:w-[70%] flex flex-col gap-16 pb-24">
 
-            <div class="flex flex-col gap-5">
-                <!-- Modern Glassmorphism Search Box -->
-                <div
-                    class="relative w-full max-w-[662px] h-[75px] rounded-[24px] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex items-center px-1.5 group transition-all duration-300 hover:bg-white/[0.15] hover:border-white/30">
-
-                    <!-- Glowing AI Icon -->
-                    <div
-                        class="w-[62px] h-[62px] shrink-0 rounded-[20px] bg-gradient-to-br from-[#4a8d96]/80 to-[#12222e]/80 border border-white/30 shadow-[inset_0_2px_10px_rgba(255,255,255,0.2),0_0_15px_rgba(144,224,239,0.3)] flex items-center justify-center text-[#90e0ef] relative overflow-hidden group-hover:shadow-[0_0_25px_rgba(144,224,239,0.5)] transition-shadow">
-                        <!-- AI glow effect -->
-                        <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/30 to-transparent"></div>
-                        <i class="fa-solid fa-robot text-[24px] z-10 drop-shadow-[0_0_8px_rgba(144,224,239,0.8)]"></i>
-                    </div>
-
-                    <!-- Input Area -->
-                    <div class="flex-1 pl-4 flex flex-col justify-center h-full pt-[2px]">
-                        <div class="flex items-center gap-2 mb-0.5">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-[#fce17a] shadow-[0_0_8px_#fce17a] animate-pulse"></span>
-                            <p class="text-[10px] font-bold text-[#ecf6f9] tracking-[0.15em] uppercase drop-shadow">
-                                WHERE DO YOU WANT TO GO IN PHU QUOC?</p>
-                        </div>
-                        <input type="text" placeholder="Ask our AI Assistant..."
-                            class="bg-transparent border-none outline-none text-white text-[14px] w-full placeholder-white/50 tracking-wide font-light">
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="flex items-center gap-1 mr-1">
-                        <button
-                            class="w-[45px] h-[45px] rounded-full flex items-center justify-center text-[#bfe0e8] hover:bg-white/10 hover:text-white transition-all">
-                            <i class="fa-solid fa-microphone text-[16px]"></i>
-                        </button>
-                        <button
-                            class="w-[48px] h-[48px] rounded-full bg-gradient-to-br from-[#fce17a] to-[#c19b2e] flex items-center justify-center text-[#3a2c04] hover:scale-105 hover:shadow-[0_0_20px_rgba(250,204,21,0.5)] transition-all shadow-md border border-white/40">
-                            <i class="fa-solid fa-paper-plane text-[15px] ml-[-2px]"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Main Grid Options -->
-                <div class="flex flex-col gap-3 mt-1 w-full max-w-[662px]">
-                    <!-- Top Grid Row -->
-                    <div class="flex w-full h-[115px] gap-3">
-                        <div
-                            class="cat-card w-[150px] flex flex-col justify-between p-3 relative cursor-pointer overflow-hidden group">
-                            <!-- Shine sweep -->
-                            <div
-                                class="shine-effect absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 z-0 pointer-events-none">
-                            </div>
-                            <div
-                                class="flex justify-center gap-3 text-2xl text-gray-300 mt-2 filter drop-shadow relative z-10 transition duration-300 group-hover:scale-110">
-                                <i class="fa-solid fa-plane text-[#dfeff2] animate-float-plane"></i>
-                                <i class="fa-solid fa-bed text-[#e5eff2]"></i>
-                                <i class="fa-solid fa-building text-[#dcedf0]"></i>
-                            </div>
-                            <div class="relative z-10">
-                                <p class="text-[9px] text-[#a4c5d2] text-center mb-1 leading-tight tracking-[0.02em]">
-                                    Third-party integration icons</p>
-                                <div
-                                    class="w-full h-[1px] bg-white/20 mb-1.5 transition-all duration-300 group-hover:bg-[#fce17a]/50">
-                                </div>
-                                <p
-                                    class="text-[11px] font-bold tracking-wider text-center text-[#ecf6f9] group-hover:text-white transition">
-                                    Flights & Hotels</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="cat-card w-[150px] flex flex-col justify-between p-3 relative cursor-pointer overflow-hidden group">
-                            <div
-                                class="shine-effect absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 z-0 pointer-events-none">
-                            </div>
-                            <div class="flex justify-center items-center gap-3 text-gray-300 mt-2 w-full relative z-10">
-                                <div class="flex flex-col items-center"><i
-                                        class="fa-solid fa-cable-car text-xl text-[#dbeff2] animate-swing-car"></i>
-                                </div>
-                                <div class="flex flex-col items-center group-hover:scale-110 transition"><span
-                                        class="text-[11px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 transform -skew-x-12 px-1 tracking-tighter drop-shadow-md">Vin<span
-                                            class="font-normal font-serif italic text-white/90 text-[9px]">Wonders</span></span>
-                                </div>
-                                <div class="flex flex-col items-center"><i
-                                        class="fa-solid fa-tree text-[#6bd079] text-lg group-hover:text-[#8af09a] transition"></i>
-                                </div>
-                            </div>
-                            <div class="relative z-10">
-                                <p class="text-[9px] text-[#a4c5d2] text-center mb-1 leading-tight tracking-[0.02em]">
-                                    Cable Car, VinWonders, VinSafari</p>
-                                <div
-                                    class="w-full h-[1px] bg-white/20 mb-1.5 transition-all duration-300 group-hover:bg-yellow-400/50">
-                                </div>
-                                <p
-                                    class="text-[11px] font-bold tracking-wider text-center text-[#ecf6f9] group-hover:text-white transition">
-                                    Tours & Tickets</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="cat-card flex-1 flex flex-col justify-between p-3 relative cursor-pointer group overflow-hidden">
-                            <div
-                                class="shine-effect absolute top-0 -left-[150%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 z-0 pointer-events-none">
-                            </div>
-                            <p
-                                class="text-[10px] text-white/90 text-center font-semibold mb-1 relative z-10 group-hover:text-white transition">
-                                Local booths</p>
-                            <div class="flex justify-center gap-3 px-1 items-end h-[45px] relative z-10">
-                                <img src="https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=150"
-                                    class="w-[45px] h-10 rounded shadow-md object-cover brightness-75 border-b border-white/30 group-hover:brightness-100 group-hover:-translate-y-1 group-hover:-rotate-6 transition-all duration-300" />
-                                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=150"
-                                    class="w-[45px] h-10 rounded shadow-md object-cover brightness-75 border-b border-white/30 z-10 group-hover:brightness-100 group-hover:-translate-y-1 group-hover:rotate-6 transition-all duration-300" />
-                                <div
-                                    class="relative flex flex-col items-center ml-1 group-hover:scale-110 transition-transform duration-300">
-                                    <i
-                                        class="fa-solid fa-star text-[34px] text-gradient bg-clip-text text-yellow-400 drop-shadow-[0_0_12px_rgba(250,204,21,1)] filter brightness-125"></i>
-                                    <span
-                                        class="absolute inset-0 flex items-center justify-center text-[5.5px] font-extrabold text-[#3a2c04] text-center pt-[5px] leading-[1]">9
-                                        PM<br>SHOW</span>
-                                </div>
-                            </div>
-                            <div class="mt-auto relative z-10">
-                                <div
-                                    class="w-full h-[1px] bg-white/20 mb-1.5 mt-2 transition-all duration-300 group-hover:shadow-[0_1px_5px_rgba(255,255,255,0.8)]">
-                                </div>
-                                <p
-                                    class="text-[11px] font-bold tracking-wider text-center text-[#ecf6f9] group-hover:text-white transition">
-                                    Dine & Fun</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bottom Grid Row -->
-                    <div class="flex w-full h-[115px] gap-3">
-                        <div
-                            class="cat-card w-[130px] flex flex-col justify-between p-3 relative cursor-pointer overflow-hidden group">
-                            <div class="flex-1 flex items-center justify-center">
-                                <i
-                                    class="fa-solid fa-ship text-[36px] text-[#dfeff2] animate-rock-ship group-hover:text-white transition text-shadow-md"></i>
-                            </div>
-                            <div class="relative z-10">
-                                <div
-                                    class="w-full h-[1px] bg-white/20 mb-1.5 transition-all group-hover:bg-[#bfe0e8]/50">
-                                </div>
-                                <p
-                                    class="text-[11px] font-bold tracking-wider text-center text-[#ecf6f9] group-hover:text-white transition">
-                                    Speedboats & Canoes</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="cat-card w-[100px] flex flex-col justify-between p-3 relative cursor-pointer overflow-hidden group">
-                            <div class="flex-1 flex items-center justify-center">
-                                <span
-                                    class="border-[2px] border-[#cfe2e6]/50 group-hover:border-[#cfe2e6] w-9 h-11 rounded relative flex flex-col mb-1 shadow-[0_0_10px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_15px_rgba(207,226,230,0.6)] transition-all duration-300">
-                                    <i
-                                        class="fa-solid fa-microchip text-[20px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#cfe2e6]/70 group-hover:text-white transition-all"></i>
-                                    <div
-                                        class="absolute inset-0 bg-transparent group-hover:bg-white/10 transition duration-300 animate-pulse">
-                                    </div>
-                                </span>
-                            </div>
-                            <div class="relative z-10">
-                                <div class="w-full h-[1px] bg-white/20 mb-1.5 transition-all group-hover:bg-white/50">
-                                </div>
-                                <p
-                                    class="text-[11px] font-bold tracking-wider text-center text-[#ecf6f9] group-hover:text-white transition">
-                                    SIM & Top-up</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="cat-card w-[110px] flex flex-col justify-between p-3 relative cursor-pointer bg-white/5 border-white/20 group overflow-hidden">
-                            <div class="flex-1 flex flex-col items-center justify-center mt-1">
-                                <div class="relative w-8 h-8 flex justify-center">
-                                    <i
-                                        class="fa-solid fa-suitcase-medical text-[28px] text-[#dfeff2] animate-heart-beat group-hover:text-white transition text-shadow-md"></i>
-                                    <div
-                                        class="absolute -right-2 -bottom-0 w-4 h-4 bg-[#eff5f7] rounded-full flex items-center justify-center border border-gray-400 group-hover:scale-110 transition">
-                                        <i class="fa-solid fa-plus text-[10px] text-[#2a4d5a] font-bold"></i>
-                                    </div>
-                                </div>
-                                <p
-                                    class="text-[8px] font-extrabold tracking-[0.1em] mt-2 text-[#b0cedb] group-hover:text-white text-center leading-[1.2] transition">
-                                    IN-PLACE<br>MEDICAL HELP</p>
-                            </div>
-                            <div class="relative z-10">
-                                <div
-                                    class="w-full h-[1px] bg-white/20 mb-1.5 transition-all group-hover:bg-green-400/50">
-                                </div>
-                                <p
-                                    class="text-[11px] font-bold tracking-wider text-center text-[#ecf6f9] group-hover:text-white transition">
-                                    Medical Care</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="cat-card flex-1 flex flex-col justify-between p-3 relative cursor-pointer gap-2 group overflow-hidden">
-                            <div
-                                class="shine-effect absolute top-0 -left-[150%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 z-0 pointer-events-none">
-                            </div>
-                            <div class="flex-1 flex gap-1.5 items-center justify-center mt-1 w-full px-1 relative z-10">
-                                <div
-                                    class="bg-[#ba5146] rounded aspect-square h-[46px] flex flex-col items-center justify-center border border-red-300/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(239,68,68,0.4)] transition-all duration-300">
-                                    <span
-                                        class="text-[6.5px] uppercase font-bold text-white/90 tracking-widest mt-0.5">MEDICAL</span>
-                                    <span
-                                        class="text-[20px] font-extrabold text-white leading-[1] group-hover:text-red-200 transition">115</span>
-                                </div>
-                                <div
-                                    class="bg-[#b35e39] rounded aspect-square h-[46px] flex flex-col items-center justify-center border border-orange-300/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-all duration-300">
-                                    <span
-                                        class="text-[6.5px] uppercase font-bold text-white/90 tracking-widest mt-0.5">SECURITY</span>
-                                    <span
-                                        class="text-[20px] font-extrabold text-white leading-[1] group-hover:text-orange-200 transition">113</span>
-                                </div>
-                                <div
-                                    class="flex-1 rounded h-[46px] border border-white/10 bg-[#0c151e]/40 flex flex-col items-center justify-center px-1 shadow-inner group-hover:bg-[#12222e]/60 transition">
-                                    <span
-                                        class="text-[9px] uppercase font-bold text-[#b4ccd6] leading-[1.2] text-center tracking-widest group-hover:text-white transition">OFFLINE<br>GUIDE</span>
-                                </div>
-                            </div>
-                            <div class="relative z-10">
-                                <div class="w-full h-[1px] bg-white/20 mb-1.5 transition-all group-hover:bg-red-400/50">
-                                </div>
-                                <p
-                                    class="text-[11px] font-bold tracking-wider text-center text-[#ecf6f9] group-hover:text-white transition">
-                                    Emergency Hotlines</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Desktop only: Marketplace + App Download stay in left column on lg -->
-            <div class="hidden lg:block">
-                <!-- Marketplace Cards (Desktop) -->
-                <div class="flex flex-col gap-3 w-full max-w-[662px] mb-2 z-10 mt-6 lg:mt-8 relative">
-                    <h2 class="text-xs font-extrabold tracking-[0.2em] uppercase text-[#a0c2d1] drop-shadow-md">
-                        MARKETPLACE <span
-                            class="bg-[#fce17a] text-black px-1.5 py-[1px] ml-2 rounded-[3px] text-[8px] italic animate-pulse">NEW</span>
-                    </h2>
-
-                    <div id="marketplaceSlider"
-                        class="flex gap-3 overflow-x-auto hide-scrollbar w-full pb-4 items-center pr-16 cursor-grab select-none scroll-smooth">
-
-                        <!-- Card 1 -->
-                        <div
-                            class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                            <div class="h-[135px] flex relative overflow-hidden">
-                                <!-- Menu image left -->
-                                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                                <!-- Place image right -->
-                                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                                <div
-                                    class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                                </div>
-                            </div>
-                            <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                                <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">
-                                    OCSEN BEACH BAR</h4>
-                                <p class="text-[10px] text-[#fce17a] tracking-wider uppercase font-semibold">BOOK A
-                                    TABLE - LIVE SHOW TONIGHT</p>
-                            </div>
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div
-                            class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                            <div class="h-[135px] flex relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                                <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                                <div
-                                    class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                                </div>
-                            </div>
-                            <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                                <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">
-                                    OUCSEN BEACH BAR</h4>
-                                <p class="text-[10px] text-[#80aed1] tracking-wider uppercase font-semibold">BOOK A
-                                    TABLE - LIVE SHOW TONIGHT</p>
-                            </div>
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div
-                            class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                            <div class="h-[135px] flex relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                                <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                                <div
-                                    class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                                </div>
-                            </div>
-                            <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                                <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">
-                                    MIRT ĐẢO NGỌC RESORT</h4>
-                                <p class="text-[10px] text-[#80aed1] tracking-wider uppercase font-semibold">BOOK A
-                                    LUXURY VIP ROOM</p>
-                            </div>
-                        </div>
-
-                        <!-- Card 4 -->
-                        <div
-                            class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                            <div class="h-[135px] flex relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300"
-                                    draggable="false"
-                                    class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                                <div
-                                    class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                                </div>
-                            </div>
-                            <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                                <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">
-                                    SAIGON HUB</h4>
-                                <p class="text-[10px] text-[#80aed1] tracking-wider uppercase font-semibold">EXPRESS
-                                    TICKET & PASS</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right edge fade and Arrow Button -->
-                    <div
-                        class="absolute right-0 top-[28px] bottom-[16px] w-[90px] bg-gradient-to-l from-[#0f1c29] via-[#0f1c29]/90 to-transparent pointer-events-none flex items-center justify-end pr-2 z-20">
-                        <i
-                            class="fa-solid fa-chevron-right text-[38px] text-white opacity-80 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)] filter group-hover:opacity-100 transition animate-pulse"></i>
-                    </div>
-                </div>
-
-                <!-- Footer Tools & App Mockup (Desktop) -->
-                <div class="flex flex-col gap-4 mt-auto w-full max-w-[662px] z-10 lg:mb-4 lg:pl-1">
-                    <!-- Mobile App visual cue -->
-                    <div
-                        class="flex items-center bg-gradient-to-r from-[#12222e]/80 to-[#1e3445]/40 border border-[#a0c2d1]/30 rounded-2xl p-2 pr-5 backdrop-blur-md cursor-pointer hover:border-[#a0c2d1]/60 transition group shadow-[0_5px_15px_rgba(0,0,0,0.3)] w-max">
-                        <div
-                            class="w-10 h-14 bg-black rounded-lg border-2 border-slate-400 flex items-center justify-center relative overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.5)] group-hover:-translate-y-1 transition duration-300 transform rotate-[-5deg]">
-                            <div class="absolute top-[2px] w-3 h-[2px] bg-slate-600 rounded-full"></div>
-                            <i class="fa-solid fa-earth-asia text-[#90e0ef] text-xl"></i>
-                            <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent"></div>
-                        </div>
-                        <div class="ml-4 flex flex-col justify-center">
-                            <span
-                                class="text-[8px] font-bold text-[#bfe0e8] tracking-[0.1em] uppercase mb-0.5 opacity-90">Trải
-                                nghiệm liền mạch</span>
-                            <span class="text-white font-extrabold text-[11px] uppercase tracking-wider">TẢI ỨNG DỤNG
-                                PQGO</span>
-                            <div class="flex gap-2 mt-1 opacity-70">
-                                <i
-                                    class="fa-brands fa-apple hover:text-white transition cursor-pointer text-[13px]"></i>
-                                <i
-                                    class="fa-brands fa-google-play hover:text-white transition cursor-pointer text-[13px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end hidden lg:block -->
-
-        </div>
-
-        <!-- Mobile only: Marketplace + App Download (appears after map on mobile) -->
-        <div class="lg:hidden w-full flex flex-col mobile-order-3">
-            <!-- Marketplace Cards (Mobile) -->
-            <div class="flex flex-col gap-3 w-full mb-2 z-10 mt-2 relative">
-                <h2 class="text-xs font-extrabold tracking-[0.2em] uppercase text-[#a0c2d1] drop-shadow-md">MARKETPLACE
-                    <span
-                        class="bg-[#fce17a] text-black px-1.5 py-[1px] ml-2 rounded-[3px] text-[8px] italic animate-pulse">NEW</span>
-                </h2>
-
-                <div id="marketplaceSliderMobile"
-                    class="flex gap-3 overflow-x-auto hide-scrollbar w-full pb-4 items-center pr-16 cursor-grab select-none scroll-smooth">
-                    <!-- Card 1 -->
-                    <div
-                        class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                        <div class="h-[135px] flex relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                            <div
-                                class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                            </div>
-                        </div>
-                        <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                            <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">
-                                OCSEN BEACH BAR</h4>
-                            <p class="text-[10px] text-[#fce17a] tracking-wider uppercase font-semibold">BOOK A TABLE -
-                                LIVE SHOW TONIGHT</p>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div
-                        class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                        <div class="h-[135px] flex relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                            <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                            <div
-                                class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                            </div>
-                        </div>
-                        <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                            <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">
-                                OUCSEN BEACH BAR</h4>
-                            <p class="text-[10px] text-[#80aed1] tracking-wider uppercase font-semibold">BOOK A TABLE -
-                                LIVE SHOW TONIGHT</p>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div
-                        class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                        <div class="h-[135px] flex relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                            <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                            <div
-                                class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                            </div>
-                        </div>
-                        <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                            <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">MIRT
-                                ĐẢO NGỌC RESORT</h4>
-                            <p class="text-[10px] text-[#80aed1] tracking-wider uppercase font-semibold">BOOK A LUXURY
-                                VIP ROOM</p>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div
-                        class="w-[290px] rounded-[18px] overflow-hidden bg-[#243447] border border-white/5 backdrop-blur-md shrink-0 flex flex-col group hover:border-white/20 transition-all shadow-xl pointer-events-auto pb-0.5">
-                        <div class="h-[135px] flex relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 brightness-95">
-                            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300"
-                                draggable="false"
-                                class="w-[50%] h-full object-cover group-hover:scale-105 transition duration-700 border-l border-[#1a2533]">
-                            <div
-                                class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-300 pointer-events-none">
-                            </div>
-                        </div>
-                        <div class="p-3.5 bg-[#253648] border-t border-white/5">
-                            <h4 class="text-[13px] font-bold uppercase text-white tracking-wide mb-1 leading-tight">
-                                SAIGON HUB</h4>
-                            <p class="text-[10px] text-[#80aed1] tracking-wider uppercase font-semibold">EXPRESS TICKET
-                                & PASS</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right edge fade and Arrow Button -->
-                <div
-                    class="absolute right-0 top-[28px] bottom-[16px] w-[90px] bg-gradient-to-l from-[#0f1c29] via-[#0f1c29]/90 to-transparent pointer-events-none flex items-center justify-end pr-2 z-20">
-                    <i
-                        class="fa-solid fa-chevron-right text-[38px] text-white opacity-80 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)] filter group-hover:opacity-100 transition animate-pulse"></i>
-                </div>
-            </div>
-
-            <!-- Footer Tools & App Mockup (Mobile) -->
-            <div class="flex flex-col gap-4 w-full z-10 mb-4">
-                <div
-                    class="flex items-center bg-gradient-to-r from-[#12222e]/80 to-[#1e3445]/40 border border-[#a0c2d1]/30 rounded-2xl p-2 pr-5 backdrop-blur-md cursor-pointer hover:border-[#a0c2d1]/60 transition group shadow-[0_5px_15px_rgba(0,0,0,0.3)] w-max">
-                    <div
-                        class="w-10 h-14 bg-black rounded-lg border-2 border-slate-400 flex items-center justify-center relative overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.5)] group-hover:-translate-y-1 transition duration-300 transform rotate-[-5deg]">
-                        <div class="absolute top-[2px] w-3 h-[2px] bg-slate-600 rounded-full"></div>
-                        <i class="fa-solid fa-earth-asia text-[#90e0ef] text-xl"></i>
-                        <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent"></div>
-                    </div>
-                    <div class="ml-4 flex flex-col justify-center">
-                        <span
-                            class="text-[8px] font-bold text-[#bfe0e8] tracking-[0.1em] uppercase mb-0.5 opacity-90">Trải
-                            nghiệm liền mạch</span>
-                        <span class="text-white font-extrabold text-[11px] uppercase tracking-wider">TẢI ỨNG DỤNG
-                            PQGO</span>
-                        <div class="flex gap-2 mt-1 opacity-70">
-                            <i class="fa-brands fa-apple hover:text-white transition cursor-pointer text-[13px]"></i>
-                            <i
-                                class="fa-brands fa-google-play hover:text-white transition cursor-pointer text-[13px]"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Column (Map Info) -->
-        <div id="mapRightCol"
-            class="w-full lg:flex-1 h-auto min-h-[600px] lg:h-full relative flex flex-col justify-between pt-1 transition-all duration-500 ease-in-out origin-center mobile-order-2">
-
-            <!-- Map Title Overlay (Moved Inside) -->
-            <div class="absolute top-8 left-12 lg:left-20 z-10 pointer-events-none flex flex-col gap-2.5">
-                <div class="relative w-max mt-1">
-                    <div
-                        class="absolute -left-6 top-1/2 -translate-y-[1px] w-[18px] h-[1.5px] bg-white/80 -rotate-45 block shadow-[0_0_8px_rgba(255,255,255,0.5)]">
-                    </div>
-                    <h3
-                        class="text-lg font-bold tracking-[0.3em] text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] uppercase">
-                        AI SMART MAP</h3>
-                </div>
-                <!-- Offline Indicator -->
-                <div
-                    class="pointer-events-auto flex items-center gap-1.5 bg-[#1a2d33]/80 backdrop-blur-md rounded-full px-2.5 py-1 border border-[#4ade80]/40 shadow-[0_0_15px_rgba(74,222,128,0.15)] cursor-pointer hover:bg-[#1a2d33] transition w-max">
-                    <i class="fa-solid fa-cloud-arrow-down text-green-400 text-[10px] animate-bounce"></i>
-                    <span class="text-[8px] font-extrabold text-green-100 tracking-widest uppercase mt-[1px]">OFFLINE
-                        MAP READY</span>
-                </div>
-            </div>
-
-            <!-- Weather Widget -->
-            <div onclick="toggleWeatherModal()"
-                class="absolute top-20 right-6 lg:right-8 z-[89] flex items-center gap-2.5 bg-[#12222e]/80 backdrop-blur-xl border border-white/20 rounded-2xl p-2 shadow-[0_5px_20px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-white/20 transition group pointer-events-auto">
-                <div
-                    class="w-8 h-8 rounded-xl bg-gradient-to-br from-yellow-300 to-orange-400 flex items-center justify-center shadow-[inset_0_2px_5px_rgba(255,255,255,0.4)] relative">
-                    <i
-                        class="fa-solid fa-sun text-white text-[15px] drop-shadow-md animate-[spin_10s_linear_infinite]"></i>
-                    <i
-                        class="fa-solid fa-cloud text-white/90 text-[10px] absolute bottom-0 -right-1 drop-shadow-sm"></i>
-                </div>
-                <div class="flex flex-col pr-1 text-right">
-                    <span class="text-white font-extrabold text-[13px] leading-none mb-0.5">28°C</span>
-                    <span class="text-[#a0c2d1] text-[8px] font-bold tracking-wider uppercase">SÓNG ÊM</span>
-                </div>
-            </div>
-
-            <!-- Map Interactions Layer / Fullscreen Button -->
-            <button id="zoomMapBtn"
-                class="absolute top-6 right-6 lg:right-8 z-[90] w-10 h-10 rounded-full bg-[#12222e]/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/20 hover:scale-110 transition shadow-[0_5px_15px_rgba(0,0,0,0.5)] group">
-                <i class="fa-solid fa-expand text-gray-300 group-hover:text-white transition"></i>
-            </button>
-
-            <!-- Mobile/Desktop Responsive Globe Container -->
-            <div id="globeViz" class="globe-container lg:absolute lg:inset-0"></div>
-
-            <!-- Map Info Popup Overlay -->
-            <div id="mapInfoModal"
-                class="absolute top-[35%] left-1/2 -translate-x-1/2 w-[340px] bg-gradient-to-b from-[#12222e]/95 to-[#0b131a]/95 backdrop-blur-2xl border border-white/20 rounded-[20px] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] p-4 opacity-0 scale-95 pointer-events-none transition-all duration-300 z-[100] flex flex-col hidden">
-                <button onclick="closeMapInfo()"
-                    class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 border border-white/10 flex items-center justify-center hover:bg-white/30 hover:scale-110 transition text-white z-10 shadow-lg cursor-pointer">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div
-                    class="relative w-full h-[170px] rounded-[14px] overflow-hidden mb-4 border border-white/10 shadow-inner">
-                    <img id="mapInfoImg" src="" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0b131a] via-transparent to-transparent"></div>
-                    <div class="absolute bottom-3 left-3 flex items-center gap-2">
-                        <div class="w-1.5 h-1.5 rounded-full bg-[#fce17a] shadow-[0_0_8px_#fce17a] animate-pulse"></div>
-                        <span class="text-[9px] font-bold text-[#fce17a] tracking-[0.2em] uppercase">VERIFIED
-                            LOCATION</span>
-                    </div>
-                </div>
-                <h4 id="mapInfoTitle"
-                    class="text-[16px] font-extrabold text-white uppercase tracking-wider mb-2 drop-shadow-md"></h4>
-                <p id="mapInfoDesc" class="text-[12px] text-[#a0c2d1] leading-relaxed mb-5 font-light"></p>
-                <button
-                    class="w-full py-3 bg-gradient-to-r from-[#4a8d96] to-[#173242] text-white text-[11px] font-extrabold uppercase tracking-[0.15em] rounded-xl border border-[#4a8d96]/50 hover:shadow-[0_0_20px_rgba(74,141,150,0.4)] hover:scale-[1.02] transition-all duration-300 cursor-pointer">
-                    EXPLORE DESTINATION <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-
-            <!-- Lower Section right panel: Ask AI Button (Moved to fixed position) -->
-
-            <!-- Floating Live Event Badge -->
-            <div
-                class="absolute bottom-6 border-l-[3px] border-yellow-400 left-4 lg:left-10 z-[90] pointer-events-auto hidden md:block">
-                <button
-                    onclick="if(window.world) window.world.pointOfView({ lat: 10.22, lng: 103.96, altitude: 0.15 }, 1200);"
-                    class="bg-[#12222e]/90 backdrop-blur-lg border border-white/10 rounded-r-xl p-2.5 flex items-center gap-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:bg-[#1a2d33] hover:border-white/20 transition group text-left">
-                    <div
-                        class="relative w-8 h-8 flex items-center justify-center bg-yellow-400/10 rounded-full border border-yellow-400/20">
-                        <i
-                            class="fa-solid fa-star text-yellow-400 text-lg animate-pulse drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span
-                            class="text-[8px] text-yellow-400 font-extrabold uppercase tracking-[0.2em] mb-0.5">HAPPENING
-                            NOW</span>
-                        <span
-                            class="text-white text-[10px] font-bold uppercase tracking-wider group-hover:text-yellow-200 transition">LIVE
-                            MUSIC SHOW @ 9 PM</span>
-                    </div>
-                    <i
-                        class="fa-solid fa-arrow-right text-gray-500 ml-1 text-[10px] group-hover:text-white transition group-hover:translate-x-1"></i>
-                </button>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- Fixed AI Assistant Button -->
-    <div class="fixed bottom-6 right-6 lg:right-8 z-[100] pointer-events-auto">
-        <div class="relative group block cursor-pointer" onclick="toggleAiChat()">
-            <div class="flex items-center">
-                <button
-                    class="bg-gradient-to-r from-[#ddefef] to-[#ffffff] text-[#123640] rounded-full pl-5 pr-6 py-[13px] flex items-center gap-2.5 shadow-[0_5px_30px_rgba(255,255,255,0.3)] group-hover:scale-105 transition-all duration-300 font-extrabold text-[12px] tracking-[0.05em] border-2 border-white/50 relative">
-                    <div
-                        class="w-6 h-6 bg-[#8cacbc]/30 rounded-full flex items-center justify-center mr-0.5 pointer-events-none">
-                        <i class="fa-solid fa-robot text-[#1e505e] text-sm"></i>
-                    </div>
-                    ASK AI <i class="fa-solid fa-chevron-right text-[10px] pointer-events-none"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    </div>
-
-    <!-- Weather Detail Modal (Hidden by default) -->
-    <div id="weatherModal"
-        class="fixed inset-0 z-[200] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300 backdrop-blur-sm bg-black/40">
-        <div
-            class="w-full max-w-[420px] bg-[#12222e]/90 backdrop-blur-2xl border border-white/20 rounded-[32px] overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.8)] flex flex-col scale-95 transition-all duration-300">
-
-            <!-- Header: Tình trạng chung -->
-            <div
-                class="relative h-[200px] flex flex-col items-center justify-center bg-gradient-to-b from-[#4a8d96]/40 to-transparent">
-                <button onclick="toggleWeatherModal()"
-                    class="absolute top-5 right-5 w-8 h-8 rounded-full bg-black/20 flex items-center justify-center text-white hover:bg-white/20 transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <i
-                    class="fa-solid fa-cloud-sun text-[70px] text-yellow-300 drop-shadow-[0_0_20px_rgba(253,224,71,0.5)] animate-pulse"></i>
-                <h2 class="text-4xl font-black text-white mt-3">28°C</h2>
-                <p class="text-[#90e0ef] font-bold tracking-widest uppercase text-xs">Trời ít mây • Dương Đông, Phú Quốc
+            <!-- Hero Title Intro -->
+            <div data-aos="fade-up" class="pl-2">
+                <span class="text-[10px] text-[#d4af37] tracking-[0.4em] uppercase font-bold mb-4 block">PQGO.VN
+                    Destination</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight leading-[1.15]">
+                    Khám phá sự tinh hoa <br>của <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-[#fce17a] to-[#d4af37]">Đảo
+                        Ngọc.</span>
+                </h1>
+                <p class="text-[15px] text-[#a0c2d1] font-light max-w-xl leading-relaxed">
+                    Trải nghiệm những khoảnh khắc nghỉ dưỡng riêng tư và thượng lưu nhất tại Phú Quốc. Đặt mọi dịch vụ
+                    cao cấp chỉ thông qua một quy trình mượt mà.
                 </p>
             </div>
 
-            <!-- Body: Các chỉ số chi tiết -->
-            <div class="px-8 pb-8 flex flex-col gap-6">
-                <!-- Marine Row -->
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white/5 rounded-2xl p-4 border border-white/10 flex items-center gap-3">
-                        <i class="fa-solid fa-water text-blue-400 text-xl"></i>
-                        <div class="flex flex-col">
-                            <span class="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Sóng biển</span>
-                            <span class="text-white font-bold text-sm">Êm (0.3m)</span>
-                        </div>
-                    </div>
-                    <div class="bg-white/5 rounded-2xl p-4 border border-white/10 flex items-center gap-3">
-                        <i class="fa-solid fa-mask-snorkeling text-cyan-400 text-xl"></i>
-                        <div class="flex flex-col">
-                            <span class="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Tầm nhìn
-                                lặn</span>
-                            <span class="text-white font-bold text-sm">Tốt (12m)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- More Details Row -->
-                <div class="grid grid-cols-3 gap-2">
-                    <div class="flex flex-col items-center py-3 bg-white/5 rounded-xl border border-white/5">
-                        <i class="fa-solid fa-sun text-orange-400 mb-1"></i>
-                        <span class="text-[8px] text-gray-500 uppercase">UV Index</span>
-                        <span class="text-white text-[11px] font-bold">Trung bình</span>
-                    </div>
-                    <div class="flex flex-col items-center py-3 bg-white/5 rounded-xl border border-white/5">
-                        <i class="fa-solid fa-wind text-gray-300 mb-1"></i>
-                        <span class="text-[8px] text-gray-500 uppercase">Gió</span>
-                        <span class="text-white text-[11px] font-bold">12km/h</span>
-                    </div>
-                    <div class="flex flex-col items-center py-3 bg-white/5 rounded-xl border border-white/5">
-                        <i class="fa-solid fa-droplet text-blue-300 mb-1"></i>
-                        <span class="text-[8px] text-gray-500 uppercase">Độ ẩm</span>
-                        <span class="text-white text-[11px] font-bold">78%</span>
-                    </div>
-                </div>
-
-                <!-- AI Insight Box -->
+            <!-- Trusted Partners (Scrolling Logo Marquee) -->
+            <div class="flex items-center border-y border-white/5 py-6 overflow-hidden relative w-full"
+                data-aos="fade-up">
                 <div
-                    class="bg-yellow-400/10 border border-yellow-400/30 rounded-2xl p-4 flex gap-3 items-start translate-y-1">
-                    <i class="fa-solid fa-star text-yellow-400 mt-1"></i>
-                    <p class="text-[11px] text-yellow-50 font-medium leading-relaxed">
-                        <b>AI PQGO khuyên bạn:</b> Tối nay hoàng hôn lúc 17:50 cực đẹp. Lý tưởng để đặt bàn tại <span
-                            class="text-yellow-300 underline underline-offset-2">Ocsen Beach Bar</span> ngay bây giờ!
+                    class="absolute left-0 w-24 h-full bg-gradient-to-r from-[#0f1c29] to-transparent z-10 pointer-events-none">
+                </div>
+                <div
+                    class="absolute right-0 w-24 h-full bg-gradient-to-l from-[#0f1c29] to-transparent z-10 pointer-events-none">
+                </div>
+
+                <div class="flex items-center shrink-0 pr-8 border-r border-white/10 mr-8 z-20 bg-[#0f1c29]">
+                    <div class="w-[3px] h-7 bg-gradient-to-b from-[#d4af37] to-[#aa8021] mr-3 rounded-full opacity-80">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[7.5px] uppercase tracking-[0.4em] font-bold text-[#d4af37]">Mạng Lưới</span>
+                        <span class="text-[11.5px] uppercase tracking-[0.3em] font-light text-white/90">Đối Tác</span>
+                    </div>
+                </div>
+
+                <div class="flex-1 overflow-hidden relative flex items-center">
+                    <div class="marquee-track flex items-center gap-20">
+                        <!-- Loop Group 1 -->
+                        <div class="flex items-center gap-24 shrink-0">
+                            <img src="https://vinwonders.com/wp-content/themes/vinwonders/assets/images/logo/logo-vinwonders.svg"
+                                class="partner-logo" style="height: 48px;" alt="VinWonders"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>VinWonders</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Booking.com_logo.svg"
+                                class="partner-logo" style="height: 24px;" alt="Booking.com"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Booking.com</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Agoda_transparent_logo.png"
+                                class="partner-logo" style="height: 44px;" alt="Agoda"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Agoda</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Viettel_logo_2021.svg"
+                                class="partner-logo" style="height: 48px;" alt="Viettel"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Viettel</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Mobifone_logo.png"
+                                class="partner-logo" style="height: 26px;" alt="MobiFone"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>MobiFone</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Vietnamobile_logo.svg/512px-Vietnamobile_logo.svg.png"
+                                class="partner-logo" style="height: 32px;" alt="Vietnamobile"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Vietnamobile</span>'" />
+                        </div>
+                        <!-- Loop Group 2 (Exact identical for seamless scroll) -->
+                        <div class="flex items-center gap-24 shrink-0 pl-24">
+                            <img src="https://vinwonders.com/wp-content/themes/vinwonders/assets/images/logo/logo-vinwonders.svg"
+                                class="partner-logo" style="height: 48px;" alt="VinWonders"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>VinWonders</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Booking.com_logo.svg"
+                                class="partner-logo" style="height: 24px;" alt="Booking.com"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Booking.com</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Agoda_transparent_logo.png"
+                                class="partner-logo" style="height: 44px;" alt="Agoda"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Agoda</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Viettel_logo_2021.svg"
+                                class="partner-logo" style="height: 48px;" alt="Viettel"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Viettel</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Mobifone_logo.png"
+                                class="partner-logo" style="height: 26px;" alt="MobiFone"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>MobiFone</span>'" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Vietnamobile_logo.svg/512px-Vietnamobile_logo.svg.png"
+                                class="partner-logo" style="height: 32px;" alt="Vietnamobile"
+                                onerror="this.outerHTML='<span class=\'fallback-text\'>Vietnamobile</span>'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luxurious Marketplace Cards -->
+
+            <!-- Section 1: Flights & Hotels (Wide Premium Card) -->
+            <section data-aos="fade-up"
+                class="cat-card p-0 flex flex-col sm:flex-row overflow-hidden group min-h-[300px]">
+                <div class="w-full sm:w-[45%] relative overflow-hidden">
+                    <!-- Subtle zoom without crazy animations -->
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=600"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 pan-img-elegant"
+                        alt="Luxury Hotel" />
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#0a1118]/80 sm:hidden"></div>
+                </div>
+                <div
+                    class="w-full sm:w-[55%] p-8 sm:p-10 flex flex-col justify-center bg-gradient-to-l from-[#0a1118]/0 to-[#0a1118]/90 z-10">
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-[#d4af37] mb-3 font-semibold">Lưu Trú & Di
+                        Chuyển</span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">Hành Trình Thượng Lưu</h3>
+                    <p class="text-[13px] text-[#8caab5] leading-loose font-light mb-8">
+                        Tuyển tập những khu nghỉ dưỡng 5 sao bậc nhất và dịch vụ hàng không hoàn hảo được thiết kế riêng
+                        cho sự riêng tư và thoải mái tối đa của bạn.
                     </p>
+                    <button
+                        class="self-start text-[10px] font-bold uppercase tracking-widest text-white border-b border-[#d4af37] pb-1 hover:text-[#d4af37] transition duration-300">
+                        Đặt Phòng & Chuyến Bay
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section 2: VinWonders & Safari (Mirrored Wide Card) -->
+            <section data-aos="fade-up"
+                class="cat-card p-0 flex flex-col sm:flex-row-reverse overflow-hidden group min-h-[300px]">
+                <div class="w-full sm:w-[45%] relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1746292448726-9e75b5f1067d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGh1JTIwcXVvY3xlbnwwfHwwfHx8MA%3D%3D"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 pan-img-elegant"
+                        alt="VinWonders Theme Park" />
+                    <div class="absolute inset-0 bg-gradient-to-l from-transparent to-[#0a1118]/80 sm:hidden"></div>
+                </div>
+                <div
+                    class="w-full sm:w-[55%] p-8 sm:p-10 flex flex-col justify-center bg-gradient-to-r from-[#0a1118]/0 to-[#0a1118]/90 z-10 items-start sm:items-end sm:text-right">
+                    <span
+                        class="text-[9px] uppercase tracking-[0.3em] text-[#4ade80] mb-3 font-semibold flex items-center gap-2"><i
+                            class="fa-solid fa-leaf"></i> Siêu Quần Thể</span>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">VinWonders & Safari</h3>
+                    <p class="text-[13px] text-[#8caab5] leading-loose font-light mb-8 sm:pl-6">
+                        Đắm mình trong thiên nhiên hoang dã trứ danh, tận hưởng các đặc quyền giải trí không giới hạn
+                        tại phân khu chủ đề đẳng cấp Châu Á.
+                    </p>
+                    <button
+                        class="text-[10px] font-bold uppercase tracking-widest text-white border-b border-[#4ade80] pb-1 hover:text-[#4ade80] transition duration-300">
+                        Mua Vé Đặc Quyền
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section 3: Dining & Shows (Horizontal Scrollable Carousel Layout) -->
+            <div class="flex flex-col gap-6" data-aos="fade-up">
+
+                <div
+                    class="flex flex-col sm:flex-row gap-6 items-start sm:items-end justify-between border-b border-white/5 pb-5 pl-2">
+                    <div class="flex flex-col gap-4">
+                        <div>
+                            <span
+                                class="text-[9px] uppercase tracking-[0.3em] text-[#d4af37] mb-1 block font-semibold">Phong
+                                cách Ẩm thực & Nghệ thuật</span>
+                            <h3 class="text-2xl lg:text-3xl font-bold text-white mb-3">Dine & Nhạc Sống <span
+                                    class="font-light text-[#8caab5] mx-1">|</span> Kịch Bản Đêm 21:00</h3>
+                            <p class="text-[12.5px] text-[#8caab5] font-light leading-relaxed max-w-xl">Chuỗi nhà hàng
+                                fine-dining tinh tế nhâm nhi vang cạnh biển đêm. Tham gia bữa tiệc biểu diễn pháo hoa đa
+                                phương tiện tại Thị Trấn Hoàng Hôn vô cùng mãn nhãn.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 shrink-0 mb-1 hidden sm:flex">
+                        <button id="carousel-desktop-prev"
+                            class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 transition group pointer-events-auto">
+                            <i class="fa-solid fa-chevron-left text-xs group-hover:-translate-x-0.5 transition"></i>
+                        </button>
+                        <button id="carousel-desktop-next"
+                            class="w-10 h-10 rounded-full border border-[#d4af37] bg-[#d4af37]/10 flex items-center justify-center hover:bg-[#d4af37]/20 transition text-[#d4af37] group shadow-[0_0_15px_rgba(212,175,55,0.2)] pointer-events-auto">
+                            <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-0.5 transition"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Scrollable Horizontal Carousel Container -->
+                <div class="relative w-full">
+                    <!-- Right Fading Mask & Mobile Arrow -->
+                    <div
+                        class="absolute right-0 top-0 bottom-6 w-24 bg-gradient-to-l from-[#0f1c29]/90 to-transparent z-20 pointer-events-none flex items-center justify-end pr-1 sm:pr-4">
+                        <div id="carousel-next-btn"
+                            class="w-10 h-10 rounded-full bg-black/60 shadow-[0_0_20px_rgba(0,0,0,0.8)] border border-white/10 backdrop-blur-md flex items-center justify-center text-white cursor-pointer pointer-events-auto hover:bg-[#d4af37] hover:border-[#d4af37] transition duration-300">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </div>
+                    </div>
+
+                    <div id="night-show-carousel"
+                        class="flex overflow-x-auto gap-5 hide-scrollbar pb-6 snap-x custom-scroll cursor-grab active:cursor-grabbing">
+
+                        <!-- Card 1: OCSEN BEACH BAR -->
+                        <div
+                            class="shrink-0 w-[270px] sm:w-[310px] flex flex-col rounded-[20px] overflow-hidden bg-[#1f2937] border border-white/5 snap-start group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:border-white/10 transition-all duration-400 cursor-pointer">
+                            <div class="h-[170px] grid grid-cols-2 gap-[2px] bg-black">
+                                <div class="overflow-hidden w-full h-full"><img
+                                        src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=400"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                                        alt="Restaurant Interior" /></div>
+                                <div class="overflow-hidden w-full h-full"><img
+                                        src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&q=80&w=400"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                                        alt="Cocktail" /></div>
+                            </div>
+                            <div class="p-5 flex flex-col z-10 bg-[#1f2937]">
+                                <h4 class="text-[16px] font-black text-white mb-2 uppercase tracking-wide">Ocsen Beach
+                                    Bar</h4>
+                                <span class="text-[9px] uppercase font-bold text-[#fce17a] tracking-widest">Book A Table
+                                    - Live Show Tonight</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: SAILING CLUB -->
+                        <div
+                            class="shrink-0 w-[270px] sm:w-[310px] flex flex-col rounded-[20px] overflow-hidden bg-[#1f2937] border border-white/5 snap-start group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:border-white/10 transition-all duration-400 cursor-pointer">
+                            <div class="h-[170px] grid grid-cols-2 gap-[2px] bg-black">
+                                <div class="overflow-hidden w-full h-full"><img
+                                        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=400"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                                        alt="Restaurant" /></div>
+                                <div class="overflow-hidden w-full h-full"><img
+                                        src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=400"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                                        alt="Coffee" /></div>
+                            </div>
+                            <div class="p-5 flex flex-col z-10 bg-[#1f2937]">
+                                <h4 class="text-[16px] font-black text-white mb-2 uppercase tracking-wide">Sailing Club
+                                </h4>
+                                <span class="text-[9px] uppercase font-bold text-[#a0c2d1] tracking-widest">Premium
+                                    Lounges & Fire Show</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: KISS OF THE SEA -->
+                        <div
+                            class="shrink-0 w-[270px] sm:w-[310px] flex flex-col rounded-[20px] overflow-hidden bg-[#1f2937] border border-white/5 snap-start group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:border-white/10 transition-all duration-400 cursor-pointer">
+                            <div class="h-[170px] w-full overflow-hidden bg-black">
+                                <img src="https://images.unsplash.com/photo-1732243395944-cb3ff9311091?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGh1JTIwcXVvY3xlbnwwfHwwfHx8MA%3D%3D"
+                                    class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700"
+                                    alt="Night Show" />
+                            </div>
+                            <div class="p-5 flex flex-col z-10 bg-[#1f2937]">
+                                <h4 class="text-[16px] font-black text-white mb-2 uppercase tracking-wide">Kiss Of The
+                                    Sea</h4>
+                                <span class="text-[9px] uppercase font-bold text-[#e60073] tracking-widest">Show Ticket
+                                    - 21:00 Daily</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: JW MARRIOTT BAR -->
+                        <div
+                            class="shrink-0 w-[270px] sm:w-[310px] flex flex-col rounded-[20px] overflow-hidden bg-[#1f2937] border border-white/5 snap-start group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] hover:border-white/10 transition-all duration-400 cursor-pointer">
+                            <div class="h-[170px] w-full overflow-hidden bg-black">
+                                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=600"
+                                    class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition duration-700"
+                                    alt="Bar" />
+                            </div>
+                            <div class="p-5 flex flex-col z-10 bg-[#1f2937]">
+                                <h4 class="text-[16px] font-black text-white mb-2 uppercase tracking-wide">Mirt Lounge
+                                </h4>
+                                <span class="text-[9px] uppercase font-bold text-[#a0c2d1] tracking-widest">Fine Dining
+                                    & Wine Cellar</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Premium Clean Services (Luxurious Hover Effects) -->
+            <div class="border-t border-white/5 pt-12 pb-4" data-aos="fade-up">
+                <h3 class="text-lg font-bold text-white mb-8 uppercase tracking-widest pl-2" data-aos="fade-right">Gói
+                    Tiện ích Cao cấp</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+
+                    <!-- Tours -->
+                    <div data-aos="fade-up" data-aos-delay="0"
+                        class="relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent border border-white/10 p-8 rounded-[20px] flex flex-col items-center justify-center text-center hover:-translate-y-2 hover:bg-gradient-to-b hover:from-[#d4af37]/10 hover:to-transparent hover:border-[#d4af37]/50 hover:shadow-[0_15px_30px_rgba(0,0,0,0.6)] cursor-pointer transition-all duration-500 group">
+                        <div
+                            class="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/5 transition-colors duration-500">
+                        </div>
+                        <i
+                            class="fa-solid fa-compass text-[30px] text-[#d4af37] mb-5 opacity-70 group-hover:opacity-100 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-500"></i>
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-bold text-white/70 group-hover:text-white transition-colors duration-500 relative z-10">Tours
+                            Chọn Lọc</span>
+                    </div>
+
+                    <!-- Speedboats -->
+                    <div data-aos="fade-up" data-aos-delay="100"
+                        class="relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent border border-white/10 p-8 rounded-[20px] flex flex-col items-center justify-center text-center hover:-translate-y-2 hover:bg-gradient-to-b hover:from-[#d4af37]/10 hover:to-transparent hover:border-[#d4af37]/50 hover:shadow-[0_15px_30px_rgba(0,0,0,0.6)] cursor-pointer transition-all duration-500 group">
+                        <div
+                            class="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/5 transition-colors duration-500">
+                        </div>
+                        <i
+                            class="fa-solid fa-sailboat text-[30px] text-[#d4af37] mb-5 opacity-70 group-hover:opacity-100 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-500"></i>
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-bold text-white/70 group-hover:text-white transition-colors duration-500 relative z-10">Trải
+                            Nghiệm Cano</span>
+                    </div>
+
+                    <!-- Local Booths -->
+                    <div data-aos="fade-up" data-aos-delay="200"
+                        class="relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent border border-white/10 p-8 rounded-[20px] flex flex-col items-center justify-center text-center hover:-translate-y-2 hover:bg-gradient-to-b hover:from-[#d4af37]/10 hover:to-transparent hover:border-[#d4af37]/50 hover:shadow-[0_15px_30px_rgba(0,0,0,0.6)] cursor-pointer transition-all duration-500 group">
+                        <div
+                            class="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/5 transition-colors duration-500">
+                        </div>
+                        <i
+                            class="fa-solid fa-gem text-[30px] text-[#d4af37] mb-5 opacity-70 group-hover:opacity-100 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-500"></i>
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-bold text-white/70 group-hover:text-white transition-colors duration-500 relative z-10">Sản
+                            Vật Bản Địa</span>
+                    </div>
+
+                    <!-- SIM -->
+                    <div data-aos="fade-up" data-aos-delay="300"
+                        class="relative overflow-hidden bg-gradient-to-b from-white/[0.02] to-transparent border border-white/10 p-8 rounded-[20px] flex flex-col items-center justify-center text-center hover:-translate-y-2 hover:bg-gradient-to-b hover:from-[#d4af37]/10 hover:to-transparent hover:border-[#d4af37]/50 hover:shadow-[0_15px_30px_rgba(0,0,0,0.6)] cursor-pointer transition-all duration-500 group">
+                        <div
+                            class="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/5 transition-colors duration-500">
+                        </div>
+                        <i
+                            class="fa-solid fa-wifi text-[30px] text-[#d4af37] mb-5 opacity-70 group-hover:opacity-100 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.6)] transition-all duration-500"></i>
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-bold text-white/70 group-hover:text-white transition-colors duration-500 relative z-10">Gói
+                            Cước 5G</span>
+                    </div>
+
                 </div>
             </div>
 
         </div>
-    </div>
 
-    <!-- Floating SOS Button -->
-    <div class="fixed bottom-6 left-6 lg:left-8 z-[100] pointer-events-auto">
-        <button
-            class="relative flex items-center justify-center w-[52px] h-[52px] bg-gradient-to-br from-[#ef4444] to-[#b91c1c] rounded-full border-2 border-red-300/50 shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-110 transition-all duration-300 group">
-            <div class="absolute inset-0 rounded-full border-[1.5px] border-red-400 animate-ping opacity-60"></div>
-            <i class="fa-solid fa-suitcase-medical text-white text-[22px] drop-shadow-md"></i>
-            <!-- Tooltip -->
-            <div
-                class="absolute left-[calc(100%+12px)] bg-red-600/95 backdrop-blur-md text-white text-[10px] font-extrabold px-3.5 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl pointer-events-none border border-red-400/50 uppercase tracking-widest origin-left scale-95 group-hover:scale-100">
-                GỌI CẤP CỨU & Y TẾ (115)
+        <!-- RIGHT COLUMN: Elegant Sticky Fixed Section for Map & SOS -->
+        <div class="flex w-full lg:w-[35%] xl:w-[30%] lg:sticky top-[120px] flex-col gap-6 custom-scroll"
+            style="max-height: calc(100vh - 140px);">
+
+            <!-- Map Card (Elegant Static Display) -->
+            <div class="cat-card min-h-[480px] flex-1 relative overflow-hidden group bg-[#050b10] border-white/10">
+                <img src="map_bg.png"
+                    class="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-screen pointer-events-none"
+                    alt="Phu Quoc Island Map" />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-[#050b10] via-transparent to-[#050b10]/80 z-0 pointer-events-none">
+                </div>
+
+                <div class="absolute top-6 left-6 z-20 pointer-events-none">
+                    <h3 class="text-white font-bold tracking-[0.2em] uppercase text-[10px] flex items-center gap-2">
+                        <i class="fa-regular fa-map text-[#d4af37]"></i> Bản đồ chỉ dẫn
+                    </h3>
+                </div>
+
+                <!-- Weather Widget -->
+                <div class="absolute top-6 right-6 z-30" onclick="openModal('weatherModal')">
+                    <div class="weather-widget">
+                        <div
+                            class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center shadow-[0_0_10px_rgba(251,191,36,0.3)]">
+                            <i class="fa-solid fa-sun text-white text-base"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-white font-black text-base leading-none">28°C</span>
+                            <span class="text-[#8caab5] text-[7px] uppercase tracking-widest font-bold mt-1">Sóng
+                                Êm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clean Elegant Dots instead of Sonar Pulses -->
+                <!-- Pin: VinWonders -->
+                <div class="absolute top-[25%] left-[55%] z-20 group/pin cursor-pointer">
+                    <div
+                        class="w-2.5 h-2.5 bg-white rounded-full relative z-10 shadow-[0_0_8px_white] transition-transform duration-300 group-hover/pin:scale-150">
+                    </div>
+                    <div
+                        class="absolute top-4 left-1/2 -translate-x-1/2 bg-black/90 backdrop-blur-md px-3 py-1.5 rounded border border-white/10 whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-all duration-300 pointer-events-none">
+                        <span class="text-[9px] text-[#d4af37] font-medium tracking-widest uppercase">Phân Khu Bắc
+                            Đảo</span>
+                    </div>
+                </div>
+
+                <!-- Pin: Duong Dong -->
+                <div class="absolute top-[52%] left-[40%] z-20 group/pin cursor-pointer">
+                    <div
+                        class="w-2.5 h-2.5 bg-white rounded-full relative z-10 shadow-[0_0_8px_white] transition-transform duration-300 group-hover/pin:scale-150">
+                    </div>
+                    <div
+                        class="absolute top-4 left-1/2 -translate-x-1/2 bg-black/90 backdrop-blur-md px-3 py-1.5 rounded border border-white/10 whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-all duration-300 pointer-events-none">
+                        <span class="text-[9px] text-[#d4af37] font-medium tracking-widest uppercase">Trung Tâm Văn
+                            Hóa</span>
+                    </div>
+                </div>
+
+                <!-- Pin: Hon Thom -->
+                <div class="absolute top-[80%] left-[50%] z-20 group/pin cursor-pointer">
+                    <div
+                        class="w-2.5 h-2.5 bg-white rounded-full relative z-10 shadow-[0_0_8px_white] transition-transform duration-300 group-hover/pin:scale-150">
+                    </div>
+                    <div
+                        class="absolute top-4 left-1/2 -translate-x-1/2 bg-black/90 backdrop-blur-md px-3 py-1.5 rounded border border-white/10 whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-all duration-300 pointer-events-none">
+                        <span class="text-[9px] text-[#d4af37] font-medium tracking-widest uppercase">Tổ Hợp Nam
+                            Đảo</span>
+                    </div>
+                </div>
             </div>
+
+            <!-- Very Clean SOS Medical Board -->
+            <div class="cat-card p-6 bg-[#1a0f12] border-red-900/40 flex flex-col gap-4">
+                <span class="text-[9px] uppercase tracking-[0.2em] font-semibold text-red-400">Đường Dây Khẩn Cấp</span>
+
+                <div class="flex items-center gap-4">
+                    <a href="tel:115"
+                        class="flex-1 flex flex-col p-4 bg-red-950/20 rounded-xl border border-red-500/10 hover:bg-red-900/30 transition text-center">
+                        <i class="fa-solid fa-suitcase-medical text-red-500 mb-2 opacity-80"></i>
+                        <span class="text-[8px] text-red-200 uppercase tracking-widest uppercase">Y Tế</span>
+                        <span class="text-sm font-light text-white font-mono mt-1">115</span>
+                    </a>
+
+                    <a href="tel:113"
+                        class="flex-1 flex flex-col p-4 bg-blue-950/20 rounded-xl border border-blue-500/10 hover:bg-blue-900/30 transition text-center">
+                        <i class="fa-solid fa-shield-halved text-blue-400 mb-2 opacity-80"></i>
+                        <span class="text-[8px] text-blue-200 uppercase tracking-widest uppercase">An Ninh</span>
+                        <span class="text-sm font-light text-white font-mono mt-1">113</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Floating Global Elements (Synced with book.html) -->
+    <div class="fixed bottom-6 right-6 lg:right-8 z-[100] pointer-events-auto">
+        <button
+            class="bg-gradient-to-r from-[#ddefef] to-[#ffffff] text-[#123640] rounded-full pl-5 pr-6 py-[13px] flex items-center gap-2.5 shadow-[0_5px_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 font-extrabold text-[12px] tracking-[0.05em] border-2 border-white/50"
+            onclick="toggleAiChat()">
+            <div class="w-6 h-6 bg-[#8cacbc]/30 rounded-full flex items-center justify-center mr-0.5">
+                <i class="fa-solid fa-robot text-[#1e505e] text-sm"></i>
+            </div>
+            ASK AI <i class="fa-solid fa-chevron-right text-[10px]"></i>
         </button>
     </div>
 
-    <!-- AI Assistant Popup Container -->
-    <div id="aiChatPopup"
-        class="fixed bottom-24 right-6 lg:right-8 z-[110] w-[380px] max-w-[calc(100vw-32px)] h-[600px] max-h-[75vh] bg-[#0c1824]/95 backdrop-blur-xl border border-white/20 rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] flex flex-col overflow-hidden opacity-0 scale-95 translate-y-10 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]">
-
-        <!-- Header -->
-        <div
-            class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-gradient-to-r from-[#4a8d96]/20 to-transparent shrink-0">
-            <div class="flex items-center gap-3">
-                <div class="relative">
-                    <div
-                        class="w-10 h-10 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] border border-[#90e0ef]/50 flex items-center justify-center shadow-[0_0_15px_rgba(144,224,239,0.3)]">
-                        <i class="fa-solid fa-robot text-[#ecf6f9] text-lg"></i>
-                    </div>
-                    <div
-                        class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-[#12222e] animate-pulse">
-                    </div>
-                </div>
-                <div>
-                    <h2 class="text-[14px] font-extrabold tracking-widest uppercase text-white drop-shadow-md">PQGO
-                        Assistant</h2>
-                    <p class="text-[9px] text-[#a0c2d1] font-semibold tracking-wider">Luôn trực tuyến</p>
-                </div>
-            </div>
-
-            <button onclick="toggleAiChat()"
-                class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 hover:scale-110 transition border border-white/10 flex items-center justify-center cursor-pointer text-gray-300">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <!-- Chat Area -->
-        <div class="flex-1 overflow-y-auto hide-scrollbar p-5 flex flex-col gap-5">
-            <div class="flex justify-center my-1">
-                <span
-                    class="text-[9px] font-bold text-[#8caab5] bg-white/5 px-3 py-1 rounded-full border border-white/10 uppercase tracking-widest">Hôm
-                    nay</span>
-            </div>
-
-            <!-- Bot Message -->
-            <div class="flex items-end gap-2.5 max-w-[85%]">
-                <div
-                    class="w-7 h-7 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] flex items-center justify-center shrink-0 border border-white/20">
-                    <i class="fa-solid fa-robot text-[10px] text-white"></i>
-                </div>
-                <div
-                    class="bg-white/10 backdrop-blur-md rounded-2xl rounded-bl-sm p-3 border border-white/10 shadow-lg mt-1">
-                    <p class="text-[13px] leading-relaxed text-[#ecf6f9]">
-                        Chào mừng bạn đến với Phú Quốc! 🌴<br><br>
-                        Tôi là trợ lý AI chuyên biệt của PQGO. Tôi có thể giúp bạn tìm kiếm nhà hàng hải sản ngon, đặt
-                        vé VinWonders ưu đãi, hay gợi ý lịch trình 3N2Đ.<br><br>
-                        Bạn cần hỗ trợ gì?
-                    </p>
-                </div>
-            </div>
-
-            <!-- Pre-filled Suggestion Chips -->
-            <div class="flex gap-2 flex-wrap pl-9">
-                <button
-                    class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">🌟
-                    Lịch trình 3N2Đ</button>
-                <button
-                    class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">🦀
-                    Ăn gì Dương Đông?</button>
-            </div>
-
-            <!-- User Message -->
-            <div class="flex items-end gap-2.5 max-w-[85%] self-end flex-row-reverse mt-2">
-                <img src="https://i.pravatar.cc/100?img=33"
-                    class="w-7 h-7 rounded-full shrink-0 border border-white/20 object-cover" />
-                <div
-                    class="bg-gradient-to-br from-[#4a8d96] to-[#2c656c] rounded-2xl rounded-br-sm p-3 border border-[#90e0ef]/30 shadow-[0_5px_15px_rgba(74,141,150,0.3)] mt-1">
-                    <p class="text-[13px] leading-relaxed text-white">
-                        Tôi muốn tìm quán Bar ngắm hoàng hôn có nhạc sống nhẹ nhàng ở trung tâm.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Bot Replying indicator -->
-            <div class="flex items-end gap-2.5 max-w-[85%] mt-1">
-                <div
-                    class="w-7 h-7 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] flex items-center justify-center shrink-0 border border-white/20">
-                    <i class="fa-solid fa-robot text-[10px] text-white"></i>
-                </div>
-                <div
-                    class="bg-white/10 backdrop-blur-md rounded-2xl rounded-bl-sm px-3.5 py-2.5 border border-white/10 flex items-center gap-1.5 shadow-lg mt-1">
-                    <div class="w-1.5 h-1.5 bg-[#90e0ef] rounded-full typing-dot"></div>
-                    <div class="w-1.5 h-1.5 bg-[#90e0ef] rounded-full typing-dot"></div>
-                    <div class="w-1.5 h-1.5 bg-[#90e0ef] rounded-full typing-dot"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Input Area -->
-        <div class="p-3 border-t border-white/10 bg-[#0f1c29]/90 shrink-0">
-            <div
-                class="relative bg-white/5 border border-white/20 rounded-full pr-1 flex items-center transition-all duration-300 focus-within:border-[#90e0ef]/50 focus-within:bg-white/10">
-                <button
-                    class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition group shrink-0">
-                    <i class="fa-solid fa-paperclip text-[15px] group-hover:scale-110 transition"></i>
-                </button>
-                <input type="text" placeholder="Hỏi AI..."
-                    class="flex-1 w-full bg-transparent border-none outline-none text-white text-[13px] font-light placeholder-gray-400 py-3"
-                    value="Gợi ý Ocsen Beach Bar đi?">
-                <button
-                    class="w-8 h-8 rounded-full bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-black hover:scale-105 transition shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center justify-center transform ml-1 shrink-0">
-                    <i class="fa-solid fa-paper-plane text-[11px] ml-[-1px]"></i>
-                </button>
-            </div>
-            <p class="text-center text-[8px] text-gray-500 mt-2 font-semibold uppercase tracking-widest">AI có thể cung
-                cấp thông tin chưa chính xác.</p>
-        </div>
-    </div>
-
+    <!-- AOS JS and Custom Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function toggleAiChat() {
-            const popup = document.getElementById('aiChatPopup');
-            if (popup.classList.contains('opacity-0')) {
-                // Mở popup
-                popup.classList.remove('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
-                popup.classList.add('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+        // Initialize AOS Animation
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 40
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+        let isMobileMenuOpen = false;
+
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            if (isMobileMenuOpen) {
+                mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenuPanel.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
             } else {
-                // Đóng popup
-                popup.classList.add('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
-                popup.classList.remove('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+                mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenuPanel.classList.add('translate-x-full');
+                document.body.style.overflow = '';
             }
         }
 
-        function toggleMobileMenu() {
-            const overlay = document.getElementById('mobileMenuOverlay');
-            const panel = document.getElementById('mobileMenuPanel');
-            const btn = document.getElementById('mobileMenuBtn');
-            const isOpen = !overlay.classList.contains('pointer-events-none');
+        function toggleAiChat() {
+            openModal('aiModal');
+        }
 
-            if (isOpen) {
-                // Close
-                panel.classList.add('translate-x-full');
-                panel.classList.remove('translate-x-0');
-                overlay.classList.add('opacity-0', 'pointer-events-none');
-                overlay.classList.remove('opacity-100', 'pointer-events-auto');
-                btn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-                document.body.style.overflow = '';
-            } else {
-                // Open
-                overlay.classList.remove('opacity-0', 'pointer-events-none');
-                overlay.classList.add('opacity-100', 'pointer-events-auto');
-                panel.classList.remove('translate-x-full');
-                panel.classList.add('translate-x-0');
-                btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        const langDropdown = document.getElementById('langDropdown');
+        const langBtn = document.getElementById('langBtn');
+
+        langBtn.addEventListener('mouseenter', () => {
+            langDropdown.classList.remove('scale-y-0', 'opacity-0');
+        });
+
+        langBtn.parentElement.addEventListener('mouseleave', () => {
+            langDropdown.classList.add('scale-y-0', 'opacity-0');
+        });
+
+        function switchLang(lang) {
+            const langMap = {
+                'en': 'ENGLISH',
+                'vi': 'TIẾNG VIỆT',
+                'ko': 'HÀN QUỐC',
+                'zh': 'TRUNG QUỐC',
+                'in': 'ẤN ĐỘ',
+                'ee': 'ĐÔNG ÂU',
+                'tm': 'THÁI & MALAY'
+            };
+            document.getElementById('langText').innerText = langMap[lang] || 'ENGLISH';
+            langDropdown.classList.add('scale-y-0', 'opacity-0');
+        }
+
+        // Modal Control
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
         }
 
-        function toggleWeatherModal() {
-            const modal = document.getElementById('weatherModal');
-            const inner = modal.querySelector('.max-w-\\[420px\\]');
-            if (modal.classList.contains('opacity-0')) {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                modal.classList.add('opacity-100', 'pointer-events-auto');
-                inner.classList.remove('scale-95');
-                inner.classList.add('scale-100');
-            } else {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                modal.classList.remove('opacity-100', 'pointer-events-auto');
-                inner.classList.add('scale-95');
-                inner.classList.remove('scale-100');
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Auto Scroll for Horizontal Carousel
+        const carousel = document.getElementById('night-show-carousel');
+        if (carousel) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let autoScrollInterval;
+
+            // Start Auto Scroll
+            const startAutoScroll = () => {
+                autoScrollInterval = setInterval(() => {
+                    carousel.scrollLeft += 1.5; // Tùy chỉnh tốc độ cuộn
+                    // Nếu cuộn chạm cuối thì quay về đầu (để lại một khoản sai số nhỏ)
+                    if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 5)) {
+                        carousel.scrollLeft = 0;
+                    }
+                }, 30);
+            };
+
+            startAutoScroll();
+
+            // Pause on Hover
+            carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            carousel.addEventListener('mouseleave', () => {
+                if (!isDown) startAutoScroll();
+            });
+
+            // Manual Drag Control
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                carousel.classList.add('active');
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+                clearInterval(autoScrollInterval);
+            });
+            carousel.addEventListener('mouseleave', () => {
+                isDown = false;
+                carousel.classList.remove('active');
+            });
+            carousel.addEventListener('mouseup', () => {
+                isDown = false;
+                carousel.classList.remove('active');
+                startAutoScroll();
+            });
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 2;
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+
+            // Arrow btn click handlers
+            const desktopNextBtn = document.getElementById('carousel-desktop-next');
+            const desktopPrevBtn = document.getElementById('carousel-desktop-prev');
+            const overlayNextBtn = document.getElementById('carousel-next-btn');
+
+            const scrollAmount = 350;
+
+            if (desktopNextBtn) {
+                desktopNextBtn.addEventListener('click', () => {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    clearInterval(autoScrollInterval); // Tạm dừng auto khi click thủ công
+                });
+            }
+
+            if (desktopPrevBtn) {
+                desktopPrevBtn.addEventListener('click', () => {
+                    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    clearInterval(autoScrollInterval);
+                });
+            }
+
+            if (overlayNextBtn) {
+                overlayNextBtn.addEventListener('click', () => {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    clearInterval(autoScrollInterval);
+                });
             }
         }
     </script>
+
+    <!-- Modal: Weather Details -->
+    <div id="weatherModal" class="modal-overlay" onclick="if(event.target === this) closeModal('weatherModal')">
+        <div class="modal-content relative px-6 py-10 sm:px-8 sm:py-10 flex flex-col items-center custom-scroll">
+            <button onclick="closeModal('weatherModal')"
+                class="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition z-20">
+                <i class="fa-solid fa-xmark text-white/60"></i>
+            </button>
+
+            <div class="w-24 h-24 sm:w-32 sm:h-32 relative flex items-center justify-center mb-4 mt-4 sm:mt-0">
+                <div class="absolute inset-0 bg-yellow-400/20 blur-[30px] sm:blur-[40px] rounded-full"></div>
+                <i
+                    class="fa-solid fa-cloud-sun text-[60px] sm:text-[80px] text-yellow-400 relative z-10 drop-shadow-[0_0_20px_rgba(251,191,36,0.5)]"></i>
+            </div>
+
+            <h2 class="text-5xl sm:text-6xl font-black text-white mb-2 tracking-tighter">28°C</h2>
+            <p
+                class="text-[#8caab5] text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] font-bold mb-8 sm:mb-10 text-center">
+                Trời ít mây • Dương Đông, Phú Quốc</p>
+
+            <div class="grid grid-cols-2 gap-3 sm:gap-4 w-full mb-6 sm:mb-8">
+                <div class="bg-white/5 border border-white/5 rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
+                    <i class="fa-solid fa-water text-blue-400 text-lg sm:text-xl opacity-80"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[8px] sm:text-[9px] text-[#8caab5] uppercase tracking-widest font-bold">Sóng
+                            Biển</span>
+                        <span class="text-xs sm:text-base text-white font-bold">Êm (0.3m)</span>
+                    </div>
+                </div>
+                <div class="bg-white/5 border border-white/5 rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
+                    <i class="fa-solid fa-mask-snorkel text-cyan-400 text-lg sm:text-xl opacity-80"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[8px] sm:text-[9px] text-[#8caab5] uppercase tracking-widest font-bold">Tầm
+                            nhìn</span>
+                        <span class="text-xs sm:text-base text-white font-bold">Tốt (12m)</span>
+                    </div>
+                </div>
+                <div class="bg-white/5 border border-white/5 rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
+                    <i class="fa-solid fa-sun text-orange-400 text-lg sm:text-xl opacity-80"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[8px] sm:text-[9px] text-[#8caab5] uppercase tracking-widest font-bold">UV
+                            Index</span>
+                        <span class="text-xs sm:text-base text-white font-bold">T.Bình</span>
+                    </div>
+                </div>
+                <div class="bg-white/5 border border-white/5 rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
+                    <i class="fa-solid fa-wind text-gray-400 text-lg sm:text-xl opacity-80"></i>
+                    <div class="flex flex-col">
+                        <span
+                            class="text-[8px] sm:text-[9px] text-[#8caab5] uppercase tracking-widest font-bold">Gió</span>
+                        <span class="text-xs sm:text-base text-white font-bold">12km/h</span>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="w-full bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-2xl p-4 sm:p-5 flex gap-3 sm:gap-4 mb-4">
+                <i class="fa-solid fa-star text-[#d4af37] mt-1 shrink-0 text-sm sm:text-base"></i>
+                <p class="text-[11px] sm:text-[13px] text-white/90 leading-relaxed italic">
+                    <strong class="text-[#d4af37] not-italic mr-1">AI PQGO:</strong> Tối nay hoàng hôn cực đẹp. Lý tưởng
+                    để đặt bàn tại <span class="underline decoration-[#d4af37]">Ocsen Bar</span> ngay!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: AI Assistant -->
+    <div id="aiModal" class="modal-overlay" onclick="if(event.target === this) closeModal('aiModal')">
+        <div class="modal-content relative flex flex-col">
+            <!-- Header -->
+            <div class="p-6 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full border border-[#d4af37]/30 p-0.5 relative">
+                        <div
+                            class="w-full h-full rounded-full bg-gradient-to-br from-[#1e505e] to-[#0f1c29] flex items-center justify-center text-xl text-white">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div
+                            class="absolute bottom-1 right-0 w-3 h-3 bg-green-500 border-2 border-[#0f1c29] rounded-full">
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <h3 class="text-white font-bold tracking-wide">PQGO ASSISTANT</h3>
+                        <span class="text-[10px] text-green-500/80 font-bold uppercase tracking-widest">Luôn trực
+                            tuyến</span>
+                    </div>
+                </div>
+                <button onclick="closeModal('aiModal')"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition">
+                    <i class="fa-solid fa-xmark text-white/60"></i>
+                </button>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 chat-scroll" style="min-height: 300px;">
+                <!-- AI Message -->
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs text-white/60 shrink-0">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="bg-white/5 border border-white/5 p-4 rounded-2xl rounded-tl-none max-w-[85%]">
+                        <p class="text-[14px] text-white/90 leading-relaxed mb-4">Chào mừng bạn đến với Phú Quốc! 🌴</p>
+                        <p class="text-[14px] text-white/90 leading-relaxed">Tôi là trợ lý AI chuyên biệt của PQGO. Tôi
+                            có thể giúp bạn tìm kiếm nhà hàng hải sản ngon, đặt vé VinWonders ưu đãi, hay gợi ý lịch
+                            trình 3N2Đ.</p>
+                        <p class="text-[14px] text-white/90 leading-relaxed mt-4 font-bold text-[#d4af37]">Bạn cần hỗ
+                            trợ gì?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-6 border-t border-white/10 bg-white/[0.02]">
+                <div class="relative flex items-center">
+                    <button class="absolute left-4 text-white/40 hover:text-[#d4af37] transition text-lg"><i
+                            class="fa-solid fa-paperclip"></i></button>
+                    <input type="text" placeholder="Gợi ý Ocsen Beach Bar đi?"
+                        class="w-full bg-white/5 border border-white/10 rounded-full py-4 pl-12 pr-16 text-sm text-white focus:outline-none focus:border-[#d4af37]/50 focus:bg-white/10 transition" />
+                    <button
+                        class="absolute right-2 w-10 h-10 bg-[#d4af37] hover:bg-[#aa8021] text-[#0f1c29] rounded-full flex items-center justify-center transition shadow-lg shadow-[#d4af37]/20">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </div>
+                <p class="text-center text-[8px] text-white/20 uppercase tracking-[0.2em] font-bold mt-4">AI CÓ THỂ CUNG
+                    CẤP THÔNG TIN CHƯA CHÍNH XÁC.</p>
+            </div>
+        </div>
+    </div>
 </body>
-
-<!-- Globe.GL Script -->
-<script src="//unpkg.com/globe.gl"></script>
-<script>
-    // Use realistic night-earth mapping for a sleek dark aesthetics
-    const GLOBE_IMAGE_URL = '//unpkg.com/three-globe/example/img/earth-night.jpg';
-
-    // We space the markers around Vietnam / SE Asia so they form an awesome web of points on the globe scale!
-    const markersData = [
-        {
-            id: 'hanoi', lat: 21.0285, lng: 105.8542, // Hanoi Old Quarter
-            title: 'Phố cổ Hà Nội',
-            desc: 'Khám phá trái tim văn hóa của Việt Nam với 36 phố phường rêu phong, thưởng thức những món ăn đường phố đậm đà và tận hưởng bầu không khí có một không hai.',
-            img: 'https://images.unsplash.com/photo-1600081926892-4530ddcb3af7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGFuYW5nfGVufDB8fDB8fHww',
-            html: `<div class="flex flex-col items-center cursor-pointer pointer-events-auto group mt-2">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#c19b2e] to-[#fce17a] border-[1.5px] border-white flex items-center justify-center mb-1 shadow-[0_0_15px_rgba(250,204,21,0.6)] group-hover:scale-125 transition-transform duration-300 relative">
-                       <i class="fa-solid fa-building text-[#12222e] text-[12px]"></i>
-                       <div class="absolute -bottom-1 w-1.5 h-1.5 rotate-45 bg-[#fce17a] border-r-[1.5px] border-b-[1.5px] border-white"></div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.1em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mt-0.5 bg-black/60 backdrop-blur border border-white/10 px-2 py-0.5 rounded shadow-lg whitespace-nowrap">Phố cổ Hà Nội</span>
-                 </div>`
-        },
-        {
-            id: 'danang', lat: 16.0544, lng: 108.2022, // Da Nang Beach
-            title: 'Biển Đà Nẵng',
-            desc: 'Được vinh danh là một trong những bãi biển quyến rũ nhất hành tinh với bãi cát trắng mịn trải dài tuyệt đẹp hòa quyện cùng làn nước biển xanh trong vắt.',
-            img: 'https://images.unsplash.com/photo-1600081926664-b4224c1abc0d?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            html: `<div class="flex flex-col items-center cursor-pointer pointer-events-auto group mt-2">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#90c4d0] border-[1.5px] border-white flex items-center justify-center mb-1 shadow-[0_0_15px_rgba(144,224,239,0.5)] group-hover:scale-125 transition-transform duration-300 relative z-10">
-                       <i class="fa-solid fa-umbrella-beach text-[#12222e] text-[12px]"></i>
-                       <div class="absolute -bottom-1 w-1.5 h-1.5 rotate-45 bg-[#90c4d0] border-r-[1.5px] border-b-[1.5px] border-white"></div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.1em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mt-0.5 bg-black/60 backdrop-blur border border-white/10 px-2 py-0.5 rounded shadow-lg whitespace-nowrap">Biển Đà Nẵng</span>
-                 </div>`
-        },
-        {
-            id: 'hotels',
-            lat: 16.0, lng: 106.0, // Central VN
-            html: `<div class="flex flex-col items-center cursor-pointer pointer-events-auto group">
-                    <div class="w-8 h-8 rounded-full bg-[#1b2b36] border-[1.5px] border-gray-400 flex items-center justify-center mb-1 shadow-xl group-hover:scale-110 transition relative">
-                       <i class="fa-solid fa-bed text-white text-[11px]"></i>
-                       <div class="absolute -bottom-1 w-2 h-2 rotate-45 bg-[#1b2b36] border-r-[1.5px] border-b-[1.5px] border-gray-400"></div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.15em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mt-0.5">HOTELS</span>
-                 </div>`
-        },
-        {
-            id: 'tours-1',
-            lat: 21.0, lng: 105.8, // Northern VN
-            html: `<div class="flex flex-col items-center cursor-pointer pointer-events-auto group">
-                    <div class="w-8 h-8 rounded-full bg-[#1b2b36] border-[1.5px] border-gray-400 flex items-center justify-center mb-1 shadow-xl group-hover:scale-110 transition relative">
-                       <i class="fa-solid fa-location-dot text-white text-[13px]"></i>
-                       <div class="absolute -bottom-1 w-2 h-2 rotate-45 bg-[#1b2b36] border-r-[1.5px] border-b-[1.5px] border-gray-400"></div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.15em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mt-0.5">TOURS</span>
-                 </div>`
-        },
-        {
-            id: 'tours-car',
-            lat: 10.8, lng: 106.6, // HCM City Area
-            html: `<div class="flex flex-col items-center cursor-pointer pointer-events-auto group z-10">
-                    <div class="w-8 h-8 rounded-full bg-[#1b2b36] border-[1.5px] border-gray-400 flex items-center justify-center mb-1 shadow-xl group-hover:scale-110 transition relative">
-                       <i class="fa-solid fa-car text-white text-[11px]"></i>
-                       <div class="absolute -bottom-1 w-2 h-2 rotate-45 bg-[#1b2b36] border-r-[1.5px] border-b-[1.5px] border-gray-400"></div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.15em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mt-0.5">TOURS</span>
-                 </div>`
-        },
-        {
-            id: 'dining',
-            lat: 13.0, lng: 109.0, // Coastal line
-            html: `<div class="flex flex-col items-center cursor-pointer pointer-events-auto group z-20">
-                    <div class="w-10 h-10 rounded-full bg-[#1b2b36] border-[1.5px] border-gray-300 flex items-center justify-center mb-1 shadow-xl group-hover:scale-110 transition relative">
-                       <i class="fa-solid fa-utensils text-white text-[15px]"></i>
-                       <div class="absolute -bottom-[5px] w-[10px] h-[10px] rotate-45 bg-[#1b2b36] border-r-[1.5px] border-b-[1.5px] border-gray-300"></div>
-                    </div>
-                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mt-1">DINING</span>
-                 </div>`
-        },
-        {
-            id: 'tours-water',
-            lat: 10.0, lng: 103.5, // Sea area
-            html: `<div class="flex flex-col items-center cursor-pointer pointer-events-auto group z-20">
-                    <div class="w-[32px] h-[32px] rounded-full bg-[#1b2b36] border-[1.5px] border-gray-400 flex items-center justify-center mb-1 shadow-[0_5px_15px_rgba(0,0,0,0.5)] group-hover:scale-110 transition relative">
-                       <i class="fa-solid fa-water text-white text-[12px]"></i>
-                       <div class="absolute -bottom-1 w-2 h-2 rotate-45 bg-[#1b2b36] border-r-[1.5px] border-b-[1.5px] border-gray-400"></div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.15em] text-[#ecf6f9] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-2 bg-black/30 rounded-full mt-0.5">TOURS</span>
-                 </div>`
-        },
-        {
-            id: 'sunset-bar',
-            lat: 10.22, lng: 103.96, // Exact Phu Quoc Center
-            html: `<div class="flex flex-col items-center w-[180px] pointer-events-auto mt-[60px]">
-                         <div class="gold-ring bg-gradient-to-tr from-[#997c27]/90 to-[#b5932b]/80 backdrop-blur-md cursor-pointer shadow-2xl transition hover:scale-105">
-                             <i class="fa-solid fa-star text-[34px] text-gradient bg-clip-text text-yellow-400 drop-shadow-[0_2px_15px_rgba(250,204,21,1)] filter brightness-[1.35]"></i>
-                         </div>
-                         <div class="mt-[15px] bg-gradient-to-r from-[#88691f] to-[#af8f31] text-white text-[9px] font-extrabold uppercase tracking-[0.1em] px-4 py-1.5 rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.6)] border border-[#e4b95f]/70 whitespace-nowrap text-center">
-                             SUNSET BAR & CLUB
-                         </div>
-                         <div class="absolute w-[6px] h-[6px] bg-[#e4eef1] rounded-full border border-gray-300 shadow-[0_0_10px_rgba(255,255,255,0.9)] -bottom-[20px] left-1/2 -translate-x-1/2"></div>
-                         
-                         <div class="absolute left-[80%] top-[40%] -translate-y-1/2 ml-6 w-[200px] glass-btn rounded-xl p-4 shadow-[0_15px_40px_rgba(0,0,0,0.6)] border-white/20 bg-[#192b38]/90 z-20 cursor-default">
-                             <p class="text-[11px] font-extrabold text-white tracking-[0.05em] mb-1.5">LIVE MUSIC SHOW @ 9 PM</p>
-                             <p class="text-[10px] text-[#aec7d4] leading-[1.6] tracking-wide">- Sunset Sanato</p>
-                         </div>
-                     </div>`
-        }
-    ];
-
-    const container = document.getElementById('globeViz');
-    const world = Globe()(container)
-        .globeImageUrl(GLOBE_IMAGE_URL)
-        .backgroundColor('rgba(0,0,0,0)')
-        .showAtmosphere(true)
-        .atmosphereColor('lightskyblue') // Use user's requested color
-        .atmosphereAltitude(0.15) // Natural glowing aura matching the request
-        .htmlElementsData(markersData)
-        .htmlElement(d => {
-            const el = document.createElement('div');
-            el.innerHTML = d.html;
-            el.style.pointerEvents = 'auto'; // allow interaction
-            // Fly to coordinate on click!
-            el.onclick = () => {
-                world.pointOfView({ lat: d.lat, lng: d.lng, altitude: 0.15 }, 1200);
-                if (d.title) {
-                    setTimeout(() => showMapInfo(d), 400); // Popup logic
-                }
-            };
-            return el;
-        });
-
-    // Ensure canvas sizes correctly to its responsive container wrapper
-    world.width(container.clientWidth);
-    world.height(container.clientHeight);
-
-    // Use a medium altitude to see the globe curvature clearly along with Sea-Asia scattered markers
-    world.pointOfView({ lat: 15.0, lng: 106.0, altitude: 0.8 }, 0); // Default focused squarely on Vietnam
-
-    // Expose globally for UI handlers
-    window.world = world;
-
-    // Interaction settings
-    world.controls().autoRotate = false; // Disabled auto-rotation per request
-    world.controls().enableZoom = true;
-
-    // Dynamic resize handler
-    window.addEventListener('resize', () => {
-        if (!document.getElementById('mapRightCol').classList.contains('fixed')) {
-            world.width(container.clientWidth);
-            world.height(container.clientHeight);
-        }
-    });
-
-    // -----------------------------------------------------
-    // Interactive JS logic for Zoom Map and Language Toggle
-    // -----------------------------------------------------
-    const btnZoom = document.getElementById('zoomMapBtn');
-    const mapRightCol = document.getElementById('mapRightCol');
-    let isMapZoomed = false;
-
-    btnZoom.onclick = () => {
-        isMapZoomed = !isMapZoomed;
-        if (isMapZoomed) {
-            // Maximizing
-            mapRightCol.classList.remove('lg:flex-1', 'relative');
-            mapRightCol.classList.add('fixed', 'inset-0', 'z-[100]', 'bg-[#0f1c29]/95', 'backdrop-blur-xl', 'p-4', 'lg:p-10');
-            btnZoom.innerHTML = '<i class="fa-solid fa-compress text-xl text-white"></i>';
-            btnZoom.classList.add('top-10', 'right-10');
-
-            // Retarget View
-            world.width(window.innerWidth - 40); // roughly padding minus
-            world.height(window.innerHeight - 40);
-            world.pointOfView({ lat: 16.0, lng: 106.0, altitude: 1.0 }, 1000);
-        } else {
-            // Minimizing
-            mapRightCol.classList.remove('fixed', 'inset-0', 'z-[100]', 'bg-[#0f1c29]/95', 'backdrop-blur-xl', 'p-4', 'lg:p-10');
-            mapRightCol.classList.add('lg:flex-1', 'relative');
-            btnZoom.innerHTML = '<i class="fa-solid fa-expand text-gray-300 group-hover:text-white transition"></i>';
-            btnZoom.classList.remove('top-10', 'right-10');
-        }
-
-        // Allow CSS transition to finish before computing exact bounding box again
-        setTimeout(() => {
-            world.width(container.clientWidth);
-            world.height(container.clientHeight);
-        }, 550);
-    };
-
-    // Language toggle logic
-    const langDict = {
-        'en': {
-            'KHÁM PHÁ': 'EXPLORE', 'ĐẶT LỊCH': 'BOOK', 'MUA SẮM': 'SHOP', 'AN TOÀN': 'SAFETY', 'CHĂM SÓC': 'CARE',
-            'HỎI AI': 'ASK AI', 'TẢI ỨNG DỤNG': 'APP DOWNLOAD', 'BẢN ĐỒ AI': 'AI SMART MAP', 'TẢI BẢN ĐỒ NGOẠI TUYẾN': 'DOWNLOAD OFFLINE MAP',
-            'BẠN MUỐN ĐI ĐÂU Ở PHÚ QUỐC?': 'WHERE DO YOU WANT TO GO IN PHU QUOC?',
-            'Tìm kiếm phổ biến:': 'Popular Searches:',
-            'Vé máy bay & Khách sạn': 'Flights & Hotels',
-            'Vé & Tham quan': 'Tours & Tickets',
-            'Ăn uống & Giải trí': 'Dine & Fun',
-            'Ca nô & Tàu cao tốc': 'Speedboats & Canoes',
-            'SIM & Nạp tiền': 'SIM & Top-up',
-            'Chăm sóc Y tế': 'Medical Care',
-            'Đường dây nóng Khẩn cấp': 'Emergency Hotlines',
-            'CHỢ THƯƠNG MẠI': 'MARKETPLACE',
-            'MỚI': 'NEW',
-            'ĐẶT BÀN - NHẠC SỐNG TỐI NAY': 'BOOK A TABLE - LIVE SHOW TONIGHT',
-            'ĐẶT PHÒNG VIP CAO CẤP': 'BOOK A LUXURY VIP ROOM',
-            'VÉ NHANH & THẺ VÀO CỬA': 'EXPRESS TICKET & PASS',
-            'Trải nghiệm liền mạch': 'Seamless experience',
-            'TẢI ỨNG DỤNG PQGO': 'DOWNLOAD PQGO APP',
-            'BẢN ĐỒ THÔNG MINH AI': 'AI SMART MAP',
-            'BẢN ĐỒ NGOẠI TUYẾN SẴN SÀNG': 'OFFLINE MAP READY',
-            'SÓNG ÊM': 'CALM WAVES',
-            'ĐỊA ĐIỂM XÁC THỰC': 'VERIFIED LOCATION',
-            'KHÁM PHÁ ĐỊA ĐIỂM': 'EXPLORE DESTINATION',
-            'ĐANG DIỄN RA': 'HAPPENING NOW',
-            'NHẠC SỐNG @ 9 PM': 'LIVE MUSIC SHOW @ 9 PM',
-            'GỌI CẤP CỨU & Y TẾ (115)': 'CALL EMERGENCY & MEDICAL (115)',
-            'Trợ lý PQGO': 'PQGO Assistant',
-            'Luôn trực tuyến': 'Always online',
-            'Hôm nay': 'Today',
-            'Chào mừng bạn đến với Phú Quốc! 🌴\n\nTôi là trợ lý AI chuyên biệt của PQGO. Tôi có thể giúp bạn tìm kiếm nhà hàng hải sản ngon, đặt vé VinWonders ưu đãi, hay gợi ý lịch trình 3N2Đ.\n\nBạn cần hỗ trợ gì?': 'Welcome to Phu Quoc! 🌴\n\nI am PQGO\'s specialized AI assistant. I can help you find delicious seafood restaurants, book discounted VinWonders tickets, or suggest a 3D2N itinerary.\n\nHow can I help you?',
-            '🌟 Lịch trình 3N2Đ': '🌟 3D2N Itinerary',
-            '🦀 Ăn gì Dương Đông?': '🦀 What to eat in Duong Dong?',
-            'Tôi muốn tìm quán Bar ngắm hoàng hôn có nhạc sống nhẹ nhàng ở trung tâm.': 'I want to find a sunset bar with live acoustic music in the center.',
-            'AI có thể cung cấp thông tin chưa chính xác.': 'AI can provide inaccurate information.',
-            'Hỏi trợ lý AI...': 'Ask our AI Assistant...',
-            'Hỏi AI...': 'Ask AI...'
-        },
-        'vi': {
-            'EXPLORE': 'KHÁM PHÁ', 'BOOK': 'ĐẶT LỊCH', 'SHOP': 'MUA SẮM', 'SAFETY': 'AN TOÀN', 'CARE': 'CHĂM SÓC',
-            'ASK AI': 'HỎI AI', 'APP DOWNLOAD': 'TẢI ỨNG DỤNG', 'AI SMART MAP': 'BẢN ĐỒ AI', 'DOWNLOAD OFFLINE MAP': 'TẢI BẢN ĐỒ NGOẠI TUYẾN',
-            'WHERE DO YOU WANT TO GO IN PHU QUOC?': 'BẠN MUỐN ĐI ĐÂU Ở PHÚ QUỐC?',
-            'Popular Searches:': 'Tìm kiếm phổ biến:',
-            'Flights & Hotels': 'Vé máy bay & Khách sạn',
-            'Tours & Tickets': 'Vé & Tham quan',
-            'Dine & Fun': 'Ăn uống & Giải trí',
-            'Speedboats & Canoes': 'Ca nô & Tàu cao tốc',
-            'SIM & Top-up': 'SIM & Nạp tiền',
-            'Medical Care': 'Chăm sóc Y tế',
-            'Emergency Hotlines': 'Đường dây nóng Khẩn cấp',
-            'MARKETPLACE': 'CHỢ THƯƠNG MẠI',
-            'NEW': 'MỚI',
-            'BOOK A TABLE - LIVE SHOW TONIGHT': 'ĐẶT BÀN - NHẠC SỐNG TỐI NAY',
-            'BOOK A LUXURY VIP ROOM': 'ĐẶT PHÒNG VIP CAO CẤP',
-            'EXPRESS TICKET & PASS': 'VÉ NHANH & THẺ VÀO CỬA',
-            'Seamless experience': 'Trải nghiệm liền mạch',
-            'DOWNLOAD PQGO APP': 'TẢI ỨNG DỤNG PQGO',
-            'TẢI ỨNG DỤNG PQGO': 'TẢI ỨNG DỤNG PQGO', // Self fallback
-            'OFFLINE MAP READY': 'BẢN ĐỒ NGOẠI TUYẾN SẴN SÀNG',
-            'CALM WAVES': 'SÓNG ÊM',
-            'VERIFIED LOCATION': 'ĐỊA ĐIỂM XÁC THỰC',
-            'EXPLORE DESTINATION': 'KHÁM PHÁ ĐỊA ĐIỂM',
-            'HAPPENING NOW': 'ĐANG DIỄN RA',
-            'LIVE MUSIC SHOW @ 9 PM': 'NHẠC SỐNG @ 9 PM',
-            'CALL EMERGENCY & MEDICAL (115)': 'GỌI CẤP CỨU & Y TẾ (115)',
-            'PQGO Assistant': 'Trợ lý PQGO',
-            'Always online': 'Luôn trực tuyến',
-            'Today': 'Hôm nay',
-            'Welcome to Phu Quoc! 🌴\n\nI am PQGO\'s specialized AI assistant. I can help you find delicious seafood restaurants, book discounted VinWonders tickets, or suggest a 3D2N itinerary.\n\nHow can I help you?': 'Chào mừng bạn đến với Phú Quốc! 🌴\n\nTôi là trợ lý AI chuyên biệt của PQGO. Tôi có thể giúp bạn tìm kiếm nhà hàng hải sản ngon, đặt vé VinWonders ưu đãi, hay gợi ý lịch trình 3N2Đ.\n\nBạn cần hỗ trợ gì?',
-            'Chào mừng bạn đến với Phú Quốc! 🌴\n\nTôi là trợ lý AI chuyên biệt của PQGO. Tôi có thể giúp bạn tìm kiếm nhà hàng hải sản ngon, đặt vé VinWonders ưu đãi, hay gợi ý lịch trình 3N2Đ.\n\nBạn cần hỗ trợ gì?': 'Chào mừng bạn đến với Phú Quốc! 🌴\n\nTôi là trợ lý AI chuyên biệt của PQGO. Tôi có thể giúp bạn tìm kiếm nhà hàng hải sản ngon, đặt vé VinWonders ưu đãi, hay gợi ý lịch trình 3N2Đ.\n\nBạn cần hỗ trợ gì?', // Some items might be hardcoded as VI initially
-            '🌟 3D2N Itinerary': '🌟 Lịch trình 3N2Đ',
-            '🦀 What to eat in Duong Dong?': '🦀 Ăn gì Dương Đông?',
-            'I want to find a sunset bar with live acoustic music in the center.': 'Tôi muốn tìm quán Bar ngắm hoàng hôn có nhạc sống nhẹ nhàng ở trung tâm.',
-            'AI can provide inaccurate information.': 'AI có thể cung cấp thông tin chưa chính xác.',
-            'Ask our AI Assistant...': 'Hỏi trợ lý AI...',
-            'Ask AI...': 'Hỏi AI...'
-        }
-    };
-
-    const langBtn = document.getElementById('langBtn');
-    const langDropdown = document.getElementById('langDropdown');
-    const langText = document.getElementById('langText');
-
-    // Toggle dropdown open/close
-    if (langBtn) {
-        langBtn.onclick = (e) => {
-            e.stopPropagation();
-            if (langDropdown.classList.contains('scale-y-0')) {
-                langDropdown.classList.remove('scale-y-0', 'opacity-0');
-                langDropdown.classList.add('scale-y-100', 'opacity-100');
-            } else {
-                langDropdown.classList.add('scale-y-0', 'opacity-0');
-                langDropdown.classList.remove('scale-y-100', 'opacity-100');
-            }
-        };
-    }
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', () => {
-        if (langDropdown && !langDropdown.classList.contains('scale-y-0')) {
-            langDropdown.classList.add('scale-y-0', 'opacity-0');
-            langDropdown.classList.remove('scale-y-100', 'opacity-100');
-        }
-    });
-
-    // The Switch function
-    window.switchLang = function (langKey) {
-        langText.innerText = (langKey === 'en') ? 'ENGLISH' : 'TIẾNG VIỆT';
-        const dict = langDict[langKey];
-
-        // Traverse DOM to find matches (only in common navigations/titles for this demo)
-        const textNodes = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        while (node = textNodes.nextNode()) {
-            let text = node.nodeValue.trim();
-            // Check if Exact Match exists
-            if (dict[text]) {
-                node.nodeValue = node.nodeValue.replace(text, dict[text]);
-            }
-        }
-
-        // Translate placeholders
-        document.querySelectorAll('input[placeholder]').forEach(input => {
-            let text = input.getAttribute('placeholder');
-            if (dict[text]) input.setAttribute('placeholder', dict[text]);
-        });
-    }
-
-    // -----------------------------------------------------
-    // Drag-to-Scroll Logic for Marketplace (Thư viện kéo thả)
-    // -----------------------------------------------------
-    const slider = document.getElementById('marketplaceSlider');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('cursor-grabbing');
-        slider.classList.remove('cursor-grab', 'scroll-smooth');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-        isDown = false;
-        slider.classList.add('cursor-grab', 'scroll-smooth');
-        slider.classList.remove('cursor-grabbing');
-    });
-
-    slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.classList.add('cursor-grab', 'scroll-smooth');
-        slider.classList.remove('cursor-grabbing');
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault(); // Stop default drag behaviors on inner elements
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1.5; // Scroll speed multiplier
-        slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // Drag-to-Scroll for Mobile Marketplace Slider
-    const sliderMobile = document.getElementById('marketplaceSliderMobile');
-    if (sliderMobile) {
-        let isDownM = false;
-        let startXM;
-        let scrollLeftM;
-
-        sliderMobile.addEventListener('mousedown', (e) => {
-            isDownM = true;
-            sliderMobile.classList.add('cursor-grabbing');
-            sliderMobile.classList.remove('cursor-grab', 'scroll-smooth');
-            startXM = e.pageX - sliderMobile.offsetLeft;
-            scrollLeftM = sliderMobile.scrollLeft;
-        });
-        sliderMobile.addEventListener('mouseleave', () => {
-            isDownM = false;
-            sliderMobile.classList.add('cursor-grab', 'scroll-smooth');
-            sliderMobile.classList.remove('cursor-grabbing');
-        });
-        sliderMobile.addEventListener('mouseup', () => {
-            isDownM = false;
-            sliderMobile.classList.add('cursor-grab', 'scroll-smooth');
-            sliderMobile.classList.remove('cursor-grabbing');
-        });
-        sliderMobile.addEventListener('mousemove', (e) => {
-            if (!isDownM) return;
-            e.preventDefault();
-            const x = e.pageX - sliderMobile.offsetLeft;
-            const walk = (x - startXM) * 1.5;
-            sliderMobile.scrollLeft = scrollLeftM - walk;
-        });
-    }
-
-    // -----------------------------------------------------
-    // Map Info Popup Interaction Logic
-    // -----------------------------------------------------
-    function showMapInfo(data) {
-        const modal = document.getElementById('mapInfoModal');
-        document.getElementById('mapInfoTitle').innerText = data.title;
-        document.getElementById('mapInfoDesc').innerText = data.desc;
-        document.getElementById('mapInfoImg').src = data.img;
-
-        modal.classList.remove('hidden');
-        // Allow display change to process before triggering opacity/scale transition
-        requestAnimationFrame(() => {
-            modal.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-            modal.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
-        });
-    }
-
-    function closeMapInfo() {
-        const modal = document.getElementById('mapInfoModal');
-        modal.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
-        modal.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-        setTimeout(() => {
-            modal.classList.add('hidden');
-        }, 300); // match transition duration
-    }
-</script>
 
 </html>
