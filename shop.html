@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP - PQGO.VN | Gian Hàng Số Phú Quốc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f1c29;
+            background: radial-gradient(circle at 85% 30%, #1a3c4a 0%, #102633 40%, #0a1118 100%);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .cat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .cat-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .tab-btn {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            border-bottom-color: #fce17a;
+            color: white;
+            text-shadow: 0 0 10px rgba(252, 225, 122, 0.5);
+        }
+        
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+        }
+        .animate-status-dot {
+            animation: pulse-ring 2s infinite;
+        }
+
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen w-full flex flex-col relative pb-10">
+
+    <!-- Header (Fully Responsive Glassmorphism Pill) -->
+    <div class="w-full flex justify-center z-50 fixed top-6 px-4 pointer-events-none">
+        <header class="w-full max-w-[1500px] flex items-center justify-between px-6 py-3 bg-white/[0.03] backdrop-blur-[40px] border border-white/20 rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto">
+            
+            <div class="flex items-center gap-3 ml-2 cursor-pointer group" onclick="window.location.href='explore.html'">
+                <!-- Custom Travel Gold Logo SVG -->
+                <svg class="w-8 h-8 drop-shadow-[0_0_12px_rgba(250,204,21,0.4)] group-hover:scale-105 transition-transform" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fffce8" />
+                            <stop offset="30%" stop-color="#fce17a" />
+                            <stop offset="100%" stop-color="#c19b2e" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M20 2C13.37 2 8 7.37 8 14c0 7.75 10.66 22.37 11.23 23.14a1 1 0 001.54 0C21.34 36.37 32 21.75 32 14 32 7.37 26.63 2 20 2zm0 18a6 6 0 110-12 6 6 0 010 12z" fill="url(#goldGradient)"/>
+                    <circle cx="20" cy="14" r="3" fill="#0f1c29"/>
+                </svg>
+                <span class="text-lg lg:text-[22px] font-extrabold tracking-[0.1em] text-[#f4ffff] drop-shadow-md">PQGO.VN</span>
+            </div>
+            
+            <nav class="hidden lg:flex items-center gap-7 lg:gap-8 text-[11px] font-bold tracking-[0.18em] text-[#a5c2ce]">
+                <a href="explore.html" class="relative transition hover:text-white py-2 group">
+                    EXPLORE
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="book.html" class="relative transition hover:text-white py-2 group">
+                    BOOK
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="shop.html" class="relative text-white transition py-2 group">
+                    SHOP
+                    <!-- Active Glow Underline -->
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-[60%] h-[2px] bg-[#fce17a] shadow-[0_0_8px_rgba(250,204,21,0.9)] rounded"></span>
+                </a>
+                <a href="safety.html" class="relative transition hover:text-white py-2 group">
+                    SAFETY
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="#" class="relative transition hover:text-white py-2 group">
+                    CARE
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                
+                <button onclick="toggleAiChat()" class="glass-btn flex items-center gap-2 px-4 py-[7px] rounded-full text-white ml-2 text-[10px] shadow-[inset_0_1px_3px_rgba(255,255,255,0.1)] border-white/20 hover:border-white/50 transition-all">
+                    <i class="fa-solid fa-robot text-[#90e0ef]"></i> ASK AI
+                </button>
+            </nav>
+            
+            <div class="hidden lg:flex items-center gap-3 mr-2 relative">
+                <button id="langBtn" class="glass-btn flex items-center gap-2 px-4 py-[9px] text-[10px] font-extrabold rounded-full text-[#ddeef2] tracking-[0.15em] border-white/20 hover:bg-white/10 transition shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)]">
+                    <i class="fa-solid fa-globe text-[#a0c2d1]"></i> <span id="langText">ENGLISH</span>
+                </button>
+                
+                <div id="langDropdown" class="absolute top-12 left-0 mt-2 w-32 bg-[#12222e]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] overflow-hidden scale-y-0 opacity-0 transform origin-top transition-all duration-300 z-50">
+                    <button class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition" onclick="switchLang('en')">ENGLISH</button>
+                    <button class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest transition" onclick="switchLang('vi')">TIẾNG VIỆT</button>
+                </div>
+                
+                <button class="bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-[#3a2c04] text-[10px] font-extrabold tracking-[0.1em] px-5 py-[9px] rounded-full shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.6)] hover:scale-105 transition-all flex items-center gap-2 border-[1.5px] border-[#fffce8]/50">
+                    <span data-translate="true">APP DOWNLOAD</span>
+                    <div class="flex gap-1 ml-1 text-[13px] opacity-90">
+                        <i class="fa-brands fa-apple"></i>
+                        <i class="fa-brands fa-android"></i>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Menu -->
+            <button class="lg:hidden text-white text-2xl mr-4 px-2 hover:text-[#fce17a] transition">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </header>
+    </div>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-[1400px] mx-auto pt-32 px-6">
+        
+        <!-- Hero Section -->
+        <section class="w-full mb-12 animate-in slide-in-from-bottom-4 duration-700">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/10 pb-6">
+                <div>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Gian Hàng Số Địa Phương</h1>
+                    <p class="text-[#a0c2d1] text-sm font-medium tracking-widest uppercase">KHÁM PHÁ ẨM THỰC & TIỆN ÍCH TẠI PHÚ QUỐC</p>
+                </div>
+                
+                <!-- Category Tabs -->
+                <div class="flex gap-4 overflow-x-auto hide-scrollbar w-full md:w-auto">
+                    <button class="px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white text-[11px] font-bold tracking-widest uppercase whitespace-nowrap hover:bg-white/20 transition">Tất Cả</button>
+                    <button class="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#fce17a]/20 to-[#c19b2e]/20 border border-[#fce17a]/50 text-[#fce17a] text-[11px] font-bold tracking-widest uppercase whitespace-nowrap shadow-[0_0_15px_rgba(250,204,21,0.1)]">Nhà Hàng & Bar</button>
+                    <button class="px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-[#a0c2d1] text-[11px] font-bold tracking-widest uppercase whitespace-nowrap hover:text-white transition">SIM & Tiện ích</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- F&B Digital Storefront Section -->
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3">
+                    <i class="fa-solid fa-utensils text-[#fce17a]"></i> Tóp Thịnh Hành
+                </h2>
+                <div class="flex items-center gap-2">
+                    <button class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[#a0c2d1] hover:text-white transition"><i class="fa-solid fa-chevron-left text-[10px]"></i></button>
+                    <button class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white bg-white/10 hover:bg-white/20 transition"><i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer fade-in-up">
+                    <div class="h-[200px] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0b131a] via-[#0b131a]/30 to-transparent"></div>
+                        
+                        <!-- Status Badge -->
+                        <div class="absolute top-4 left-4 bg-[#1a2d33]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#4ade80]/40 flex items-center gap-2 shadow-lg">
+                            <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-status-dot"></span>
+                            <span class="text-[9px] font-extrabold text-green-100 uppercase tracking-wider">ĐANG M mở CỬA</span>
+                        </div>
+                        
+                        <!-- Rating -->
+                        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md rounded px-2 py-1 flex items-center gap-1 border border-white/10 shadow-lg">
+                            <i class="fa-solid fa-star text-yellow-400 text-[10px]"></i>
+                            <span class="text-[10px] font-bold">4.9</span>
+                            <span class="text-[9px] text-white/50 ml-0.5">(412)</span>
+                        </div>
+
+                        <!-- Live Event Banner -->
+                        <div class="absolute bottom-4 left-0 bg-gradient-to-r from-yellow-500/90 to-orange-500/90 backdrop-blur px-3 py-1.5 rounded-r-lg border-y border-r border-yellow-300/50 flex items-center gap-2 shadow-[0_0_15px_rgba(234,179,8,0.4)]">
+                            <i class="fa-solid fa-fire text-white animate-pulse"></i>
+                            <span class="text-[9px] font-extrabold uppercase tracking-wider text-white">Live DJ Set Lúc 20:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 flex flex-col flex-1 gap-3 relative z-10 bg-gradient-to-b from-[#0b131a] to-transparent">
+                        <h3 class="text-lg font-extrabold uppercase tracking-wide leading-tight group-hover:text-[#fce17a] transition">Ocsen Beach Bar & Club</h3>
+                        
+                        <div class="flex flex-wrap items-center gap-2 text-[10px] text-[#a0c2d1] font-semibold tracking-wider">
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">Beach Bar</span>
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">Hải Sản</span>
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">$$$</span>
+                        </div>
+                        
+                        <p class="text-[11px] text-white/70 line-clamp-2 leading-relaxed">Nơi ngắm hoàng hôn rực rỡ nhất Phú Quốc kết hợp không gian âm nhạc sống động và menu hải sản fusion đỉnh cao.</p>
+                        
+                        <div class="flex items-center gap-2 text-[10px] text-white/50 mt-1">
+                            <i class="fa-solid fa-location-dot"></i> 118 Đường Trần Hưng Đạo, Dương Đông
+                        </div>
+                        
+                        <div class="mt-auto pt-4 flex gap-3">
+                            <button class="flex-1 bg-white/10 border border-white/20 hover:bg-white/20 transition py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase">XEM MENU</button>
+                            <button class="bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-[#3a2c04] hover:scale-105 transition px-6 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase shadow-[0_0_15px_rgba(250,204,21,0.3)]">ĐẶT BÀN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer fade-in-up" style="animation-delay: 100ms;">
+                    <div class="h-[200px] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0b131a] via-[#0b131a]/30 to-transparent"></div>
+                        
+                        <div class="absolute top-4 left-4 bg-red-500/20 backdrop-blur-md px-2.5 py-1 rounded border border-red-500/40 flex items-center gap-2 shadow-lg">
+                            <span class="w-1.5 h-1.5 bg-red-400 rounded-full"></span>
+                            <span class="text-[9px] font-extrabold text-red-100 uppercase tracking-wider">ĐANG ĐÓNG CỬA</span>
+                        </div>
+                        
+                        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md rounded px-2 py-1 flex items-center gap-1 border border-white/10 shadow-lg">
+                            <i class="fa-solid fa-star text-yellow-400 text-[10px]"></i>
+                            <span class="text-[10px] font-bold">4.7</span>
+                            <span class="text-[9px] text-white/50 ml-0.5">(289)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 flex flex-col flex-1 gap-3 relative z-10 bg-gradient-to-b from-[#0b131a] to-transparent">
+                        <h3 class="text-lg font-extrabold uppercase tracking-wide leading-tight group-hover:text-[#fce17a] transition">Ra Khơi Seafood Restaurant</h3>
+                        
+                        <div class="flex flex-wrap items-center gap-2 text-[10px] text-[#a0c2d1] font-semibold tracking-wider">
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">Nhà Hàng</span>
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">Hải Sản Tươi Sống</span>
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">$$</span>
+                        </div>
+                        
+                        <p class="text-[11px] text-white/70 line-clamp-2 leading-relaxed">Nhà hàng hải sản tươi sống bắt tại bè, không gian rộng rãi phù hợp cho gia đình và nhóm đoàn.</p>
+                        
+                        <div class="flex items-center gap-2 text-[10px] text-white/50 mt-1">
+                            <i class="fa-solid fa-clock"></i> Mở cửa vào 16:00
+                        </div>
+                        
+                        <div class="mt-auto pt-4 flex gap-3">
+                            <button class="flex-1 bg-white/10 border border-white/20 hover:bg-white/20 transition py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase">XEM MENU</button>
+                            <button class="bg-white/5 text-white/40 border border-white/10 px-6 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase cursor-not-allowed">ĐẶT BÀN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="cat-card overflow-hidden group flex flex-col h-full relative cursor-pointer fade-in-up" style="animation-delay: 200ms;">
+                    <div class="h-[200px] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0b131a] via-[#0b131a]/30 to-transparent"></div>
+                        
+                        <div class="absolute top-4 left-4 bg-[#1a2d33]/90 backdrop-blur-md px-2.5 py-1 rounded border border-[#4ade80]/40 flex items-center gap-2 shadow-lg">
+                            <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-status-dot"></span>
+                            <span class="text-[9px] font-extrabold text-green-100 uppercase tracking-wider">ĐANG MỞ CỬA</span>
+                        </div>
+                        
+                        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md rounded px-2 py-1 flex items-center gap-1 border border-white/10 shadow-lg">
+                            <i class="fa-solid fa-star text-yellow-400 text-[10px]"></i>
+                            <span class="text-[10px] font-bold">4.6</span>
+                            <span class="text-[9px] text-white/50 ml-0.5">(156)</span>
+                        </div>
+                        
+                        <!-- Discount Badge -->
+                        <div class="absolute bottom-4 left-0 bg-gradient-to-r from-red-500/90 to-pink-500/90 backdrop-blur px-3 py-1.5 rounded-r-lg border-y border-r border-red-300/50 flex items-center gap-2 shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+                            <i class="fa-solid fa-tag text-white"></i>
+                            <span class="text-[9px] font-extrabold uppercase tracking-wider text-white">Giảm 15% Đặt Qua App</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 flex flex-col flex-1 gap-3 relative z-10 bg-gradient-to-b from-[#0b131a] to-transparent">
+                        <h3 class="text-lg font-extrabold uppercase tracking-wide leading-tight group-hover:text-[#fce17a] transition">Bún Quậy Kiến Xây</h3>
+                        
+                        <div class="flex flex-wrap items-center gap-2 text-[10px] text-[#a0c2d1] font-semibold tracking-wider">
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">Đặc Sản Địa Phương</span>
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">Ăn Sáng / Trưa</span>
+                            <span class="bg-white/10 px-2.5 py-1 rounded border border-white/5">$</span>
+                        </div>
+                        
+                        <p class="text-[11px] text-white/70 line-clamp-2 leading-relaxed">Thưởng thức đặc sản bún quậy trứ danh Phú Quốc với chả tôm mực giã tay và nước mắm tự pha.</p>
+                        
+                        <div class="flex items-center gap-2 text-[10px] text-white/50 mt-1">
+                            <i class="fa-solid fa-location-dot"></i> Chi nhánh Cửa Lấp, Dương Tơ
+                        </div>
+                        
+                        <div class="mt-auto pt-4 flex gap-3">
+                            <button class="flex-1 bg-white/10 border border-white/20 hover:bg-white/20 transition py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase">XEM MENU</button>
+                            <button class="bg-[#12222e] border border-[#a0c2d1]/30 hover:border-[#a0c2d1]/60 text-white transition px-6 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase shadow-md">CHỈ ĐƯỜNG</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Telecom Services & SIM -->
+        <section class="mb-16 animate-in slide-in-from-bottom-8 duration-700 delay-200">
+            <h2 class="text-xl font-black tracking-widest uppercase flex items-center gap-3 mb-6">
+                <i class="fa-solid fa-wifi text-[#90e0ef]"></i> SIM 4G & Tiện Ích
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- SIM Card 1 -->
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-green-500/10 rounded-full blur-2xl group-hover:bg-green-500/20 transition duration-500"></div>
+                    <div class="flex items-center gap-4 mb-5 relative z-10">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/10 border border-green-500/30 flex items-center justify-center text-green-400 shadow-[inset_0_0_15px_rgba(74,222,128,0.2)]">
+                            <i class="fa-solid fa-microchip text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-[13px] font-black tracking-wider uppercase mb-1">SIM 4G DU LỊCH 7 NGÀY</h4>
+                            <span class="text-[10px] font-bold text-[#fce17a] bg-[#fce17a]/10 border border-[#fce17a]/20 px-2 py-0.5 rounded uppercase">VIETTEL</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2.5 mb-6 relative z-10 flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-[#a0c2d1] font-medium"><i class="fa-solid fa-circle-check text-green-400 text-[12px]"></i> 4GB Data Tốc độ cao / Ngày</div>
+                        <div class="flex items-center gap-3 text-[11px] text-[#a0c2d1] font-medium"><i class="fa-solid fa-circle-check text-green-400 text-[12px]"></i> Thời hạn sử dụng 7 ngày</div>
+                        <div class="flex items-center gap-3 text-[11px] text-[#a0c2d1] font-medium"><i class="fa-solid fa-circle-check text-green-400 text-[12px]"></i> Miễn phí gọi nội mạng</div>
+                        <div class="flex items-center gap-3 text-[11px] text-white/50 mt-2 font-light"><i class="fa-solid fa-plane-arrival"></i> Nhận ngay tại quầy sân bay PQC</div>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5 relative z-10">
+                        <span class="text-[22px] font-black text-white">150,000đ</span>
+                        <button class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white shadow-[0_5px_15px_rgba(16,185,129,0.3)] hover:shadow-[0_5px_20px_rgba(16,185,129,0.5)] transition px-6 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase">MUA NGAY</button>
+                    </div>
+                </div>
+
+                <!-- SIM Card 2 -->
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition duration-500"></div>
+                    
+                    <div class="absolute top-4 right-4 bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-black text-[8px] font-black px-2 py-1 rounded uppercase tracking-wider shadow-md z-20">BÁN CHẠY NHẤT</div>
+                    
+                    <div class="flex items-center gap-4 mb-5 relative z-10 mt-2">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-[inset_0_0_15px_rgba(59,130,246,0.2)]">
+                            <i class="fa-solid fa-sim-card text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-[13px] font-black tracking-wider uppercase mb-1">eSIM DU LỊCH 15 NGÀY</h4>
+                            <span class="text-[10px] font-bold text-[#90e0ef] bg-[#90e0ef]/10 border border-[#90e0ef]/20 px-2 py-0.5 rounded uppercase">VINAPHONE</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2.5 mb-6 relative z-10 flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-[#a0c2d1] font-medium"><i class="fa-solid fa-circle-check text-blue-400 text-[12px]"></i> Không giới hạn Data (3GB tốc độ cao/ngày)</div>
+                        <div class="flex items-center gap-3 text-[11px] text-[#a0c2d1] font-medium"><i class="fa-solid fa-circle-check text-blue-400 text-[12px]"></i> Quét mã QR, kích hoạt tức thì</div>
+                        <div class="flex items-center gap-3 text-[11px] text-[#a0c2d1] font-medium"><i class="fa-solid fa-circle-check text-blue-400 text-[12px]"></i> Hỗ trợ chia sẻ Hotspot</div>
+                        <div class="flex items-center gap-3 text-[11px] text-[#fce17a] mt-2 font-medium"><i class="fa-solid fa-bolt"></i> Gửi mã QR qua email sau 5 phút</div>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5 relative z-10">
+                        <span class="text-[22px] font-black text-white">250,000đ</span>
+                        <button class="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-400 hover:to-cyan-500 text-white shadow-[0_5px_15px_rgba(59,130,246,0.3)] hover:shadow-[0_5px_20px_rgba(59,130,246,0.5)] transition px-6 py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase">MUA NGAY</button>
+                    </div>
+                </div>
+
+                <!-- Top up card -->
+                <div class="cat-card p-6 flex flex-col group cursor-pointer relative overflow-hidden bg-gradient-to-br from-[#1b2b36] to-[#0f1c29]">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition duration-500"></div>
+                    <div class="flex items-center gap-4 mb-5 relative z-10">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shadow-[inset_0_0_15px_rgba(168,85,247,0.2)]">
+                            <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-[13px] font-black tracking-wider uppercase mb-1">NẠP TIỀN ĐIỆN THOẠI</h4>
+                            <span class="text-[10px] font-bold text-white/70">Top-up Balance</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4 mb-6 relative z-10 flex-1 mt-2">
+                        <div class="flex bg-[#0f1c29] border border-white/10 rounded-xl overflow-hidden focus-within:border-purple-400/50 transition border-b-2 focus-within:border-b-purple-400">
+                            <div class="px-3 flex items-center justify-center bg-white/5 border-r border-white/10">
+                                <i class="fa-solid fa-phone text-white/50 text-[12px]"></i>
+                            </div>
+                            <input type="text" placeholder="Nhập số điện thoại Vietnam..." class="w-full bg-transparent border-none outline-none text-white text-[12px] px-3 py-3 placeholder-white/30 font-medium">
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="bg-white/5 border border-white/10 hover:border-purple-400/50 hover:bg-white/10 py-2 rounded-lg text-[11px] font-bold text-white transition">50K</button>
+                            <button class="bg-purple-500/20 border border-purple-400 py-2 rounded-lg text-[11px] font-bold text-white transition">100K</button>
+                            <button class="bg-white/5 border border-white/10 hover:border-purple-400/50 hover:bg-white/10 py-2 rounded-lg text-[11px] font-bold text-white transition">200K</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center pt-4 border-t border-white/5 relative z-10">
+                        <button class="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white shadow-[0_5px_15px_rgba(168,85,247,0.3)] hover:shadow-[0_5px_20px_rgba(168,85,247,0.5)] transition py-2.5 rounded-xl text-[10px] font-black tracking-widest uppercase group-hover:scale-[1.02]">NẠP NGAY (VNPay / Thẻ tín dụng)</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer Tools & App Mockup -->
+        <div class="flex flex-col items-center gap-4 mt-20 w-full mb-10 z-10 transition-all duration-500 pt-10 border-t border-white/5">
+            <!-- App Mockup Call to action-->
+            <div class="flex items-center bg-gradient-to-r from-[#12222e]/80 to-[#1e3445]/40 border border-[#a0c2d1]/30 rounded-2xl p-2 pr-5 backdrop-blur-md cursor-pointer hover:border-[#a0c2d1]/60 transition group shadow-[0_5px_15px_rgba(0,0,0,0.3)] w-max mx-auto">
+                 <div class="w-10 h-14 bg-black rounded-lg border-2 border-slate-400 flex items-center justify-center relative overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.5)] group-hover:-translate-y-1 transition duration-300 transform rotate-[-5deg]">
+                     <div class="absolute top-[2px] w-3 h-[2px] bg-slate-600 rounded-full"></div>
+                     <i class="fa-solid fa-earth-asia text-[#90e0ef] text-xl"></i>
+                     <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent"></div>
+                 </div>
+                 <div class="ml-4 flex flex-col justify-center">
+                     <span class="text-[8px] font-bold text-[#bfe0e8] tracking-[0.1em] uppercase mb-0.5 opacity-90">Trải nghiệm liền mạch</span>
+                     <span class="text-white font-extrabold text-[11px] uppercase tracking-wider">TẢI ỨNG DỤNG PQGO</span>
+                     <div class="flex gap-2 mt-1 opacity-70">
+                          <i class="fa-brands fa-apple hover:text-white transition cursor-pointer text-[13px]"></i>
+                          <i class="fa-brands fa-google-play hover:text-white transition cursor-pointer text-[13px]"></i>
+                     </div>
+                 </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Floating Global Elements -->
+    <div class="fixed bottom-6 right-6 lg:right-8 z-[100] pointer-events-auto">
+        <button class="bg-gradient-to-r from-[#ddefef] to-[#ffffff] text-[#123640] rounded-full pl-5 pr-6 py-[13px] flex items-center gap-2.5 shadow-[0_5px_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300 font-extrabold text-[12px] tracking-[0.05em] border-2 border-white/50" onclick="toggleAiChat()">
+            <div class="w-6 h-6 bg-[#8cacbc]/30 rounded-full flex items-center justify-center mr-0.5 pointer-events-none">
+                <i class="fa-solid fa-robot text-[#1e505e] text-sm"></i>
+            </div>
+            ASK AI <i class="fa-solid fa-chevron-right text-[10px] pointer-events-none"></i>
+        </button>
+    </div>
+
+    <!-- Floating SOS Button -->
+    <div class="fixed bottom-6 left-6 lg:left-8 z-[100] pointer-events-auto">
+        <button class="relative flex items-center justify-center w-[52px] h-[52px] bg-gradient-to-br from-[#ef4444] to-[#b91c1c] rounded-full border-2 border-red-300/50 shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-110 transition-all duration-300 group">
+            <div class="absolute inset-0 rounded-full border-[1.5px] border-red-400 animate-ping opacity-60"></div>
+            <i class="fa-solid fa-suitcase-medical text-white text-[22px] drop-shadow-md"></i>
+            <div class="absolute left-[calc(100%+12px)] bg-red-600/95 backdrop-blur-md text-white text-[10px] font-extrabold px-3.5 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl pointer-events-none border border-red-400/50 uppercase tracking-widest origin-left scale-95 group-hover:scale-100">
+                GỌI CẤP CỨU & Y TẾ (115)
+            </div>
+        </button>
+    </div>
+
+    <!-- AI Assistant Popup Container -->
+    <div id="aiChatPopup" class="fixed bottom-24 right-6 lg:right-8 z-[110] w-[380px] max-w-[calc(100vw-32px)] h-[600px] max-h-[75vh] bg-[#0c1824]/95 backdrop-blur-xl border border-white/20 rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] flex flex-col overflow-hidden opacity-0 scale-95 translate-y-10 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-gradient-to-r from-[#4a8d96]/20 to-transparent shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] border border-[#90e0ef]/50 flex items-center justify-center shadow-[0_0_15px_rgba(144,224,239,0.3)]">
+                        <i class="fa-solid fa-robot text-[#ecf6f9] text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-[14px] font-extrabold tracking-widest uppercase text-white drop-shadow-md">PQGO Assistant</h2>
+                    <p class="text-[9px] text-[#a0c2d1] font-semibold tracking-wider">Hỗ trợ đặc sản & SIM số</p>
+                </div>
+            </div>
+            
+            <button onclick="toggleAiChat()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 hover:scale-110 transition border border-white/10 flex items-center justify-center cursor-pointer text-gray-300">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="flex-1 overflow-y-auto hide-scrollbar p-5 flex flex-col gap-5">
+            <div class="flex justify-center my-1">
+                <span class="text-[9px] font-bold text-[#8caab5] bg-white/5 px-3 py-1 rounded-full border border-white/10 uppercase tracking-widest">Hôm nay</span>
+            </div>
+
+            <!-- Bot Message -->
+            <div class="flex items-end gap-2.5 max-w-[85%]">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] flex items-center justify-center shrink-0 border border-white/20">
+                    <i class="fa-solid fa-robot text-[10px] text-white"></i>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl rounded-bl-sm p-3 border border-white/10 shadow-lg mt-1">
+                    <p class="text-[13px] leading-relaxed text-[#ecf6f9]">
+                        Chào bạn! Bạn đang cần mua SIM du lịch hay tìm nhà hàng hải sản ngon khu vực Dương Đông?
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pre-filled Suggestion Chips -->
+            <div class="flex gap-2 flex-wrap pl-9">
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">🦐 Hải sản tươi gần tôi</button>
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">🌐 Mua eSIM Vinaphone</button>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 border-t border-white/10 bg-[#0f1c29]/90 shrink-0">
+            <div class="relative bg-white/5 border border-white/20 rounded-full pr-1 flex items-center transition-all duration-300 focus-within:border-[#90e0ef]/50 focus-within:bg-white/10">
+                <button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition group shrink-0">
+                    <i class="fa-solid fa-paperclip text-[15px] group-hover:scale-110 transition"></i>
+                </button>
+                <input type="text" placeholder="Hỏi AI..." class="flex-1 w-full bg-transparent border-none outline-none text-white text-[13px] font-light placeholder-gray-400 py-3">
+                <button class="w-8 h-8 rounded-full bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-black hover:scale-105 transition shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center justify-center transform ml-1 shrink-0">
+                    <i class="fa-solid fa-paper-plane text-[11px] ml-[-1px]"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Language dropdown logic
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        const langText = document.getElementById('langText');
+
+        if(langBtn) {
+            langBtn.onclick = (e) => {
+                e.stopPropagation();
+                if(langDropdown.classList.contains('scale-y-0')) {
+                    langDropdown.classList.remove('scale-y-0', 'opacity-0');
+                    langDropdown.classList.add('scale-y-100', 'opacity-100');
+                } else {
+                    langDropdown.classList.add('scale-y-0', 'opacity-0');
+                    langDropdown.classList.remove('scale-y-100', 'opacity-100');
+                }
+            };
+        }
+
+        document.addEventListener('click', () => {
+            if(langDropdown && !langDropdown.classList.contains('scale-y-0')) {
+                langDropdown.classList.add('scale-y-0', 'opacity-0');
+                langDropdown.classList.remove('scale-y-100', 'opacity-100');
+            }
+        });
+
+        window.switchLang = function(langKey) {
+            if(langText) {
+                langText.innerText = (langKey === 'en') ? 'ENGLISH' : 'TIẾNG VIỆT';
+            }
+            if(langDropdown) {
+                langDropdown.classList.add('scale-y-0', 'opacity-0');
+                langDropdown.classList.remove('scale-y-100', 'opacity-100');
+            }
+        }
+
+        function toggleAiChat() {
+            const popup = document.getElementById('aiChatPopup');
+            if (popup.classList.contains('opacity-0')) {
+                popup.classList.remove('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
+                popup.classList.add('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                popup.classList.add('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
+                popup.classList.remove('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+            }
+        }
+    </script>
+</body>
+</html>

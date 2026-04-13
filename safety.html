@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PQGO.VN - An Toàn & Sức Khỏe | Phú Quốc</title>
+    <meta name="description" content="Hệ thống an toàn & sức khỏe toàn diện dành cho du khách tại Phú Quốc. Dịch vụ y tế tại chỗ, hotline khẩn cấp phân khu vực, hoạt động 24/7.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f1c29;
+            background: radial-gradient(circle at 15% 30%, #4a8d96 0%, #173242 40%, #0f1c29 100%);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 1px 3px rgba(255,255,255,0.1), 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: inset 0 1px 3px rgba(255,255,255,0.2), 0 12px 30px rgba(0,0,0,0.35);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Pulse animation for SOS */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        /* Heart beat for medical icon */
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.15); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.15); }
+            40% { transform: scale(1); }
+        }
+        .animate-heart-beat { animation: heart-beat 3s ease-in-out infinite; display: inline-block; }
+
+        /* Typing dots */
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* Subtle float */
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-gentle-float { animation: gentle-float 4s ease-in-out infinite; }
+
+        /* Glow pulse for emergency badges */
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 8px rgba(239,68,68,0.4); }
+            50% { box-shadow: 0 0 20px rgba(239,68,68,0.7); }
+        }
+
+        /* Tab active indicator animation */
+        .tab-active {
+            background: rgba(255,255,255,0.12) !important;
+            border-color: rgba(144,224,239,0.5) !important;
+            color: white !important;
+        }
+
+        /* Hotline card call button glow */
+        .call-btn:hover {
+            box-shadow: 0 0 20px rgba(74,222,128,0.5);
+        }
+
+        /* Shine sweep for service cards */
+        .shine-effect {
+            transition: left 0.6s ease-in-out;
+        }
+        .group:hover .shine-effect {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen w-screen flex flex-col relative">
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- HEADER (Cloned from explore.html — SAFETY active)            -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="w-full flex justify-center z-50 fixed top-6 px-4 pointer-events-none">
+        <header class="w-full max-w-[1500px] flex items-center justify-between px-6 py-3 bg-white/[0.03] backdrop-blur-[40px] border border-white/20 rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] pointer-events-auto">
+            
+            <a href="explore.html" class="flex items-center gap-3 ml-2 cursor-pointer group">
+                <svg class="w-8 h-8 drop-shadow-[0_0_12px_rgba(250,204,21,0.4)] group-hover:scale-105 transition-transform" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fffce8" />
+                            <stop offset="30%" stop-color="#fce17a" />
+                            <stop offset="100%" stop-color="#c19b2e" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M20 2C13.37 2 8 7.37 8 14c0 7.75 10.66 22.37 11.23 23.14a1 1 0 001.54 0C21.34 36.37 32 21.75 32 14 32 7.37 26.63 2 20 2zm0 18a6 6 0 110-12 6 6 0 010 12z" fill="url(#goldGradient)"/>
+                    <circle cx="20" cy="14" r="3" fill="#0f1c29"/>
+                </svg>
+                <span class="text-lg lg:text-[22px] font-extrabold tracking-[0.1em] text-[#f4ffff] drop-shadow-md">PQGO.VN</span>
+            </a>
+            
+            <nav class="hidden lg:flex items-center gap-7 lg:gap-8 text-[11px] font-bold tracking-[0.18em] text-[#a5c2ce]">
+                <a href="explore.html" class="relative transition hover:text-white py-2 group">
+                    EXPLORE
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="book.html" class="relative transition hover:text-white py-2 group">
+                    BOOK
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="shop.html" class="relative transition hover:text-white py-2 group">
+                    SHOP
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                <a href="safety.html" class="relative text-white transition py-2 group">
+                    SAFETY
+                    <!-- Active Glow Underline -->
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-[60%] h-[2px] bg-[#fce17a] shadow-[0_0_8px_rgba(250,204,21,0.9)] rounded"></span>
+                </a>
+                <a href="#" class="relative transition hover:text-white py-2 group">
+                    CARE
+                    <span class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0 h-[2px] bg-white/50 shadow-[0_0_8px_rgba(255,255,255,0.5)] rounded transition-all duration-300 group-hover:w-[60%]"></span>
+                </a>
+                
+                <button class="glass-btn flex items-center gap-2 px-4 py-[7px] rounded-full text-white ml-2 text-[10px] shadow-[inset_0_1px_3px_rgba(255,255,255,0.1)] border-white/20 hover:border-white/50 transition-all">
+                    <i class="fa-solid fa-robot text-[#90e0ef]"></i> ASK AI
+                </button>
+            </nav>
+            
+            <div class="hidden lg:flex items-center gap-3 mr-2 relative">
+                <button id="langBtn" class="glass-btn flex items-center gap-2 px-4 py-[9px] text-[10px] font-extrabold rounded-full text-[#ddeef2] tracking-[0.15em] border-white/20 hover:bg-white/10 transition shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)]">
+                    <i class="fa-solid fa-globe text-[#a0c2d1]"></i> <span id="langText">ENGLISH</span>
+                </button>
+                
+                <div id="langDropdown" class="absolute top-12 left-0 mt-2 w-32 bg-[#12222e]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] overflow-hidden scale-y-0 opacity-0 transform origin-top transition-all duration-300 z-50">
+                    <button class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest border-b border-white/5 transition" onclick="switchLang('en')">ENGLISH</button>
+                    <button class="w-full text-left px-4 py-3 hover:bg-white/10 text-[10px] font-bold text-white tracking-widest transition" onclick="switchLang('vi')">TIẾNG VIỆT</button>
+                </div>
+                
+                <button class="bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-[#3a2c04] text-[10px] font-extrabold tracking-[0.1em] px-5 py-[9px] rounded-full shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.6)] hover:scale-105 transition-all flex items-center gap-2 border-[1.5px] border-[#fffce8]/50">
+                    <span>APP DOWNLOAD</span>
+                    <div class="flex gap-1 ml-1 text-[13px] opacity-90">
+                        <i class="fa-brands fa-apple"></i>
+                        <i class="fa-brands fa-android"></i>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button class="lg:hidden text-white text-2xl mr-4 px-2 hover:text-[#fce17a] transition">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </header>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- MAIN CONTENT                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <main class="flex-1 px-4 sm:px-6 lg:px-14 pb-10 pt-28 lg:pt-[110px] flex flex-col z-10 w-full mx-auto max-w-[1400px]">
+        
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- HERO SECTION                                           -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <section id="hero" class="w-full mb-10 lg:mb-14">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+                <!-- Left: Title & Subtitle -->
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-1.5 h-10 bg-gradient-to-b from-red-400 to-red-600 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.5)]"></div>
+                        <div>
+                            <h1 class="text-2xl lg:text-4xl font-extrabold tracking-[0.08em] uppercase text-white drop-shadow-[0_2px_15px_rgba(0,0,0,0.5)]">
+                                AN TOÀN & SỨC KHỎE
+                            </h1>
+                            <p class="text-[11px] lg:text-[13px] text-[#a0c2d1] font-semibold tracking-[0.12em] uppercase mt-1">
+                                Người bạn đồng hành đáng tin cậy tại Phú Quốc
+                            </p>
+                        </div>
+                    </div>
+                    <p class="text-[13px] lg:text-[15px] text-[#8badb9] leading-relaxed max-w-[600px] font-light">
+                        Hệ thống hỗ trợ y tế và khẩn cấp hoạt động <span class="text-white font-bold">24/7</span>, 
+                        sử dụng GPS để kết nối bạn với dịch vụ cứu hộ gần nhất — 
+                        <span class="text-green-400 font-semibold">hoạt động ngay cả khi offline</span>.
+                    </p>
+                </div>
+
+                <!-- Right: Status Badges -->
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-2 backdrop-blur-md">
+                        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.8)]"></div>
+                        <span class="text-[10px] font-extrabold text-green-200 tracking-[0.15em] uppercase">HỆ THỐNG TRỰC TUYẾN</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-2 backdrop-blur-md">
+                        <i class="fa-solid fa-wifi text-cyan-400 text-[10px]"></i>
+                        <span class="text-[10px] font-extrabold text-cyan-200 tracking-[0.15em] uppercase">OFFLINE READY</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-2 backdrop-blur-md">
+                        <i class="fa-solid fa-location-dot text-yellow-400 text-[10px]"></i>
+                        <span class="text-[10px] font-extrabold text-yellow-200 tracking-[0.15em] uppercase">GPS TRACKING</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- D1: DỊCH VỤ Y TẾ TẠI CHỖ (On-demand Medical)         -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <section id="medical-services" class="w-full mb-10 lg:mb-14">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500/80 to-red-700/80 flex items-center justify-center border border-red-400/30 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+                    <i class="fa-solid fa-suitcase-medical text-white text-[16px]"></i>
+                </div>
+                <div>
+                    <h2 class="text-sm lg:text-base font-extrabold tracking-[0.15em] uppercase text-white">DỊCH VỤ Y TẾ TẠI CHỖ</h2>
+                    <p class="text-[9px] text-[#8badb9] tracking-[0.1em] uppercase font-semibold">On-demand Medical • "Grab for Doctors"</p>
+                </div>
+            </div>
+
+            <!-- Service Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <!-- Card 1: Khám tổng quát -->
+                <div class="glass-card p-5 flex flex-col gap-3 group relative overflow-hidden cursor-pointer">
+                    <div class="shine-effect absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 z-0 pointer-events-none"></div>
+                    <div class="flex items-start gap-3 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400/20 to-blue-600/20 border border-blue-400/30 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-stethoscope text-blue-400 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-1">Khám Tổng Quát Tại Chỗ</h3>
+                            <p class="text-[10px] text-[#8badb9] leading-relaxed">Say nắng, đau bụng, cảm cúm, dị ứng — Bác sĩ đến tận nơi bạn ở.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto relative z-10 pt-2 border-t border-white/10">
+                        <div class="flex flex-col">
+                            <span class="text-[8px] text-[#6b8e9e] uppercase font-bold tracking-wider">Phí dịch vụ</span>
+                            <span class="text-[14px] font-extrabold text-[#90e0ef]">300K - 500K <span class="text-[9px] text-[#6b8e9e] font-semibold">VNĐ</span></span>
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-white/5 rounded-full px-3 py-1 border border-white/10">
+                            <i class="fa-solid fa-clock text-[9px] text-[#a0c2d1]"></i>
+                            <span class="text-[9px] font-bold text-[#a0c2d1] tracking-wider">30 - 60 PHÚT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Sơ cứu tai nạn nhẹ -->
+                <div class="glass-card p-5 flex flex-col gap-3 group relative overflow-hidden cursor-pointer">
+                    <div class="shine-effect absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 z-0 pointer-events-none"></div>
+                    <div class="flex items-start gap-3 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400/20 to-orange-600/20 border border-orange-400/30 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-band-aid text-orange-400 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-1">Sơ Cứu Tai Nạn Nhẹ</h3>
+                            <p class="text-[10px] text-[#8badb9] leading-relaxed">Trầy xước khi lặn, bỏng sứa, côn trùng cắn — xử lý nhanh tại chỗ.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto relative z-10 pt-2 border-t border-white/10">
+                        <div class="flex flex-col">
+                            <span class="text-[8px] text-[#6b8e9e] uppercase font-bold tracking-wider">Phí dịch vụ</span>
+                            <span class="text-[14px] font-extrabold text-[#90e0ef]">200K - 400K <span class="text-[9px] text-[#6b8e9e] font-semibold">VNĐ</span></span>
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-white/5 rounded-full px-3 py-1 border border-white/10">
+                            <i class="fa-solid fa-clock text-[9px] text-[#a0c2d1]"></i>
+                            <span class="text-[9px] font-bold text-[#a0c2d1] tracking-wider">20 - 40 PHÚT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Tư vấn từ xa (Telemedicine) -->
+                <div class="glass-card p-5 flex flex-col gap-3 group relative overflow-hidden cursor-pointer">
+                    <div class="shine-effect absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 z-0 pointer-events-none"></div>
+                    <div class="flex items-start gap-3 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-400/20 to-purple-600/20 border border-purple-400/30 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-video text-purple-400 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-1">Tư Vấn Từ Xa</h3>
+                            <p class="text-[10px] text-[#8badb9] leading-relaxed">Video call trực tiếp với bác sĩ — sàng lọc triệu chứng ban đầu ngay tức thì.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto relative z-10 pt-2 border-t border-white/10">
+                        <div class="flex flex-col">
+                            <span class="text-[8px] text-[#6b8e9e] uppercase font-bold tracking-wider">Phí dịch vụ</span>
+                            <span class="text-[14px] font-extrabold text-[#90e0ef]">150K - 250K <span class="text-[9px] text-[#6b8e9e] font-semibold">VNĐ</span></span>
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-green-500/10 rounded-full px-3 py-1 border border-green-500/20">
+                            <i class="fa-solid fa-bolt text-[9px] text-green-400"></i>
+                            <span class="text-[9px] font-bold text-green-300 tracking-wider">NGAY LẬP TỨC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Đặt thuốc giao tận nơi -->
+                <div class="glass-card p-5 flex flex-col gap-3 group relative overflow-hidden cursor-pointer">
+                    <div class="shine-effect absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 z-0 pointer-events-none"></div>
+                    <div class="flex items-start gap-3 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400/20 to-teal-600/20 border border-teal-400/30 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-pills text-teal-400 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-1">Đặt Thuốc Giao Tận Nơi</h3>
+                            <p class="text-[10px] text-[#8badb9] leading-relaxed">Thuốc OTC: giảm đau, tiêu chảy, say tàu — giao đến tận phòng khách sạn.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto relative z-10 pt-2 border-t border-white/10">
+                        <div class="flex flex-col">
+                            <span class="text-[8px] text-[#6b8e9e] uppercase font-bold tracking-wider">Phí dịch vụ</span>
+                            <span class="text-[14px] font-extrabold text-[#90e0ef]">Giá thuốc + 50K <span class="text-[9px] text-[#6b8e9e] font-semibold">ship</span></span>
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-white/5 rounded-full px-3 py-1 border border-white/10">
+                            <i class="fa-solid fa-clock text-[9px] text-[#a0c2d1]"></i>
+                            <span class="text-[9px] font-bold text-[#a0c2d1] tracking-wider">45 - 90 PHÚT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Chuyển viện khẩn cấp -->
+                <div class="glass-card p-5 flex flex-col gap-3 group relative overflow-hidden cursor-pointer border-red-500/20 hover:border-red-400/40">
+                    <div class="shine-effect absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-red-400/15 to-transparent -skew-x-12 z-0 pointer-events-none"></div>
+                    <div class="flex items-start gap-3 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/30 to-red-700/30 border border-red-400/40 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform" style="animation: glow-pulse 2s infinite;">
+                            <i class="fa-solid fa-truck-medical text-red-400 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-1">Chuyển Viện Khẩn Cấp</h3>
+                            <p class="text-[10px] text-[#8badb9] leading-relaxed">Gọi xe cứu thương + hỗ trợ liên lạc bệnh viện — kết nối ngay lập tức.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto relative z-10 pt-2 border-t border-red-400/20">
+                        <div class="flex flex-col">
+                            <span class="text-[8px] text-[#6b8e9e] uppercase font-bold tracking-wider">Phí dịch vụ</span>
+                            <span class="text-[14px] font-extrabold text-green-400">MIỄN PHÍ <span class="text-[9px] text-[#6b8e9e] font-semibold">(chỉ kết nối)</span></span>
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-red-500/15 rounded-full px-3 py-1 border border-red-500/30">
+                            <i class="fa-solid fa-bolt text-[9px] text-red-400"></i>
+                            <span class="text-[9px] font-bold text-red-300 tracking-wider">NGAY LẬP TỨC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Card: Gọi bác sĩ -->
+                <div class="glass-card p-5 flex flex-col items-center justify-center gap-4 group relative overflow-hidden cursor-pointer bg-gradient-to-br from-[#4a8d96]/15 to-[#12222e]/30 border-[#4a8d96]/30 hover:border-[#90e0ef]/50">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#173242] border-2 border-[#90e0ef]/50 flex items-center justify-center shadow-[0_0_30px_rgba(144,224,239,0.3)] group-hover:scale-110 transition-transform animate-gentle-float">
+                        <i class="fa-solid fa-user-doctor text-[#ecf6f9] text-2xl"></i>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[12px] font-extrabold text-white uppercase tracking-[0.15em] mb-1">GỌI BÁC SĨ GẦN NHẤT</p>
+                        <p class="text-[9px] text-[#8badb9] tracking-wider">Hệ thống tự động match theo GPS & availability</p>
+                    </div>
+                    <button class="w-full py-2.5 bg-gradient-to-r from-[#4a8d96] to-[#173242] text-white text-[10px] font-extrabold uppercase tracking-[0.12em] rounded-xl border border-[#4a8d96]/60 hover:shadow-[0_0_20px_rgba(74,141,150,0.5)] hover:scale-[1.02] transition-all">
+                        <i class="fa-solid fa-phone-volume mr-2"></i>KẾT NỐI NGAY
+                    </button>
+                </div>
+            </div>
+
+            <!-- Legal Disclaimer Banner -->
+            <div class="mt-5 bg-yellow-500/8 border border-yellow-500/20 rounded-xl px-4 py-3 flex items-start gap-3 backdrop-blur-md">
+                <i class="fa-solid fa-triangle-exclamation text-yellow-400 text-sm mt-0.5 shrink-0"></i>
+                <p class="text-[10px] text-yellow-200/90 leading-relaxed font-medium">
+                    <span class="font-bold text-yellow-300">Cảnh báo pháp lý:</span> 
+                    Dịch vụ chỉ mang tính sơ cứu và hỗ trợ kết nối, không thay thế khám chữa bệnh ở Viện. 
+                    Không cung cấp thuốc kê đơn online. Tất cả bác sĩ đều có giấy phép hành nghề hợp lệ.
+                </p>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- D2: HOTLINE KHẨN CẤP PHÂN KHU VỰC                     -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <section id="emergency-hotlines" class="w-full mb-10 lg:mb-14">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500/80 to-red-600/80 flex items-center justify-center border border-orange-400/30 shadow-[0_0_15px_rgba(249,115,22,0.3)]">
+                        <i class="fa-solid fa-phone-volume text-white text-[16px]"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm lg:text-base font-extrabold tracking-[0.15em] uppercase text-white">HOTLINE KHẨN CẤP</h2>
+                        <p class="text-[9px] text-[#8badb9] tracking-[0.1em] uppercase font-semibold">Phân khu vực • One-tap call • Offline available</p>
+                    </div>
+                </div>
+
+                <!-- View Toggle Button -->
+                <div class="flex items-center bg-white/5 rounded-full border border-white/15 p-1 backdrop-blur-md">
+                    <button id="toggleTabsBtn" onclick="setHotlineView('tabs')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[9px] font-bold tracking-wider uppercase transition-all tab-active">
+                        <i class="fa-solid fa-layer-group text-[10px]"></i> TABS
+                    </button>
+                    <button id="toggleGridBtn" onclick="setHotlineView('grid')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[9px] font-bold tracking-wider uppercase text-[#8badb9] transition-all hover:text-white">
+                        <i class="fa-solid fa-grip text-[10px]"></i> GRID
+                    </button>
+                </div>
+            </div>
+
+            <!-- ════════ TABS VIEW ════════ -->
+            <div id="hotlineTabsView">
+                <!-- Tab Navigation -->
+                <div class="flex gap-2 mb-5 overflow-x-auto hide-scrollbar pb-1">
+                    <button onclick="switchZone('duong-dong')" data-zone="duong-dong" class="zone-tab tab-active whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold tracking-wider bg-white/5 border border-white/10 transition-all hover:bg-white/10 backdrop-blur-md shrink-0">
+                        <i class="fa-solid fa-city text-[11px]"></i> Dương Đông
+                    </button>
+                    <button onclick="switchZone('an-thoi')" data-zone="an-thoi" class="zone-tab whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold tracking-wider text-[#8badb9] bg-white/5 border border-white/10 transition-all hover:bg-white/10 backdrop-blur-md shrink-0">
+                        <i class="fa-solid fa-anchor text-[11px]"></i> An Thới
+                    </button>
+                    <button onclick="switchZone('ham-ninh')" data-zone="ham-ninh" class="zone-tab whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold tracking-wider text-[#8badb9] bg-white/5 border border-white/10 transition-all hover:bg-white/10 backdrop-blur-md shrink-0">
+                        <i class="fa-solid fa-fish text-[11px]"></i> Hàm Ninh
+                    </button>
+                    <button onclick="switchZone('ganh-dau')" data-zone="ganh-dau" class="zone-tab whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold tracking-wider text-[#8badb9] bg-white/5 border border-white/10 transition-all hover:bg-white/10 backdrop-blur-md shrink-0">
+                        <i class="fa-solid fa-mountain text-[11px]"></i> Gành Dầu
+                    </button>
+                    <button onclick="switchZone('bai-truong')" data-zone="bai-truong" class="zone-tab whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold tracking-wider text-[#8badb9] bg-white/5 border border-white/10 transition-all hover:bg-white/10 backdrop-blur-md shrink-0">
+                        <i class="fa-solid fa-umbrella-beach text-[11px]"></i> Bãi Trường
+                    </button>
+                    <button onclick="switchZone('bac-dao')" data-zone="bac-dao" class="zone-tab whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold tracking-wider text-[#8badb9] bg-white/5 border border-white/10 transition-all hover:bg-white/10 backdrop-blur-md shrink-0">
+                        <i class="fa-solid fa-gem text-[11px]"></i> Bắc Đảo / VinPearl
+                    </button>
+                </div>
+
+                <!-- Tab Content Panels -->
+                <div id="zone-content" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <!-- Content will be populated by JS -->
+                </div>
+            </div>
+
+            <!-- ════════ GRID VIEW ════════ -->
+            <div id="hotlineGridView" class="hidden">
+                <div id="grid-content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- All zones rendered statically by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- FOOTER: Trải Nghiệm Liền Mạch (Cloned from explore)  -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <section id="app-download" class="w-full mt-auto pt-6 pb-2">
+            <div class="flex items-center bg-gradient-to-r from-[#12222e]/80 to-[#1e3445]/40 border border-[#a0c2d1]/30 rounded-2xl p-2 pr-5 backdrop-blur-md cursor-pointer hover:border-[#a0c2d1]/60 transition group shadow-[0_5px_15px_rgba(0,0,0,0.3)] w-max">
+                 <div class="w-10 h-14 bg-black rounded-lg border-2 border-slate-400 flex items-center justify-center relative overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.5)] group-hover:-translate-y-1 transition duration-300 transform rotate-[-5deg]">
+                     <div class="absolute top-[2px] w-3 h-[2px] bg-slate-600 rounded-full"></div>
+                     <i class="fa-solid fa-earth-asia text-[#90e0ef] text-xl"></i>
+                     <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent"></div>
+                 </div>
+                 <div class="ml-4 flex flex-col justify-center">
+                     <span class="text-[8px] font-bold text-[#bfe0e8] tracking-[0.1em] uppercase mb-0.5 opacity-90">Trải nghiệm liền mạch</span>
+                     <span class="text-white font-extrabold text-[11px] uppercase tracking-wider">TẢI ỨNG DỤNG PQGO</span>
+                     <div class="flex gap-2 mt-1 opacity-70">
+                          <i class="fa-brands fa-apple hover:text-white transition cursor-pointer text-[13px]"></i>
+                          <i class="fa-brands fa-google-play hover:text-white transition cursor-pointer text-[13px]"></i>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- FLOATING SOS BUTTON (Cloned from explore.html)               -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="fixed bottom-6 left-6 lg:left-8 z-[100] pointer-events-auto">
+        <a href="tel:115" class="relative flex items-center justify-center w-[52px] h-[52px] bg-gradient-to-br from-[#ef4444] to-[#b91c1c] rounded-full border-2 border-red-300/50 shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-110 transition-all duration-300 group">
+            <div class="absolute inset-0 rounded-full border-[1.5px] border-red-400 animate-ping opacity-60"></div>
+            <i class="fa-solid fa-suitcase-medical text-white text-[22px] drop-shadow-md"></i>
+            <div class="absolute left-[calc(100%+12px)] bg-red-600/95 backdrop-blur-md text-white text-[10px] font-extrabold px-3.5 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl pointer-events-none border border-red-400/50 uppercase tracking-widest origin-left scale-95 group-hover:scale-100">
+                GỌI CẤP CỨU & Y TẾ (115)
+            </div>
+        </a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- FLOATING ASK AI BUTTON (Cloned from explore.html)            -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div class="fixed bottom-6 right-6 lg:right-8 z-[100] pointer-events-auto">
+        <div class="relative group block cursor-pointer" onclick="toggleAiChat()">
+            <div class="flex items-center">
+                <button class="bg-gradient-to-r from-[#ddefef] to-[#ffffff] text-[#123640] rounded-full pl-5 pr-6 py-[13px] flex items-center gap-2.5 shadow-[0_5px_30px_rgba(255,255,255,0.3)] group-hover:scale-105 transition-all duration-300 font-extrabold text-[12px] tracking-[0.05em] border-2 border-white/50 relative">
+                    <div class="w-6 h-6 bg-[#8cacbc]/30 rounded-full flex items-center justify-center mr-0.5 pointer-events-none">
+                        <i class="fa-solid fa-robot text-[#1e505e] text-sm"></i>
+                    </div>
+                    ASK AI <i class="fa-solid fa-chevron-right text-[10px] pointer-events-none"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- AI CHAT POPUP (Cloned from explore.html)                     -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <div id="aiChatPopup" class="fixed bottom-24 right-6 lg:right-8 z-[110] w-[380px] max-w-[calc(100vw-32px)] h-[600px] max-h-[75vh] bg-[#0c1824]/95 backdrop-blur-xl border border-white/20 rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] flex flex-col overflow-hidden opacity-0 scale-95 translate-y-10 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)]">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-gradient-to-r from-[#4a8d96]/20 to-transparent shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] border border-[#90e0ef]/50 flex items-center justify-center shadow-[0_0_15px_rgba(144,224,239,0.3)]">
+                        <i class="fa-solid fa-robot text-[#ecf6f9] text-lg"></i>
+                    </div>
+                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-[#12222e] animate-pulse"></div>
+                </div>
+                <div>
+                    <h2 class="text-[14px] font-extrabold tracking-widest uppercase text-white drop-shadow-md">PQGO Assistant</h2>
+                    <p class="text-[9px] text-[#a0c2d1] font-semibold tracking-wider">Luôn trực tuyến</p>
+                </div>
+            </div>
+            <button onclick="toggleAiChat()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 hover:scale-110 transition border border-white/10 flex items-center justify-center cursor-pointer text-gray-300">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="flex-1 overflow-y-auto hide-scrollbar p-5 flex flex-col gap-5">
+            <div class="flex justify-center my-1">
+                <span class="text-[9px] font-bold text-[#8caab5] bg-white/5 px-3 py-1 rounded-full border border-white/10 uppercase tracking-widest">Hôm nay</span>
+            </div>
+            <div class="flex items-end gap-2.5 max-w-[85%]">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#4a8d96] to-[#12222e] flex items-center justify-center shrink-0 border border-white/20">
+                    <i class="fa-solid fa-robot text-[10px] text-white"></i>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl rounded-bl-sm p-3 border border-white/10 shadow-lg mt-1">
+                    <p class="text-[13px] leading-relaxed text-[#ecf6f9]">
+                        Xin chào! 🏥<br><br>
+                        Tôi có thể giúp bạn tìm bệnh viện gần nhất, gọi bác sĩ đến tại chỗ, hoặc tư vấn các số hotline khẩn cấp tại khu vực bạn đang ở.<br><br>
+                        Bạn cần hỗ trợ gì?
+                    </p>
+                </div>
+            </div>
+            <div class="flex gap-2 flex-wrap pl-9">
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">🚑 Gọi bác sĩ ngay</button>
+                <button class="bg-[#173242]/80 border border-[#4a8d96]/50 text-[#bfe0e8] text-[10px] font-semibold px-2.5 py-1.5 rounded-full hover:bg-[#4a8d96]/30 hover:text-white transition shadow-sm">📞 Hotline gần tôi</button>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 border-t border-white/10 bg-[#0f1c29]/90 shrink-0">
+            <div class="relative bg-white/5 border border-white/20 rounded-full pr-1 flex items-center transition-all duration-300 focus-within:border-[#90e0ef]/50 focus-within:bg-white/10">
+                <button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition group shrink-0">
+                    <i class="fa-solid fa-paperclip text-[15px] group-hover:scale-110 transition"></i>
+                </button>
+                <input type="text" placeholder="Hỏi AI..." class="flex-1 w-full bg-transparent border-none outline-none text-white text-[13px] font-light placeholder-gray-400 py-3">
+                <button class="w-8 h-8 rounded-full bg-gradient-to-r from-[#fce17a] to-[#d4af37] text-black hover:scale-105 transition shadow-[0_0_10px_rgba(250,204,21,0.5)] flex items-center justify-center transform ml-1 shrink-0">
+                    <i class="fa-solid fa-paper-plane text-[11px] ml-[-1px]"></i>
+                </button>
+            </div>
+            <p class="text-center text-[8px] text-gray-500 mt-2 font-semibold uppercase tracking-widest">AI có thể cung cấp thông tin chưa chính xác.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- JAVASCRIPT                                                    -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <script>
+        // ─── Hotline Data (Module D2 from BA document) ───
+        const hotlineData = {
+            'duong-dong': {
+                name: 'Dương Đông',
+                icon: 'fa-city',
+                desc: 'Trung tâm, đông đúc',
+                contacts: [
+                    { type: 'medical', label: 'Cấp cứu Y tế', number: '115', detail: 'BV Phú Quốc', color: 'red' },
+                    { type: 'police', label: 'Công an / An ninh', number: '113', detail: 'CA TT Dương Đông', color: 'orange' },
+                    { type: 'rescue', label: 'Cứu hộ biển', number: '114', detail: 'Đồn biên phòng', color: 'blue' }
+                ]
+            },
+            'an-thoi': {
+                name: 'An Thới',
+                icon: 'fa-anchor',
+                desc: 'Cảng, nghề cá',
+                contacts: [
+                    { type: 'medical', label: 'Cấp cứu Y tế', number: '0297.3844.115', detail: 'Trạm y tế An Thới', color: 'red' },
+                    { type: 'police', label: 'Công an / An ninh', number: '0297.3844.113', detail: 'CA TT An Thới', color: 'orange' },
+                    { type: 'rescue', label: 'Cứu hộ hàng hải', number: '0297.3844.114', detail: 'Cứu hộ hàng hải', color: 'blue' }
+                ]
+            },
+            'ham-ninh': {
+                name: 'Hàm Ninh',
+                icon: 'fa-fish',
+                desc: 'Làng chài, xa trung tâm',
+                contacts: [
+                    { type: 'medical', label: 'Cấp cứu Y tế', number: '0297.3846.115', detail: 'Trạm y tế lưu động', color: 'red' },
+                    { type: 'police', label: 'Công an / An ninh', number: '0297.3846.113', detail: 'CA xã Hàm Ninh', color: 'orange' },
+                    { type: 'rescue', label: 'Cứu hộ biển', number: '0297.3846.114', detail: 'Biên phòng Hàm Ninh', color: 'blue' }
+                ]
+            },
+            'ganh-dau': {
+                name: 'Gành Dầu',
+                icon: 'fa-mountain',
+                desc: 'Biên giới, hẻo lánh',
+                contacts: [
+                    { type: 'medical', label: 'Cấp cứu Y tế', number: '0297.3849.115', detail: 'Trạm y tế Gành Dầu', color: 'red' },
+                    { type: 'police', label: 'Công an / An ninh', number: '0297.3849.113', detail: 'Đồn biên phòng', color: 'orange' },
+                    { type: 'rescue', label: 'Cứu hộ biển', number: '0297.3849.114', detail: 'Biên phòng Gành Dầu', color: 'blue' }
+                ]
+            },
+            'bai-truong': {
+                name: 'Bãi Trường',
+                icon: 'fa-umbrella-beach',
+                desc: 'Khu resort dài',
+                contacts: [
+                    { type: 'medical', label: 'Cấp cứu Y tế', number: '115', detail: 'Hotline resort + 115', color: 'red' },
+                    { type: 'police', label: 'Công an / An ninh', number: '113', detail: 'CA TT Dương Đông', color: 'orange' },
+                    { type: 'rescue', label: 'Cứu hộ bãi biển', number: '114', detail: 'Life guard bãi biển', color: 'blue' }
+                ]
+            },
+            'bac-dao': {
+                name: 'Bắc Đảo / VinPearl',
+                icon: 'fa-gem',
+                desc: 'Khu resort cao cấp',
+                contacts: [
+                    { type: 'medical', label: 'Cấp cứu Y tế', number: '0297.3550.999', detail: 'Y tế nội bộ VinPearl', color: 'red' },
+                    { type: 'police', label: 'An ninh', number: '0297.3550.000', detail: 'Security VinPearl', color: 'orange' },
+                    { type: 'rescue', label: 'Cứu hộ', number: '0297.3550.119', detail: 'Cứu hộ VinPearl', color: 'blue' }
+                ]
+            }
+        };
+
+        const typeIcons = {
+            medical: 'fa-truck-medical',
+            police: 'fa-shield-halved',
+            rescue: 'fa-life-ring'
+        };
+        const typeColors = {
+            red: { bg: 'from-red-500/20 to-red-700/20', border: 'border-red-400/30', text: 'text-red-400', callBg: 'bg-red-500/20', callBorder: 'border-red-500/40', callText: 'text-red-300' },
+            orange: { bg: 'from-orange-500/20 to-orange-700/20', border: 'border-orange-400/30', text: 'text-orange-400', callBg: 'bg-orange-500/20', callBorder: 'border-orange-500/40', callText: 'text-orange-300' },
+            blue: { bg: 'from-blue-500/20 to-blue-700/20', border: 'border-blue-400/30', text: 'text-blue-400', callBg: 'bg-blue-500/20', callBorder: 'border-blue-500/40', callText: 'text-blue-300' }
+        };
+
+        // Render a single hotline contact card
+        function renderContactCard(contact) {
+            const c = typeColors[contact.color];
+            return `
+                <div class="glass-card p-4 flex items-center gap-4 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br ${c.bg} ${c.border} border flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid ${typeIcons[contact.type]} ${c.text} text-lg"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[11px] font-bold text-white uppercase tracking-wider truncate">${contact.label}</p>
+                        <p class="text-[9px] text-[#8badb9] tracking-wider truncate">${contact.detail}</p>
+                    </div>
+                    <a href="tel:${contact.number.replace(/\./g, '')}" class="call-btn flex items-center gap-2 ${c.callBg} ${c.callBorder} border rounded-full px-3.5 py-2 hover:scale-105 transition-all shrink-0">
+                        <i class="fa-solid fa-phone text-[11px] ${c.callText}"></i>
+                        <span class="text-[11px] font-extrabold ${c.callText} tracking-wider">${contact.number}</span>
+                    </a>
+                </div>
+            `;
+        }
+
+        // ─── TABS View ───
+        let currentZone = 'duong-dong';
+
+        function switchZone(zoneKey) {
+            currentZone = zoneKey;
+            // Update tab active states
+            document.querySelectorAll('.zone-tab').forEach(tab => {
+                if (tab.dataset.zone === zoneKey) {
+                    tab.classList.add('tab-active');
+                    tab.classList.remove('text-[#8badb9]');
+                } else {
+                    tab.classList.remove('tab-active');
+                    tab.classList.add('text-[#8badb9]');
+                }
+            });
+            renderTabContent();
+        }
+
+        function renderTabContent() {
+            const zone = hotlineData[currentZone];
+            const container = document.getElementById('zone-content');
+            container.innerHTML = zone.contacts.map(renderContactCard).join('');
+        }
+
+        // ─── GRID View ───
+        function renderGridContent() {
+            const container = document.getElementById('grid-content');
+            let html = '';
+            for (const [key, zone] of Object.entries(hotlineData)) {
+                html += `
+                    <div class="glass-card p-4 flex flex-col gap-3">
+                        <div class="flex items-center gap-2 pb-2 border-b border-white/10">
+                            <i class="fa-solid ${zone.icon} text-[#90e0ef] text-sm"></i>
+                            <div>
+                                <p class="text-[12px] font-bold text-white uppercase tracking-wider">${zone.name}</p>
+                                <p class="text-[8px] text-[#6b8e9e] tracking-wider">${zone.desc}</p>
+                            </div>
+                        </div>
+                        ${zone.contacts.map(contact => {
+                            const c = typeColors[contact.color];
+                            return `
+                                <a href="tel:${contact.number.replace(/\./g, '')}" class="flex items-center gap-3 py-1.5 group/item hover:bg-white/5 rounded-lg px-2 -mx-2 transition">
+                                    <i class="fa-solid ${typeIcons[contact.type]} ${c.text} text-sm w-5 text-center"></i>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-[10px] font-bold text-white/90 truncate">${contact.label}</p>
+                                        <p class="text-[8px] text-[#6b8e9e] truncate">${contact.detail}</p>
+                                    </div>
+                                    <span class="text-[10px] font-extrabold ${c.callText} tracking-wider shrink-0">${contact.number}</span>
+                                    <i class="fa-solid fa-phone text-[9px] ${c.text} opacity-0 group-hover/item:opacity-100 transition"></i>
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        // ─── Toggle between Tabs and Grid ───
+        function setHotlineView(view) {
+            const tabsView = document.getElementById('hotlineTabsView');
+            const gridView = document.getElementById('hotlineGridView');
+            const tabsBtn = document.getElementById('toggleTabsBtn');
+            const gridBtn = document.getElementById('toggleGridBtn');
+
+            if (view === 'tabs') {
+                tabsView.classList.remove('hidden');
+                gridView.classList.add('hidden');
+                tabsBtn.classList.add('tab-active');
+                tabsBtn.classList.remove('text-[#8badb9]');
+                gridBtn.classList.remove('tab-active');
+                gridBtn.classList.add('text-[#8badb9]');
+            } else {
+                tabsView.classList.add('hidden');
+                gridView.classList.remove('hidden');
+                gridBtn.classList.add('tab-active');
+                gridBtn.classList.remove('text-[#8badb9]');
+                tabsBtn.classList.remove('tab-active');
+                tabsBtn.classList.add('text-[#8badb9]');
+                renderGridContent();
+            }
+        }
+
+        // ─── AI Chat Toggle ───
+        function toggleAiChat() {
+            const popup = document.getElementById('aiChatPopup');
+            if (popup.classList.contains('opacity-0')) {
+                popup.classList.remove('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
+                popup.classList.add('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                popup.classList.add('opacity-0', 'scale-95', 'translate-y-10', 'pointer-events-none');
+                popup.classList.remove('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+            }
+        }
+
+        // ─── Language Dropdown ───
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        if (langBtn && langDropdown) {
+            langBtn.addEventListener('click', () => {
+                if (langDropdown.classList.contains('scale-y-0')) {
+                    langDropdown.classList.remove('scale-y-0', 'opacity-0');
+                    langDropdown.classList.add('scale-y-100', 'opacity-100');
+                } else {
+                    langDropdown.classList.add('scale-y-0', 'opacity-0');
+                    langDropdown.classList.remove('scale-y-100', 'opacity-100');
+                }
+            });
+        }
+        function switchLang(lang) {
+            document.getElementById('langText').textContent = lang === 'vi' ? 'TIẾNG VIỆT' : 'ENGLISH';
+            langDropdown.classList.add('scale-y-0', 'opacity-0');
+            langDropdown.classList.remove('scale-y-100', 'opacity-100');
+        }
+
+        // ─── Init ───
+        renderTabContent();
+        renderGridContent();
+    </script>
+
+</body>
+</html>
