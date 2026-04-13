@@ -155,7 +155,7 @@
         }
     </style>
 </head>
-<body class="text-white min-h-screen w-full flex flex-col relative pb-10">
+<body class="text-white min-h-screen w-full flex flex-col relative">
 
     <!-- Ambient Background Orbs -->
     <div class="orb orb-1"></div>
@@ -659,6 +659,9 @@
             </div>
         </section>
 
+
+    </main>
+
     <style>
         #footer-root {
             display: block !important;
@@ -816,8 +819,6 @@
             </div>
         </div>
     </footer>
-
-    </main>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- FLOATING GLOBAL ELEMENTS                                      -->
@@ -1021,17 +1022,6 @@
         });
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Shared Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-                if (typeof AOS !== 'undefined') {
-                    AOS.refresh();
-                }
-            });
-    </script>
+
 </body>
 </html>

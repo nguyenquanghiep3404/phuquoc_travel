@@ -110,7 +110,7 @@
         }
     </style>
 </head>
-<body class="text-white min-h-screen w-full flex flex-col relative pb-10">
+<body class="text-white min-h-screen w-full flex flex-col relative">
 
     <!-- Background Animated Orbs -->
     <div class="bg-orb top-[10%] left-[-10%]" style="animation-duration: 25s"></div>
@@ -510,23 +510,8 @@
             </div>
         </section>
 
-    <style>
-        #footer-root {
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            background-color: #0a1118 !important;
-            color: white !important;
-        }
 
-        .footer-text-gold {
-            color: #d4af37 !important;
-        }
-
-        .footer-bg-dark {
-            background-color: #0a1118 !important;
-        }
-    </style>
+    </main>
     <footer id="footer-root" class="relative w-full bg-[#0a1118] pt-24 pb-12 overflow-hidden border-t border-white/5">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#d4af37]/5 blur-[120px] rounded-full pointer-events-none">
         </div>
@@ -667,8 +652,6 @@
             </div>
         </div>
     </footer>
-
-    </main>
 
     <!-- Floating Global Elements -->
     <div id="floatingButtons" class="fixed bottom-6 right-6 lg:right-8 z-[100] flex flex-col items-end gap-4 pointer-events-none transition-all duration-300">
@@ -829,23 +812,6 @@
             once: true
         });
     </script>
-    <!-- Shared Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            if (window.location.protocol === 'file:') {
-                document.getElementById('footer-placeholder').innerHTML = '<div style="padding: 20px; text-align: center; background: #c19b2e; color: #0f1c29; font-weight: bold;">Lỗi CORS: Hãy chạy trang web qua Laragon (http://localhost) để thấy Footer.</div>';
-            } else {
-                fetch('footer.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('footer-placeholder').innerHTML = data;
-                        if (typeof AOS !== 'undefined') {
-                            setTimeout(() => AOS.init(), 600);
-                        }
-                    });
-            }
-        });
-    </script>
+
 </body>
 </html>
